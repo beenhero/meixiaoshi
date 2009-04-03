@@ -60,10 +60,44 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit_contacts
+    @user = User.find(params[:id])
+   
+    @user.phone_numbers.build(:contact_type => 'PHONE', :name => 'mobile') and @user.save if @user.phone_numbers.empty?
+    @user.instant_messages.build(:contact_type => 'IM', :name => 'qq') and @user.save if @user.instant_messages.empty?
+    @user.snses.build(:contact_type => 'SNS', :name => 'blog') and @user.save if @user.snses.empty?
+    
+    if request.put?
+      @user.update_attributes(params[:user])
+      redirect_to  edit_contacts_user_path(@user)
+    end
+  end
+  
+  def edit_password
+    @user = User.find(params[:id])
+    if request.put?
+      if params[:old_password].empty?
+        flash[:notice] = "请输入旧密码."
+        render :action => 'edit_password'
+      elsif @user.authenticated?(params[:old_password])
+        @user.attributes = params[:user]
+
+        if @user.save
+          flash[:notice] = "密码修改成功."
+          redirect_to edit_password_user_path(@user)
+        end
+      else
+        flash[:notice] = "旧密码错误，请重试."
+        render :action => 'edit_password'
+      end
+    end     
+  rescue ActiveRecord::RecordInvalid
+    render :action => 'edit_password'
+  end
+  
   def update
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
-    @user.save
     redirect_to edit_user_path(@user)
   end
   

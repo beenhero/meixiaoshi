@@ -74,11 +74,12 @@ ActiveRecord::Schema.define(:version => 20090330134111) do
   end
 
   create_table "phone_numbers", :force => true do |t|
-    t.integer  "phonable_id",   :null => false
-    t.string   "phonable_type", :null => false
-    t.string   "name",          :null => false
-    t.string   "contact_type",  :null => false
-    t.string   "value",         :null => false
+    t.integer  "phonable_id",                      :null => false
+    t.string   "phonable_type",                    :null => false
+    t.string   "name",                             :null => false
+    t.string   "contact_type",                     :null => false
+    t.string   "value",         :default => ""
+    t.boolean  "privacy",       :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

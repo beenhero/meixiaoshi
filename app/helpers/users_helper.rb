@@ -94,8 +94,30 @@ module UsersHelper
     [
     ['男', 0],
     ['女', 1],
-    ['保密', 3]
+    ['保密', 2]
     ]
+  end
+  
+  def add_contact_link(form_builder, container)
+    link_to_function '添加', :class => 'add-btn' do |page|
+      form_builder.fields_for :phone_numbers, PhoneNumber.new, :child_index => 'NEW_RECORD' do |f|
+        html = render(:partial => 'contact', :locals => { :form => f, :type => container.upcase })
+        page << "$('#{container}').insert({ bottom: '#{escape_javascript(html)}'.replace(/NEW_RECORD/g, new Date().getTime()) });"
+      end
+    end
+  end
+  
+  def remove_contact_link(form_builder)
+    if form_builder.object.new_record?
+      # If the task is a new record, we can just remove the div from the dom
+      link_to_function("删除", "$(this).up('.contact').remove();");
+    else
+      # However if it's a "real" record it has to be deleted from the database,
+      # for this reason the new fields_for, accept_nested_attributes helpers give us _delete,
+      # a virtual attribute that tells rails to delete the child record.
+      form_builder.hidden_field(:_delete) +
+      link_to_function("删除", "$(this).up('.contact').hide(); $(this).previous().value = '1'")
+    end
   end
   
 end

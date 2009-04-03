@@ -1,5 +1,15 @@
 #main-content
   .main-content-bg
+    %ul.nav
+      %li
+        = link_to "帐号信息", edit_user_path(@user)
+      %li
+        = link_to "个人信息", edit_info_user_path(@user)
+      %li
+        = link_to "联系方式", edit_contacts_user_path(@user)
+      %li
+        = link_to "修改密码", edit_password_user_path(@user)
+        
     = yield
   .main-content-bg-end
 #sidebar

@@ -1006,7 +1006,12 @@ ul.tag-list li {
 		width: 100px;
 		float: left;
 	}
-	
+
+.form-sub-row{
+	padding-left: 100px;
+	margin-bottom: 3px;
+}
+
 .form-submit{
 	text-align: right;
 	padding: 10px 10px 0 0;
@@ -1030,3 +1035,12 @@ hr.split{
 	border: none;
 	background:transparent url(/images/more-info-bg.gif) repeat-x scroll left top;
 }
+
+
+/* @group User Pages */
+
+a.add-btn{
+	padding-left: 100px;
+}
+
+/* @end */

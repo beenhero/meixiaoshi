@@ -28,11 +28,23 @@ class User < ActiveRecord::Base
   has_one :user_info
   accepts_nested_attributes_for :user_info, :allow_destroy => true
   
+  has_many  :phone_numbers, :as => :phonable, :conditions => "contact_type = 'PHONE'"
+  accepts_nested_attributes_for :phone_numbers, :allow_destroy => true
+  
+  has_many  :instant_messages, :as => :phonable, :class_name => 'PhoneNumber', :conditions => "contact_type = 'IM'"
+  accepts_nested_attributes_for :instant_messages, :allow_destroy => true
+  
+  has_many  :snses, :as => :phonable, :class_name => 'PhoneNumber', :conditions => "contact_type = 'SNS'"
+  accepts_nested_attributes_for :snses, :allow_destroy => true
+  
+  
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url, :user_info_attributes
-
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url, :user_info_attributes, :phone_numbers_attributes, :instant_messages_attributes, :snses_attributes
+  
+  attr_reader :old_password
+  
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
     u = find_in_state :first, :active, :conditions => { :login => login } # need to get the salt

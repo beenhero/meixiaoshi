@@ -1,6 +1,7 @@
 - render :layout => 'edit_layout', :object => @user do
   - form_for @user.user_info, :url => edit_info_user_path(@user) do |i|
     .form-bg
+      = i.error_messages
       .form-row
         = i.label :real_name, "姓名"
         = i.text_field :real_name
@@ -35,6 +36,6 @@
             = a.label :address, "街道小区"
             = a.text_field :street
             = image_tag 'position.png'
-      %hr.split
+
     .form-submit
       = i.submit "保存"

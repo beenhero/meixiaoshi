@@ -4,7 +4,8 @@ class CreatePhoneNumbers < ActiveRecord::Migration
       t.references :phonable, :polymorphic => true, :null => false
       t.string :name, :null => false
       t.string :contact_type, :null => false
-      t.string :value, :null => false
+      t.string :value, :default => ''
+      t.boolean :privacy, :default => 0
       t.timestamps
     end
     add_index :phone_numbers, [:phonable_type, :phonable_id]

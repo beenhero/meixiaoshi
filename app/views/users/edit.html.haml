@@ -1,5 +1,6 @@
-- render :layout => 'edit', :object => @user do
+- render :layout => 'edit_layout', :object => @user do
   - form_for @user do |f|
+    = f.error_messages
     .form-bg
       .form-row
         = f.label :login, "帐号"
@@ -10,7 +11,7 @@
         = link_to "修改", edit_password_user_path(@user)
       .form-row
         = f.label :identity_url, "主页"
-        http://meixiaoshi.com/admin
+        = "http://meixiaoshi.com/#{@user.login}"
       %hr.split
       .form-row
         = f.label :name, "昵称"
