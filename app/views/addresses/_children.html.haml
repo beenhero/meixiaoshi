@@ -1,0 +1,16 @@
+- case which
+
+- when "cities"
+  = select :user_address, :city_id, @cities.collect{|c| [c.name, c.id]}, {}, "onchange" => remote_function(:with => "'parent_id='+value", :update =>"county_selector", :complete => "Element.show('county_selector');Element.show('area_selector');", :url =>{:controller => :addresses, :action => :fetch_counties}) unless @cities.empty?
+  %span#county_selector
+    = select :user_address, :county_id, @counties.collect{|c| [c.name, c.id]}, {}, "onchange" => remote_function(:with => "'parent_id='+value", :update =>"area_selector", :url =>{:controller => :addresses, :action => :fetch_areas}) unless @counties.empty?
+    %span#area_selector
+      = select :user_address, :area_id, @areas.collect{|c| [c.name, c.id]} unless @areas.empty?
+
+- when "counties"
+  = select :user_address, :county_id, @counties.collect{|c| [c.name, c.id]}, {}, "onchange" => remote_function(:with => "'parent_id='+value", :update =>"area_selector", :url =>{:controller => :addresses, :action => :fetch_areas}) unless @counties.empty?
+  %span#area_selector
+    = select :user_address, :area_id, @areas.collect{|c| [c.name, c.id]} unless @areas.empty?
+
+- when "areas"
+  = select :user_address, :area_id, @areas.collect{|c| [c.name, c.id]} unless @areas.empty?

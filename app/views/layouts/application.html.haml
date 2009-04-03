@@ -1,0 +1,63 @@
+!!!
+%html{ :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/xhtml; charset=utf-8"}
+    <meta name="distribution" content="all" />
+    <meta name="robots" content="all" />
+    <meta name="resource-type" content="document" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="author" content="beenhero"  />
+    <meta name="keywords" content="时间 金钱 兼职 赚钱 网络 网赚 服务 24小时 家政 求职 帮助 求助 帮手 解决办法" />
+    - unless @meta && @meta[:description]
+      <meta name="description" content="时间就是金钱" />   
+    %title<
+      = @page_title || APP_CONFIG[:site_name]
+    <link href="/images/favico.png" type="image/png" rel="icon"/>
+    <!--[if IE]> 
+    = stylesheet_link_tag 'iehacks'
+    <![endif]-->
+    - if @rss_title && @rss_url
+      = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
+    = yield :head
+    = stylesheet_link_tag 'base'
+    = javascript_include_tag :defaults
+  %body
+    #main_container
+      #header
+        .logo
+          %a{:href => '/'}<
+            %h1#logo<
+              每小时: 时间就是金钱
+        .search
+          %br
+          - form_tag '/' do
+            = text_field_tag :search, "找谁"
+            = "-"
+            = text_field_tag :search, "在哪儿"
+            = submit_tag "搜索"
+        %ul.top-nav<
+          - if logged_in?
+            %li<
+              = link_to 'Logout', logout_path
+            %li<
+              = link_to 'Edit', edit_user_path(current_user)
+          - else
+            %li<
+              = link_to 'Login', login_path
+            %li<
+              = link_to 'Signup', signup_path
+      .clear
+      = flash_messages
+      = yield :layout
+    #footer-wrapper
+      #footer
+        %ul<
+          %li<
+            = link_to '关于我们', '/'
+          %li<
+            = link_to '使用条款', '/'
+        #media-temple
+          <a href="http://www.rorol.com"><img alt="Product of ROROL Studio." src="/images/favico.png"/></a>
+        %p
+          = link_to 'meixiaoshi.com &copy; 2009', '/'
+        .clear

@@ -1,0 +1,26 @@
+- render :layout => 'edit', :object => @user do
+  - form_for @user do |f|
+    .form-bg
+      .form-row
+        = f.label :login, "帐号"
+        = h @user.login
+      .form-row
+        = f.label :password, "密码"
+        = "****************"
+        = link_to "修改", edit_password_user_path(@user)
+      .form-row
+        = f.label :identity_url, "主页"
+        http://meixiaoshi.com/admin
+      %hr.split
+      .form-row
+        = f.label :name, "昵称"
+        = f.text_field :name
+      .form-row
+        = f.label :email, "邮箱"
+        = f.text_field :email
+      %hr.split
+      .form-row
+        = f.label :avatar, "头像"
+        = f.file_field :avatar
+    .form-submit
+      = f.submit "保存"

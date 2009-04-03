@@ -89,5 +89,13 @@ module UsersHelper
       link_to_login_with_IP content_text, options
     end
   end
-
+  
+  def gender_options
+    [
+    ['男', 0],
+    ['女', 1],
+    ['保密', 3]
+    ]
+  end
+  
 end

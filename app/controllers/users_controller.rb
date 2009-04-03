@@ -38,6 +38,39 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit
+    @user = User.find(params[:id])
+    @user.user_info ||= @user.build_user_info
+  end
+  
+  def edit_info
+    @user = User.find(params[:id])
+    @user.user_info ||= @user.build_user_info
+    @user.address ||= @user.build_address
+    
+    #assign some default values to address
+    @province = @user.address.province || Province.find_by_name('浙江省')
+    @cities = @province.cities
+    @counties = @user.address.city.counties || @cities.first.counties
+    @areas = @user.address.county.areas || @counties.first.areas
+    
+    if request.put?
+      @user.user_info.update_attributes(params[:user_info])
+      @user.address.update_attributes(params[:user_address])
+    end
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    @user.update_attributes(params[:user])
+    @user.save
+    redirect_to edit_user_path(@user)
+  end
+  
+  def destroy
+    
+  end
+  
   protected
   
   def create_new_user(attributes)
