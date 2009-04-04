@@ -38,6 +38,9 @@
         %ul.top-nav<
           - if logged_in?
             %li<
+              = h @user.name
+              = image_tag @user.avatar.url(:tiny)
+            %li<
               = link_to 'Logout', logout_path
             %li<
               = link_to 'Edit', edit_user_path(current_user)

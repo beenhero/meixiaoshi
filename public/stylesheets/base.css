@@ -110,6 +110,7 @@ body {
 
 img {
 	border: none;
+	vertical-align: text-bottom;
 }
 
 h1#logo {

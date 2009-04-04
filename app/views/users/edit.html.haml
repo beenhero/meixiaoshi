@@ -1,5 +1,5 @@
 - render :layout => 'edit_layout', :object => @user do
-  - form_for @user do |f|
+  - form_for @user, :html => { :multipart => true } do |f|
     = f.error_messages
     .form-bg
       .form-row
@@ -21,7 +21,8 @@
         = f.text_field :email
       %hr.split
       .form-row
-        = f.label :avatar, "头像"
+        = f.label :avatar, "头像 #{image_tag @user.avatar.url(:tiny)}"
+          
         = f.file_field :avatar
     .form-submit
       = f.submit "保存"

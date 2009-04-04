@@ -37,13 +37,29 @@ class User < ActiveRecord::Base
   has_many  :snses, :as => :phonable, :class_name => 'PhoneNumber', :conditions => "contact_type = 'SNS'"
   accepts_nested_attributes_for :snses, :allow_destroy => true
   
+  # User avatar setting by paperclip
+  has_attached_file :avatar,
+                    :styles => { :original => "<80x120", :thumb => "<48x48", :tiny => "24x24#" },
+                    :default_url => "/images/default_avatars/:style.gif",
+                    :url => "/assets/users/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public//assets/users/:id/:style/:basename.:extension"
+  validates_attachment_size :avatar, :less_than => 5.megabytes
   
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url, :user_info_attributes, :phone_numbers_attributes, :instant_messages_attributes, :snses_attributes
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url, :user_info_attributes, :phone_numbers_attributes, :instant_messages_attributes, :snses_attributes, :avatar
   
   attr_reader :old_password
+  
+  # set defaut to login if name isn't set.
+  def name
+    if self[:name].blank?
+      login
+    else
+      self[:name]
+    end
+  end
   
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)

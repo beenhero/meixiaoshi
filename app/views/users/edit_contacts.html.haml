@@ -1,0 +1,31 @@
+- render :layout => 'edit_layout', :object => @user do
+  - form_for @user, :url => edit_contacts_user_path(@user) do |form|
+    .form-bg
+      = form.error_messages
+      .form-row
+        = form.label :name, '电话'
+        #phone
+          - form.fields_for :phone_numbers do |c|
+            = render :partial => 'contact', :locals => { :form => c, :type => 'PHONE' }
+        = add_contact_link(form, 'phone')
+          
+      %hr.split
+      
+      .form-row
+        = form.label :name, '即时通'
+        #im
+          - form.fields_for :instant_messages do |c|
+            = render :partial => 'contact', :locals => { :form => c, :type => 'IM' }
+        = add_contact_link(form, 'im')
+          
+      %hr.split
+      
+      .form-row
+        = form.label :name, '网站'
+        #sns
+          - form.fields_for :snses do |c|
+            = render :partial => 'contact', :locals => { :form => c, :type => 'SNS' }
+        = add_contact_link(form, 'sns')
+          
+    .form-submit
+      = form.submit "保存"
