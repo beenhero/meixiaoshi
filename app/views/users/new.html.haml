@@ -1,0 +1,34 @@
+- @user.password = @user.password_confirmation = nil
+= title "Signup", :h2 
+
+#main-content
+  .main-content-bg
+    - form_for @user do |f|
+      .form-bg
+        = f.error_messages
+        .form-row
+          = f.label :login, '登录名'
+          = f.text_field :login
+        .form-row
+          = f.label :email, '邮箱'
+          = f.text_field :email
+        .form-row
+          = f.label :password, '密码'
+          = f.password_field :password
+        .form-row
+          = f.label :password_confirmation, '重复密码'
+          = f.password_field :password_confirmation
+          
+        %hr.split
+        
+        .form-row
+          %p Or signup with OpenID
+          = label_tag 'openid_url', 'OpenID URL'
+          = text_field_tag :openid_url, params[:openid_url] || params['openid.identity']
+
+      .form-submit
+        = submit_tag "注册"
+
+  .main-content-bg-end
+#sidebar
+  菜单

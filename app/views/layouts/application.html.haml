@@ -38,8 +38,8 @@
         %ul.top-nav<
           - if logged_in?
             %li<
-              = h @user.name
-              = image_tag @user.avatar.url(:tiny)
+              = h current_user.name
+              = image_tag current_user.avatar.url(:tiny)
             %li<
               = link_to 'Logout', logout_path
             %li<

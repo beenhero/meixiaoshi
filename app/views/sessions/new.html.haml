@@ -1,0 +1,29 @@
+= title "Login", :h2 
+
+#main-content
+  .main-content-bg
+    - form_tag session_path do
+      .form-bg
+        .form-row
+          = label_tag 'login', '登录名'
+          = text_field_tag 'login', @login
+        .form-row
+          = label_tag 'password', '密码'
+          = password_field_tag 'password', nil
+        .form-row
+          = label_tag 'remember_me', '记住我'
+          = check_box_tag 'remember_me', '1', @remember_me
+        %hr.split
+        .form-row
+          %p Or login with OpenID
+          = label_tag 'openid_url', 'OpenID URL'
+          = text_field_tag 'openid_url'
+
+      .form-submit
+        = submit_tag "登录"
+        = link_to '忘记密码', forgot_password_path
+
+  .main-content-bg-end
+#sidebar
+  菜单
+
