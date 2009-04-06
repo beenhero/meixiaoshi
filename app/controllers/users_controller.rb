@@ -46,13 +46,13 @@ class UsersController < ApplicationController
   def edit_info
     @user = User.find(params[:id])
     @user.user_info ||= @user.build_user_info
-    @user.address ||= @user.build_address
+    @user.address ||= @user.build_address(:province_id => '330000')
     
     #assign some default values to address
     @province = @user.address.province || Province.find_by_name('浙江省')
     @cities = @province.cities
-    @counties = @user.address.city.counties || @cities.first.counties
-    @areas = @user.address.county.areas || @counties.first.areas
+    @counties = @user.address.city ? @user.address.city.counties : @cities.first.counties
+    @areas = @user.address.county ? @user.address.county.areas : @counties.first.areas
     
     if request.put?
       @user.user_info.update_attributes(params[:user_info])
