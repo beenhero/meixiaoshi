@@ -1,0 +1,27 @@
+.tweeters-list
+  - user = service.user
+  
+  .avatar
+    = link_to "#{image_tag(user.avatar.url(:thumb))}", user_path(user)
+   
+    
+  .details
+    %h3
+      = link_to h(user.name), user_path(user), :class => "fn url"
+      %span
+        =service
+        
+    %p
+      /= link_to h(service.name), user_service_path(user, service)
+      
+      = "#{h service.price}元/#{h service.price_unit}"
+      = "@#{h user.address.single_name}"
+      = "#{service.radius}公里以内" if service.radius
+    %p
+      = h(service.name)
+      
+  .more-info
+    %p
+      =h service.description
+        
+  .clear

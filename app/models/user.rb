@@ -37,6 +37,8 @@ class User < ActiveRecord::Base
   has_many  :snses, :as => :phonable, :class_name => 'PhoneNumber', :conditions => "contact_type = 'SNS'"
   accepts_nested_attributes_for :snses, :allow_destroy => true
   
+  has_many  :services
+  
   # User avatar setting by paperclip
   has_attached_file :avatar,
                     :styles => { :original => "<80x120", :thumb => "<48x48", :tiny => "24x24#" },

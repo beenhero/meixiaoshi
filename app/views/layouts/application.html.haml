@@ -18,9 +18,10 @@
     <![endif]-->
     - if @rss_title && @rss_url
       = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
-    = yield :head
     = stylesheet_link_tag 'base'
     = javascript_include_tag :defaults
+    = yield :head
+    
   %body
     #main_container
       #header

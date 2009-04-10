@@ -31,6 +31,7 @@ Rails::Initializer.run do |config|
   config.gem 'rubyist-aasm', :lib => 'aasm', :source => 'http://gems.github.com', :version => '2.0.2'
   config.gem 'mislav-will_paginate', :version => '2.3.6', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'haml'
+  config.gem "calendar_date_select"
   
   # These cause problems with irb. Left in for reference
   # config.gem 'rspec-rails', :lib => 'spec/rails', :version => '1.1.11'
@@ -51,8 +52,10 @@ Rails::Initializer.run do |config|
   # Make Time.zone default to the specified zone, and make Active Record store time values
   # in the database in UTC, and return them converted to the specified local zone.
   # Run "rake -D time" for a list of tasks for finding time zone names. Comment line to use default local time.
-  config.time_zone = 'UTC'
-
+  config.time_zone = 'Beijing'
+  
+  config.i18n.default_locale = "zh-CN"
+  
   # Your secret key for verifying cookie session data integrity.
   # If you change this key, all old sessions will become invalid!
   # Make sure the secret is at least 30 characters and all random, 
@@ -76,3 +79,6 @@ Rails::Initializer.run do |config|
   # Please note that observers generated using script/generate observer need to have an _observer suffix
   config.active_record.observers = :user_observer
 end
+
+CalendarDateSelect.format = :iso_date
+CalendarDateSelect.default_options.update(:popup => :force, :buttons => false, :month_year => "label", :valid_date_check => "var now = new Date(); var next_year = new Date(); next_year.setYear(now.getFullYear()+1); if((now.stripTime() < date.stripTime()) && (date.stripTime() < next_year.stripTime())) return true; else return false;")

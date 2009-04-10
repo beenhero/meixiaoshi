@@ -1,0 +1,64 @@
+.form-bg
+  = f.error_messages
+  .form-row
+    = f.label :time, '时间'
+    = f.calendar_date_select :begin_date_string
+    %span#begin_end_time
+      = f.select :begin_time_string, hour_options
+      = "到"
+      = f.select :end_time_string, hour_options
+    = f.check_box :is_all_day
+    全天
+    .form-sub-row
+      = f.select :repeat_kinds, repeat_options
+      %span#end_date
+        截止
+        = f.calendar_date_select :repeat_until
+  
+  %hr.split
+  
+  .form-row
+    = f.label :price, '价格'
+    = f.text_field :price, :class => "short"
+    = "元/"
+    = f.select :price_unit, unit_options, :selected => "每小时"
+    
+  %hr.split
+  
+  .form-row
+    = f.label :name, '名称'
+    = f.text_field :name
+  .form-row
+    = f.label :location, '地理范围'
+    = h @service.location
+    &nbsp;
+    = f.select :radius, radius_options
+  .form-row
+    = f.label :description, '详细内容'
+    = f.text_area :description
+    
+.form-submit
+  = submit_tag "保存"
+  
+%script{:type=>"text/javascript"}
+  function checkForm(){
+  if($F("service_is_all_day") == "1")
+  $('begin_end_time').hide();
+  else
+  $('begin_end_time').show();
+  if($F("service_repeat_kinds") != "")
+  $('end_date').show();
+  else
+  $('end_date').hide();
+  }
+  document.observe("dom:loaded", function(){
+  checkForm();
+  Event.observe('service_is_all_day', 'change', function(event) {
+  event.stop();
+  checkForm();
+  });
+  Event.observe('service_repeat_kinds', 'change', function(event) {
+  event.stop();
+  checkForm();
+  });
+  });

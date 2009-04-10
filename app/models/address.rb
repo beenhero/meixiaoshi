@@ -9,32 +9,26 @@ class Address < ActiveRecord::Base
                         :addressable_type,
                         :city
   
-  DISTRICT_OPTIONS = [
-    ['上城区', '上城区']
-  ]
-  # def single_line
-  #   multi_line.join(', ')
-  # end
-  # 
-  # def multi_line
-  #   lines = []
-  #   lines << street_1 if street_1?
-  #   lines << street_2 if street_2?
-  #   
-  #   line = ''
-  #   line << city if city?
-  #   if region_name
-  #     line << ', ' unless line.blank?
-  #     line << region_name
-  #   end
-  #   if postal_code?
-  #     line << '  ' unless line.blank?
-  #     line << postal_code
-  #   end
-  #   lines << line unless line.blank?
-  #   
-  #   lines << country.name if country
-  #   lines
-  # end
+  def single_name
+    return street unless street.blank?
+    return area.name if area
+    return county.name if county
+    return city.name if city
+    return province.name if province
+  end
+  
+  def single_line
+    multi_line.join('')
+  end
+  
+  def multi_line
+    lines = []
+    lines << province.name if province
+    lines << city.name if city
+    lines << county.name if county
+    lines << area.name if area
+    lines << street if street
+    lines
+  end
 
 end

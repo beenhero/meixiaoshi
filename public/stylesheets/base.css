@@ -86,10 +86,10 @@ table {
 	border-collapse: separate;
 	border-spacing: 0;
 }
-caption, th, td {
+/*caption, th, td {
 	text-align: left;
 	font-weight: normal;
-}
+}*/
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: "";
@@ -203,7 +203,7 @@ strong {
 	}
 	
 	#featured .tweeters-list {
-		background: #ffefbe url('/img/bg_featured.gif') top left repeat-x;
+		background: #ffefbe url('/images/bg_featured.gif') top left repeat-x;
 		border-right: 1px solid #f2e3b4;
 		float: left;
 		margin-right: 1px;
@@ -227,7 +227,7 @@ strong {
 }
 
 .twitter-list {
-	background: #fff url('/img/bg-twitter-list.gif') top left no-repeat;
+	background: #fff url('/images/bg-twitter-list.gif') top left no-repeat;
 	padding: 15px;
 	padding-bottom: 0;
 	width: 340px;
@@ -242,7 +242,7 @@ strong {
 	}
 	
 	.more-info {
-		background:  transparent url('/img/more-info-bg.gif') repeat-x;
+		background:  transparent url('/images/more-info-bg.gif') repeat-x;
 		clear: both;
 		display: none;
 		float: left;
@@ -271,13 +271,13 @@ strong {
 	}
 	
 	.twitter-list .tweeters-list {
-		background: #e8eeef url('/img/bg_single.gif') top left repeat-x;
+		background: #e8eeef url('/images/bg_single.gif') top left repeat-x;
 		border-bottom: 1px solid #fff;
 		padding: 10px;
 }
 	
 	.twitter-list img.user-image {
-		background: #fff url('/img/no_profile_photo.gif') top left no-repeat;
+		background: #fff url('/images/no_profile_photo.gif') top left no-repeat;
 		float: left;
 		height: 40px;
 		margin-right: 10px;
@@ -328,7 +328,7 @@ strong {
 	}
 	
 	.end-twitter-list {
-		background: #fff url('/img/bg-end-twitter-list.gif') top left no-repeat;
+		background: #fff url('/images/bg-end-twitter-list.gif') top left no-repeat;
 		height: 25px;
 		padding: 5px 15px 10px 15px;
 		text-align: right;
@@ -364,13 +364,13 @@ strong {
 	}
 	
 		#sidebar ul li.selected {
-			background: #fff url('/img/bg_tag_arrow.gif') center left no-repeat;
+			background: #fff url('/images/bg_tag_arrow.gif') center left no-repeat;
 			cursor: pointer;
 			padding: 2px 15px;
 		}
 		
 		#sidebar ul li.selected:hover {
-			background: #fff url('/img/bg_tag_arrow.gif') center left no-repeat;
+			background: #fff url('/images/bg_tag_arrow.gif') center left no-repeat;
 			text-decoration: none;
 		}
 		
@@ -386,7 +386,7 @@ strong {
 			}
 	
 	#sidebar ul li:hover {
-		background: #f4f4f4 url('/img/bg_tag_arrow.gif') center left no-repeat;
+		background: #f4f4f4 url('/images/bg_tag_arrow.gif') center left no-repeat;
 		cursor: pointer;
 		padding: 2px 15px;
 		text-decoration: underline;
@@ -398,7 +398,7 @@ strong {
 	}
 	
 	#sidebar .sidebar-split {
-		background: url('/img/sidebar-split.gif') top left repeat-x;
+		background: url('/images/sidebar-split.gif') top left repeat-x;
 		clear: both;
 		height: 10px;
 	}
@@ -415,7 +415,7 @@ strong {
 	}
 	
 	#sidebar .tweeters-list a img {
-		background: #fff url('/img/no_profile_photo.gif') top left no-repeat;
+		background: #fff url('/images/no_profile_photo.gif') top left no-repeat;
 		float: left;
 		height: 20px;
 		margin: 10px 0 0 10px;
@@ -442,14 +442,14 @@ strong {
 	}
 	
 	#sidebar #enter-a-category {
-		background: #c6c6c6 url('/img/bg_search.gif');
+		background: #c6c6c6 url('/images/bg_search.gif');
 		height: 34px;
 		margin: 10px 0 -5px 0;
 		padding: 10px;
 	}
 	
 	#enter-a-category input.clean {
-		background: #fff url('/img/bg_input.gif') repeat-x;
+		background: #fff url('/images/bg_input.gif') repeat-x;
 		border: 1px solid #9f9f9f;
 		color: #666;
 		float: left;
@@ -568,13 +568,13 @@ strong {
 	}
 	
 	#column-main .tweeters-list {
-			background: #e8eeef url('/img/bg_single.gif') top left repeat-x;
+			background: #e8eeef url('/images/bg_single.gif') top left repeat-x;
 			border-bottom: 1px solid #fff;
 			padding: 10px;
 	}
 	
 	#column-main img.user-image {
-		background: #fff url('/img/no_profile_photo.gif') top left no-repeat;
+		background: #fff url('/images/no_profile_photo.gif') top left no-repeat;
 		float: left;
 		height: 40px;
 		margin-right: 10px;
@@ -593,7 +593,7 @@ strong {
 	}
 
 .rank {
-	/* background: transparent url('/img/rank.gif') top right no-repeat; */
+	/* background: transparent url('/images/rank.gif') top right no-repeat; */
 
 	color: #aaa;
 	float: left;
@@ -611,7 +611,7 @@ strong {
 }
 
 	#column-main .details {
-		background:  transparent url('/img/more-info-bg.gif') top left repeat-x;
+		background:  transparent url('/images/more-info-bg.gif') top left repeat-x;
 		display: none;
 		margin-top: 10px;
 		padding-top: 10px;
@@ -623,7 +623,7 @@ strong {
 	}
 	
 	#column-main .latest-tweet {
-		background:  transparent url('/img/quote.gif') no-repeat 10px 30px;
+		background:  transparent url('/images/quote.gif') no-repeat 10px 30px;
 		float: left;
 		margin: 0 10px 10px 0;
 		width: 440px;
@@ -643,7 +643,7 @@ strong {
 		}
 	
 	#column-main .other-details {
-		background:  transparent url('/img/bg_other_details.gif') top left repeat-y;
+		background:  transparent url('/images/bg_other_details.gif') top left repeat-y;
 		float: left;
 		margin: 0 10px 10px 0;
 		padding-left: 20px;
@@ -732,7 +732,7 @@ strong {
 }
 
 .four-o-four {
-	background: #fff url('/img/bg_404.gif') no-repeat;
+	background: #fff url('/images/bg_404.gif') no-repeat;
 	height: 80px;
 	margin: 0 auto;
 	padding-top: 50px;
@@ -758,7 +758,7 @@ strong {
 /* @group Add yourself */
 
 .pick-3 {
-	background: #eaeef1 url('/img/bg_pick_3.jpg') no-repeat;
+	background: #eaeef1 url('/images/bg_pick_3.jpg') no-repeat;
 	padding: 40px 0;
 	text-align: center;
 }
@@ -774,7 +774,7 @@ strong {
 }
 
 .pick-3 input.clean {
-		background: #fff url('/img/bg_input.gif') repeat-x;
+		background: #fff url('/images/bg_input.gif') repeat-x;
 		border: 1px solid #dedede;
 		color: #666;
 		font: normal 16px 'Georgia', Serif;
@@ -786,7 +786,7 @@ strong {
 	}
 	
 .steps-2-and-3 {
-	background: #e8eeef url('/img/bg_single.gif') top left repeat-x;
+	background: #e8eeef url('/images/bg_single.gif') top left repeat-x;
 	margin-bottom: 20px;
 	padding: 10px 20px;
 }
@@ -802,7 +802,7 @@ strong {
 }
 
 .verify-yourself input.clean {
-		background: #fff url('/img/bg_input.gif') repeat-x;
+		background: #fff url('/images/bg_input.gif') repeat-x;
 		border: 1px solid #dedede;
 		color: #666;
 		font: normal 12px 'Georgia', Serif;
@@ -819,14 +819,14 @@ strong {
 
 .tweet-complete {
 /*
-	background: transparent url('/img/bg_tweet_complete.gif') repeat-y;
+	background: transparent url('/images/bg_tweet_complete.gif') repeat-y;
 */
 	float: left;
 	padding-left: 20px;
 }
 
 .tweet-complete textarea {
-	#fff url('/img/bg_input.gif') repeat-x;
+	#fff url('/images/bg_input.gif') repeat-x;
 	border: 1px solid #dedede;
 	height: 30px;
 	padding: 5px 10px;
@@ -848,7 +848,7 @@ strong {
 /* @group All Tags */
 
 .complete-search {
-	background: #fff url('/img/bg_search_all_tags.gif') repeat-x;
+	background: #fff url('/images/bg_search_all_tags.gif') repeat-x;
 	height: 51px;
 	margin-bottom: 20px;
 }
@@ -874,7 +874,7 @@ strong {
 }
 
 	.complete-search input.clean {
-		background: #fff url('/img/bg_input.gif') repeat-x;
+		background: #fff url('/images/bg_input.gif') repeat-x;
 		border: 1px solid #dedede;
 		color: #666;
 		float: left;
@@ -937,7 +937,7 @@ ul.tag-list li {
 /* @end */
 
 .arrow-up-overlay {
-	background: transparent	url('/img/arrow-up.png') no-repeat;
+	background: transparent	url('/images/arrow-up.png') no-repeat;
 	height: 50px;
 	margin: 33px 0 0 45px;
 	position: absolute;
@@ -946,7 +946,7 @@ ul.tag-list li {
 }
 
 .arrow-down-overlay {
-	background: transparent	url('/img/arrow-down.png') no-repeat;
+	background: transparent	url('/images/arrow-down.png') no-repeat;
 	height: 50px;
 	margin: 33px 0 0 45px;
 	position: absolute;
@@ -955,7 +955,7 @@ ul.tag-list li {
 }
 
 .new-follower-count {
-	background: transparent url('/img/classy-border.gif') no-repeat;
+	background: transparent url('/images/classy-border.gif') no-repeat;
 	float: right;
 	padding-top: 10px;
 	text-align: center;
@@ -963,7 +963,7 @@ ul.tag-list li {
 }
 
 .follower-count {
-	background: transparent url('/img/classy-border.gif') no-repeat;
+	background: transparent url('/images/classy-border.gif') no-repeat;
 	float: right;
 	padding-top: 10px;
 	text-align: center;
@@ -971,7 +971,7 @@ ul.tag-list li {
 }
 
 .main-info .info-button {
-	background: transparent url('/img/classy-border.gif') no-repeat;
+	background: transparent url('/images/classy-border.gif') no-repeat;
 	padding: 10px;
 	padding-right: 0;
 	padding-top: 0;
@@ -1010,7 +1010,7 @@ ul.tag-list li {
 
 .form-sub-row{
 	padding-left: 100px;
-	margin-bottom: 3px;
+	margin: 4px 0;
 }
 
 .form-submit{
@@ -1020,7 +1020,10 @@ ul.tag-list li {
 input.size40{
 	width: 85px;
 }
-input[type='radio']{
+input.short{
+	width: 100px;
+}
+input[type='radio'], input[type='checkbox']{
 	vertical-align: text-bottom;
 	margin: 0;
 }
@@ -1032,16 +1035,45 @@ textarea{
 
 /* @end */
 
+/* @group Services form */
+#service_begin_date_string, #service_repeat_until{
+	width: 100px;
+}
+#end_date{
+	padding-left: 13px;
+}
+/* @end */
+
+
+
 hr.split{
 	border: none;
 	background:transparent url(/images/more-info-bg.gif) repeat-x scroll left top;
 }
 
 
-/* @group User Pages */
+/* @group Users */
 
 a.add-btn{
 	padding-left: 100px;
 }
 
+
+
 /* @end */
+
+
+/* @group Services */
+
+/*index services list*/
+.avatar{
+	float:left;
+	margin-bottom:2px;
+	margin-right:10px;
+}
+.avatar img{
+	
+}
+
+/* @end */
+

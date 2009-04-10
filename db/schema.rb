@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090404124337) do
+ActiveRecord::Schema.define(:version => 20090407133754) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "addressable_id",                   :null => false
@@ -102,6 +102,50 @@ ActiveRecord::Schema.define(:version => 20090404124337) do
     t.integer "role_id"
     t.integer "user_id"
   end
+
+  create_table "schedules", :force => true do |t|
+    t.integer  "service_id"
+    t.datetime "begin_date_time"
+    t.datetime "end_date_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "schedules", ["begin_date_time"], :name => "index_schedules_on_begin_date_time"
+  add_index "schedules", ["service_id", "begin_date_time"], :name => "index_schedules_on_service_id_and_begin_date_time"
+
+  create_table "services", :force => true do |t|
+    t.integer  "user_id",         :null => false
+    t.integer  "price"
+    t.integer  "radius"
+    t.string   "name"
+    t.string   "location"
+    t.string   "repeat_cycle"
+    t.string   "repeat_type"
+    t.string   "price_unit"
+    t.string   "repeat_kinds"
+    t.text     "description"
+    t.integer  "repeat_every"
+    t.datetime "begin_date_time"
+    t.datetime "end_date_time"
+    t.date     "repeat_until"
+    t.boolean  "is_recurring"
+    t.boolean  "is_all_day"
+    t.boolean  "monday"
+    t.boolean  "tuesday"
+    t.boolean  "wednesday"
+    t.boolean  "thursday"
+    t.boolean  "friday"
+    t.boolean  "saturday"
+    t.boolean  "sunday"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "services", ["begin_date_time"], :name => "index_services_on_begin_date_time"
+  add_index "services", ["location"], :name => "index_services_on_location"
+  add_index "services", ["name"], :name => "index_services_on_name"
+  add_index "services", ["user_id"], :name => "index_services_on_user_id"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
