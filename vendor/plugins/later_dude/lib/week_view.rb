@@ -1,68 +1,11 @@
-module ServicesHelper
-  def hour_options
-    [ 
-      ['凌晨 0:00', "00:00"],
-      ['凌晨 1:00', "01:00"],
-      ['凌晨 2:00', "02:00"],
-      ['凌晨 3:00', "03:00"],
-      ['凌晨 4:00', "04:00"],
-      ['凌晨 5:00', "05:00"],
-      ['上午 6:00', "06:00"],
-      ['上午 7:00', "07:00"],
-      ['上午 8:00', "08:00"],
-      ['上午 9:00', "09:00"],
-      ['上午 10:00', "10:00"],
-      ['上午 11:00', "11:00"],
-      ['下午 12:00', "12:00"],
-      ['下午 1:00', "13:00"],
-      ['下午 2:00', "14:00"],
-      ['下午 3:00', "15:00"],
-      ['下午 4:00', "16:00"],
-      ['下午 5:00', "17:00"],
-      ['晚上 6:00', "18:00"],
-      ['晚上 7:00', "19:00"],
-      ['晚上 8:00', "20:00"],
-      ['晚上 9:00', "21:00"],
-      ['晚上 10:00', "22:00"],
-      ['晚上 11:00', "23:00"]
-    ]
-  end
-  
-  def repeat_options
-    [
-      ["不重复", nil],
-      ["每天", "daily"],
-      ["每个工作日", "workday"],
-      ["每个周末", "weekend"],
-      ["每周", "weekly"],
-      ["每月", "monthly"]
-    ]
-  end
-  
-  def unit_options
-    [
-      ["每小时", "每小时"],
-      ["每次", "每次"],
-      ["每天", "每天"],
-      ["每周", "每周"],
-      ["每月", "每月"],
-      ["每年", "每年"],
-      ["公益", "公益"],
-      ["赠予", "赠予"]
-    ]
-  end
-  
-  def radius_options
-    [
-      ["不限", nil],
-      ["3公里以内", 3],
-      ["10公里以内", 10],
-      ["20公里以内", 20],
-      ["50公里以内", 50],
-      ["100公里以内", 100]
-    ]
-  end
-  
+require 'date'
+
+# Author: Josh Adams
+# This helper is based on CalendarHelper.
+# WeekViewHelper allows you to draw a databound week view calendar with fine-grained CSS formatting
+module WeekViewHelper
+  VERSION = '0.0.1'
+
   # Returns an HTML week-view calendar. In its simplest form, this method generates a plain
   # calendar (which can then be customized using CSS) for a given span of days.
   # However, this may be customized in a variety of ways -- changing the default CSS
@@ -172,5 +115,6 @@ module ServicesHelper
     end
     cal << "\n\t</tbody>\n</table>"
   end
-  
+
+  private
 end

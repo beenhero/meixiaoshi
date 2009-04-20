@@ -6,7 +6,7 @@ class ServicesController < ApplicationController
   
   def new
     @user = current_user
-    @service = current_user.services.build(:begin_date_time => Time.now, :end_date_time => Time.now + 2.hours, :repeat_until => Date.today.next_month, :location => @user.address.single_line)
+    @service = @user.services.build(:begin_date_time => Time.now, :end_date_time => Time.now + 2.hours, :repeat_until => Date.today.next_month, :location => @user.address.single_line)
   end
   
   def create
@@ -29,5 +29,6 @@ class ServicesController < ApplicationController
   def update
     @service = Service.find(params[:id])
     @service.update_attributes(params[:service])
+    render :action => "edit"
   end
 end

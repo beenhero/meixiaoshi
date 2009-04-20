@@ -9,7 +9,8 @@ class Service < ActiveRecord::Base
   validates_numericality_of :repeat_every, :greater_than => 0, :if => Proc.new{|c| c.is_recurring}
   validates_inclusion_of :repeat_cycle, :in => %w( daily weekly monthly yearly ), :if => Proc.new{|c| c.is_recurring}
   validates_inclusion_of :repeat_type, :in => %w( day_of_week day_of_month ), :if => Proc.new{|c| c.repeat_cycle == 'monthly'}
-
+  validate :valid_time_span
+  
   before_validation :set_date_time
   before_save :setup_repeat
   after_save :create_instances
@@ -133,10 +134,10 @@ class Service < ActiveRecord::Base
         "#{self.days.to_sentence} #{time}"
       end
     else
-      if self.start_date == self.end_date
-        "#{self.begin_date} #{time}"
+      if self.begin_date_string == self.end_date_string
+        "#{self.begin_date_string} #{time}"
       else
-        "#{self.begin_date} #{time} - #{self.end_date} #{time}"
+        "#{self.begin_date_string} #{time} - #{self.end_date_string} #{time}"
       end
     end
   end
@@ -241,4 +242,9 @@ class Service < ActiveRecord::Base
     return start_time, end_time
   end
   
+  def valid_time_span
+    !(begin_date_time > end_date_time)
+  rescue
+    errors.add_to_base("结束时间要比开始时间晚才行。")
+  end
 end
