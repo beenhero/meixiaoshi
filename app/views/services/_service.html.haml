@@ -20,10 +20,11 @@
     %p
       = h(service.name)
     %p
-      = calendar_for(2009, 4, :next_and_previous_month => ">>")
-      / = week_view(:start_date => (Date.today - 5), :end_date => Date.today)
+      /= calendar_for(2009, 4, :next_and_previous_month => ">>")
+
   .more-info
     %p
       =h service.description
-        
+    .schedule
+      = week_view(:start_date => Date.today.beginning_of_week, :end_date => Date.today.beginning_of_week+6, &show_status_proc(service))
   .clear

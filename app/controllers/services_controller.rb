@@ -28,7 +28,7 @@ class ServicesController < ApplicationController
   
   def update
     @service = Service.find(params[:id])
-    @service.update_attributes(params[:service])
+    @service.update_attributes(params[:service].merge(:end_date_string => params[:service][:begin_date_string]))
     render :action => "edit"
   end
 end

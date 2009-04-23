@@ -107,13 +107,7 @@ module ServicesHelper
   def week_view(options = {}, &block)
     raise(ArgumentError, "No start date given")  unless options.has_key?(:start_date)
     raise(ArgumentError, "No end date given") unless options.has_key?(:end_date)
-    span = (options[:end_date] - options[:start_date]).to_i # Get the number of days represented by the span given
     dates = (options[:start_date]..options[:end_date])
-    start_time = 8
-    end_time   = 17
-    time_range = (start_time..end_time).to_a
-    duration = 15
-
     block                        ||= Proc.new {|d| nil}
     defaults = {
       :table_class => 'week-view',
@@ -124,7 +118,9 @@ module ServicesHelper
       :next_span_text => nil
     }
     options = defaults.merge options
-
+    
+    day_names = I18n.translate(:'date.abbr_day_names')
+    
 		if options[:url]
       next_start_date = options[:end_date] + 1
       next_end_date   = next_start_date + 5
@@ -137,40 +133,35 @@ module ServicesHelper
     # TODO Use some kind of builder instead of straight HTML
     cal = %(<table class="#{options[:table_class]}">\n)
     cal << %(\t<thead>\n\t\t<tr>\n)
-    cal << %(\t\t\t<th>#{dates.first.strftime("%Y")}</th>\n)
+    cal << %(\t\t\t<th colspan="2" class='previous-week'>&laquo;</th><th colspan="3" class="current-date">#{Date.today}</th><th colspan="2"  class='next-week'>&raquo;</th>\n)
+    cal << %(\t\t</tr>\n\t\t<tr class="day-names">)
     dates.each do |d|
-      cal << "\t\t\t<th#{Date.today == d ? " class='today'" : ""}>#{d.strftime("%A")}<br />#{d.strftime("%m/%d")}</th>\n"
+      cal << "\t\t\t<th#{Date.today == d ? " class='today'" : ""}>#{day_names[d.wday]}<br /><span>#{d.strftime("%m/%d")}</span></th>\n"
     end
     cal << "\t\t</tr>\n\t</thead>\n\t<tbody>\n"
-    time_range.each do |hour|
-      minutes = 0
-      print_hour = hour.to_s.rjust(2, '0')
-      4.times do |i|
-        print_minutes = minutes.to_s.rjust(2, '0')
-        cal << %(\t\t<tr class='m#{print_minutes} d#{duration}'>\n)
-        cal << %(\t\t\t<th rowspan="4"><h3>#{hour}</h3>AM</th>\n) if i==0
-        options[:start_date].upto(options[:end_date]) do |d|
-          the_minutes = minutes
-          print_start_minutes = the_minutes.to_s.ljust(2, '0')
-          start_datetime_string = %(#{d.to_s(:db)}T#{print_hour}:#{print_start_minutes}:00-06:00)
-          start_datetime = DateTime.parse(start_datetime_string).to_datetime
-          end_datetime = (start_datetime + duration.minutes).to_datetime
-          range = (start_datetime...end_datetime)
+    
+    cal << %(\t\t<tr class="day-times">\n)
+    
+    options[:start_date].upto(options[:end_date]) do |d|
+      # cell_attrs should return a hash.
+      cell_text, cell_attrs = block.call(d)
+      cell_text ||= ""
+      cell_attrs ||= {}
+      cell_attrs[:class] = cell_attrs[:class].to_s + " time"
+      cell_attrs = cell_attrs.map {|k, v| %(#{k}="#{v}") }.join(" ")
 
-          # cell_attrs should return a hash.
-          cell_text, cell_attrs = block.call(range)
-          cell_text ||= ""
-          cell_attrs ||= {}
-          cell_attrs[:class] = cell_attrs[:class].to_s + " today" if Date.today == d
-          cell_attrs = cell_attrs.map {|k, v| %(#{k}="#{v}") }.join(" ")
-
-          cal << "\t\t\t<td #{cell_attrs}>\n#{cell_text}&nbsp;\t\t\t</td>\n"
-        end
-        minutes += duration
-        cal << %(\t\t</tr>)
-      end
+      cal << "\t\t\t<td><div class='float-cell'><span #{cell_attrs}>\n#{cell_text}&nbsp;\t\t\t</span></div></td>\n"
     end
+    
+    cal << %(\t\t</tr>)
     cal << "\n\t</tbody>\n</table>"
+  end
+  
+  def show_status_proc(service)
+    lambda do |day|
+      klass, style = service.time_drawing(day)
+      ["10:00~12:00", { :class => klass, :style => style }]  unless klass.blank? && style.blank?
+    end
   end
   
 end

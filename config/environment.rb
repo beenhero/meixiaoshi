@@ -81,4 +81,4 @@ Rails::Initializer.run do |config|
 end
 
 CalendarDateSelect.format = :iso_date
-CalendarDateSelect.default_options.update(:popup => :force, :buttons => false, :month_year => "label", :valid_date_check => "var now = new Date(); var next_year = new Date(); next_year.setYear(now.getFullYear()+1); if((now.stripTime() < date.stripTime()) && (date.stripTime() < next_year.stripTime())) return true; else return false;")
+CalendarDateSelect.default_options.update(:popup => :force, :buttons => false, :month_year => "label", :valid_date_check => "var now = new Date(); var next_year = new Date(); next_year.setYear(now.getFullYear()+1); if((now.stripTime() <= date.stripTime()) && (date.stripTime() < next_year.stripTime())) return true; else return false;")

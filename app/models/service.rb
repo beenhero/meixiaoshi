@@ -137,7 +137,8 @@ class Service < ActiveRecord::Base
       if self.begin_date_string == self.end_date_string
         "#{self.begin_date_string} #{time}"
       else
-        "#{self.begin_date_string} #{time} - #{self.end_date_string} #{time}"
+        "#{self.begin_date_string} #{time}"
+        #keep one day span "#{self.begin_date_string} #{time} - #{self.end_date_string} #{time}"
       end
     end
   end
@@ -157,6 +158,18 @@ class Service < ActiveRecord::Base
     days << '周日' if self.sunday
 
     return days
+  end
+  
+  def time_drawing(day)
+    return nil unless self.schedule_days.include?(day.to_s)
+    klass = "available"
+    height = (self.end_time_string.to_i - self.begin_time_string.to_i)*10
+    top = (self.begin_time_string.to_i - 0)*10
+    return [klass, "height:#{height}px;top:#{top}px;"]
+  end
+  
+  def schedule_days
+    @days ||= self.schedules.collect { |s| s.begin_date_time.strftime("%Y-%m-%d") }
   end
   
   protected
@@ -243,8 +256,6 @@ class Service < ActiveRecord::Base
   end
   
   def valid_time_span
-    !(begin_date_time > end_date_time)
-  rescue
-    errors.add_to_base("结束时间要比开始时间晚才行。")
+    errors.add_to_base("结束时间要比开始时间晚才行。") if (begin_date_time > end_date_time)
   end
 end

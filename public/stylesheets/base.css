@@ -1,14 +1,24 @@
 /* === FLASH MESSAGES === */
 div#flash-notice {
-	
+	background-color:#EDFFEC;
+	border:thin solid #68A720;
 }
 
 div#flash-warning {
-	
+	background-color:#EDFFEC;
+	border:thin solid #68A720;
 }
 
 div#flash-error {
+	background-color:#FFE3E0;
+	border:thin solid #731B17;
 	
+}
+div#flash-error a{
+	background: url(../images/close-button.jpg) left top no-repeat;
+}
+div#flash-error a:hover{
+	background: url(../images/close-button-over.jpg) left top no-repeat;
 }
 
 /* === ERROR MESSAGES === */
@@ -244,12 +254,14 @@ strong {
 	.more-info {
 		background:  transparent url('/images/more-info-bg.gif') repeat-x;
 		clear: both;
-		display: none;
+		display: block;
 		float: left;
 		margin-top: 10px;
 		width: 320px;
 	}
-	
+	.schedule{
+		margin: 5px auto;
+	}
 	.twitter-list .tweeters-list div.more-info a {
 		color: #06c;
 	}
@@ -1078,77 +1090,54 @@ a.add-btn{
 /* @end */
 
 
-table.week-view{
+
+/* @group Calendar week-view */
+
+.week-view{
   width: 100%;
   padding: 0;
   border-collapse: collapse;
 }
-table.week-view tbody tr th{
-  border-right: 1px solid black;
-  text-align: left;
-  padding-right: .5em;
+.week-view .previous-week{
+	text-align: left;
 }
-table.week-view tbody tr th h3{
-  display: inline;
-  font-size: 3em;
-  margin: 0;
-  padding: 0;
-  background: transparent;
-  border: none;
+.week-view .next-week{
+	text-align: right;
 }
-table.week-view th{
-  background-color: #eee;
-  color: black;
+.week-view .previous-week, .week-view .next-week, .week-view .current-date{
+	font-size: 12px;
 }
-table.week-view tr td{
-  border-style: solid;
-  border-width: 1px 1px 0 0;
-  width: 19%;
-  padding: 0;
-  background-color: #ffffd5;
+.week-view .day-names th{
+	font-size: 14px;
 }
-table.week-view tr.d15 td,
-table.week-view tr.d15 th{
-  font-size: 8px;
-  height: 1em;
-  border-color: #f3e4b1 #000;
+.week-view .day-names th span{
+	font: 9px Verdana;
 }
-table.week-view div.event-container{
-  position: relative;
+
+.week-view td{
+	vertical-align:top;
+	border:1px solid #FFFFFF;
+	}
+.week-view .float-cell{
+	position:relative;
+	height:240px;
 }
-table.week-view tr td div.event{
-  padding: 2px;
-  background-color: #fff;
-  height: 2em;
-  width: 90%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-style: solid;
-  border-color: black black black #00f;
-  border-width: .0625em .0625em .0625em .5em;
-  margin-right: .5em;
-  color: #333;
-  overflow: hidden;
-  float: left;
+.week-view .time{
+	display: block;
+	position: absolute;
+	width: 100%;
+	font: 6px Verdana;
+	color: #fff !important;
+	text-align: center;
 }
-table.week-view tr td div.event.mm60{
-  height: 8em;
+.week-view .available{
+	background-color: #8b5;
 }
-table.week-view tr td div.event.mm120{
-  height: 16em;
+.week-view .booked{
+	background-color: #a86;
 }
-table.week-view tr td div.event h3{
-  margin: 0;
-  font-size: 9px;
-  color: black;
-  padding: 0;
-  border: 0;
-  background: transparent;
+.week-view .now{
+	background-color: #f00;
 }
-table.week-view tr.m00 td{
-  border-top-color: #c2b68d;
-}
-table.week-view tr.m00 th{
-  vertical-align: top;
-}
+
+/* @end */
