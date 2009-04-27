@@ -175,13 +175,17 @@ strong {
 }
 	#header .logo{
 		float: left;
-		width: 280px;
+		margin-right: 20px;
 	}
 	#header .search{
 		float: left;
 	}
 	#header .top-nav{
 		float: right;
+	}
+	#header .top-nav li{
+		float: left;
+		margin-left: 5px;
 	}
 	
 #main_container {
@@ -195,7 +199,7 @@ strong {
 	width: 760px;
 }
 
-.twitter-list-wrapper {
+.service-list-wrapper {
 	float: left;
 	margin: 0 15px 10px -5px;
 }
@@ -212,7 +216,7 @@ strong {
 	margin-top: 5px;
 	}
 	
-	#featured .tweeters-list {
+	#featured .service-item {
 		background: #ffefbe url('/images/bg_featured.gif') top left repeat-x;
 		border-right: 1px solid #f2e3b4;
 		float: left;
@@ -236,18 +240,18 @@ strong {
 	width: 380px;
 }
 
-.twitter-list {
-	background: #fff url('/images/bg-twitter-list.gif') top left no-repeat;
+.service-list {
+	background: #fff url('/images/bg-service-list.gif') top left no-repeat;
 	padding: 15px;
 	padding-bottom: 0;
 	width: 340px;
 }
 
-	.twitter-list h2 {
+	.service-list h2 {
 		float: left;
 	}
 	
-	.twitter-list h2 a {
+	.service-list h2 a {
 		color: #403d3c;
 	}
 	
@@ -259,10 +263,7 @@ strong {
 		margin-top: 10px;
 		width: 320px;
 	}
-	.schedule{
-		margin: 5px auto;
-	}
-	.twitter-list .tweeters-list div.more-info a {
+	.service-list .service-item div.more-info a {
 		color: #06c;
 	}
 	
@@ -270,25 +271,25 @@ strong {
 		padding-top: 10px;
 	}
 	
-	.twitter-list strong {
+	.service-list strong {
 		color: #5a5a5a;
 		font-weight: bold;
 	}
 
-	.total-followers {
+	.total-hours {
 		color: #f69732;
 		font-weight: bold;
 		margin-bottom: 10px;
 		text-align: right;
 	}
 	
-	.twitter-list .tweeters-list {
+	.service-list .service-item {
 		background: #e8eeef url('/images/bg_single.gif') top left repeat-x;
 		border-bottom: 1px solid #fff;
 		padding: 10px;
 }
 	
-	.twitter-list img.user-image {
+	.service-list img.user-image {
 		background: #fff url('/images/no_profile_photo.gif') top left no-repeat;
 		float: left;
 		height: 40px;
@@ -297,14 +298,14 @@ strong {
 		width: 40px;
 	}
 	
-	.twitter-list .tweeters-list .details {
+	.service-list .service-item .details {
 		float:  left;
 		margin: 0;
 		padding: 0;
 		width:  235px;
 	}
 	
-	.twitter-list .tweeters-list .details h3 {
+	.service-list .service-item .details h3 {
 		line-height: 8px;
 		margin:  0 0 5px 0;
 }
@@ -319,18 +320,18 @@ strong {
 			opacity: 1;
 		}
 	
-	.twitter-list .tweeters-list span {
+	.service-list .service-item span {
 		color: #98a5a7;
 	}
 	
-	.twitter-list .tweeters-list p {
+	.service-list .service-item p {
 		color: #6e7778;
 		line-height: 14px;
 		margin:  0;
 		margin-bottom: 0;
 	}
 	
-	.twitter-list .tweeters-list a {
+	.service-list .service-item a {
 		color: #cc3333;
 	}
 	
@@ -339,8 +340,8 @@ strong {
 		padding: 0;
 	}
 	
-	.end-twitter-list {
-		background: #fff url('/images/bg-end-twitter-list.gif') top left no-repeat;
+	.end-service-list {
+		background: #fff url('/images/bg-end-service-list.gif') top left no-repeat;
 		height: 25px;
 		padding: 5px 15px 10px 15px;
 		text-align: right;
@@ -415,18 +416,18 @@ strong {
 		height: 10px;
 	}
 	
-	#sidebar .tweeters-list {
+	#sidebar .service-item {
 		background: #f8f8f8;
 		margin-bottom: 1px;
 		padding: 0 10px 10px 0;
 		width: 210px;
 	}
 	
-		#sidebar .tweeters-list.alt {
+		#sidebar .service-item.alt {
 		background: #eee;
 	}
 	
-	#sidebar .tweeters-list a img {
+	#sidebar .service-item a img {
 		background: #fff url('/images/no_profile_photo.gif') top left no-repeat;
 		float: left;
 		height: 20px;
@@ -434,20 +435,20 @@ strong {
 		width: 20px;
 	}
 	
-		#sidebar .tweeters-list .count {
+		#sidebar .service-item .count {
 			color: #aaa;
 			font: bold 14px 'Helvetica', Arial, Sans-Serif;
 			float:  right;
 			padding: 13px 0 0 0;
 		}
 		
-		#sidebar .tweeters-list .arrow {
+		#sidebar .service-item .arrow {
 			color: #ccc;
 			float:  left;
 			margin: 13px 0 0 0;
 		}
 	
-	#sidebar .tweeters-list .details {
+	#sidebar .service-item .details {
 		float: left;
 		margin: 0 0 0 10px;
 		width: 130px;
@@ -459,17 +460,11 @@ strong {
 		margin: 10px 0 -5px 0;
 		padding: 10px;
 	}
-	
-	#enter-a-category input.clean {
-		background: #fff url('/images/bg_input.gif') repeat-x;
-		border: 1px solid #9f9f9f;
-		color: #666;
+	#enter-a-category input.clean{
 		float: left;
-		font: normal 14px 'Georgia', Serif;
-		font-style: italic;
-		padding: 5px 10px;
-		width: 140px;
+		width: 130px;
 	}
+
 	
 	#enter-a-category input.go {
 		float: left;
@@ -483,16 +478,16 @@ strong {
 			opacity: 1.0;
 		}
 	
-	.tweeters-list .details h3 {
+	.service-item .details h3 {
 		margin: 4px 0 0 0;
 	}
 	
-	.tweeters-list .details h3 a {
+	.service-item .details h3 a {
 		color: #cc3333;
 		padding: 0;
 	}
 	
-	.tweeters-list .details em {
+	.service-item .details em {
 		float: left;
 		line-height: 8px;
 	}
@@ -554,7 +549,7 @@ strong {
 #column-main {
 	background: #fff;
 	float: left;
-	margin: 10px 10px 10px 0;
+	margin: 5px 10px 10px 0;
 	padding: 10px;
 	width: 720px;
 }
@@ -579,7 +574,7 @@ strong {
 		padding-top: 0px;
 	}
 	
-	#column-main .tweeters-list {
+	#column-main .service-item {
 			background: #e8eeef url('/images/bg_single.gif') top left repeat-x;
 			border-bottom: 1px solid #fff;
 			padding: 10px;
@@ -621,13 +616,6 @@ strong {
 .real-name {
 	color: #98a5a7;
 }
-
-	#column-main .details {
-		background:  transparent url('/images/more-info-bg.gif') top left repeat-x;
-		display: none;
-		margin-top: 10px;
-		padding-top: 10px;
-	}
 	
 	#column-main .details strong {
 		display: block;
@@ -824,7 +812,7 @@ strong {
 		width: 160px;
 	}
 	
-.twitter-icon {
+.service-icon {
 	float: left;
 	margin-right: 10px;
 }
@@ -1044,6 +1032,15 @@ textarea{
 	height: 70px;
 	font-size: 12px;
 }
+input.clean {
+	background: #fff url('/images/bg_input.gif') repeat-x;
+	border: 1px solid #9f9f9f;
+	color: #666;
+	font: normal 12px 'Georgia', Serif;
+	font-style: italic;
+	padding: 5px 10px;
+	width: 130px;
+}
 
 /* @end */
 
@@ -1078,6 +1075,11 @@ a.add-btn{
 /* @group Services */
 
 /*index services list*/
+.service-list h2 .small{
+	font-size: 11px;
+	color: #999;
+}
+
 .avatar{
 	float:left;
 	margin-bottom:2px;
@@ -1085,6 +1087,38 @@ a.add-btn{
 }
 .avatar img{
 	
+}
+
+/*show service page*/
+
+
+.service-item #schedules{
+	float: left;
+	margin: 0 auto;
+	padding: 5px;
+	width: 350px;
+	background-color: #fff;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+.service-item .details{
+	float: right;
+	width: 330px;
+}
+.user-info{
+	width: 100%;
+}
+.user-info td{
+	vertical-align:top;
+}
+.user-info .col-1{
+	width: 90px;
+}
+.user-info .col-2{
+	margin-left: 90px;	
+}
+.service-info{
 }
 
 /* @end */
@@ -1121,6 +1155,9 @@ a.add-btn{
 .week-view .float-cell{
 	position:relative;
 	height:240px;
+	background-color: #f2f9f9;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 }
 .week-view .time{
 	display: block;

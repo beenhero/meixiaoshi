@@ -1,0 +1,5 @@
+= week_view(calendar_options(@user, @service), &show_status_proc(@service))
+- highlighted ||= nil
+- if highlighted
+  %script{"type"=>"text/javascript"}
+    =visual_effect :Highlight, "schedules", :duration => 1.0

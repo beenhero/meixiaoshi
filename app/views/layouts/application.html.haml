@@ -32,15 +32,14 @@
         .search
           %br
           - form_tag '/' do
-            = text_field_tag :search, "找谁"
+            = text_field_tag :search, "找谁...", :class => "clean", :onclick => "this.value=''"
             = "-"
-            = text_field_tag :search, "在哪儿"
+            = text_field_tag :search, "在哪儿...", :class => "clean", :onclick => "this.value=''"
             = submit_tag "搜索"
         %ul.top-nav<
           - if logged_in?
             %li<
-              = h current_user.name
-              = image_tag current_user.avatar.url(:tiny)
+              = link_to image_tag(current_user.avatar.url(:tiny)), user_path(current_user)
             %li<
               = link_to 'Logout', logout_path
             %li<

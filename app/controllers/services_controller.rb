@@ -4,6 +4,11 @@ class ServicesController < ApplicationController
     @services = Service.find :all
   end
   
+  def show
+    @service = Service.find(params[:id])
+    @start_date = @service.begin_date_time.to_date.beginning_of_week
+  end
+  
   def new
     @user = current_user
     @service = @user.services.build(:begin_date_time => Time.now, :end_date_time => Time.now + 2.hours, :repeat_until => Date.today.next_month, :location => @user.address.single_line)
@@ -31,4 +36,14 @@ class ServicesController < ApplicationController
     @service.update_attributes(params[:service].merge(:end_date_string => params[:service][:begin_date_string]))
     render :action => "edit"
   end
+  
+  def schedules
+    if request.xhr? && !params[:start_date].blank?
+      @user = User.find(params[:user_id]) || current_user
+      @service = Service.find(params[:id])
+      @start_date = Date.parse(params[:start_date])
+      render :partial => "schedules", :locals => { :highlighted => true }
+    end # only response for XHR
+  end
+  
 end

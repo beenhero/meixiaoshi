@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   # Restful Authentication Resources
   map.resources :users, 
                 :member => { :edit_password => :any, :edit_info => :any, :edit_contacts => :any } do |user|
-    user.resources :services
+    user.resources :services, :member => { :schedules => :any }
   end
   map.resources :passwords
   map.resource :session

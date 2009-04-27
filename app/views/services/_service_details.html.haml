@@ -1,0 +1,30 @@
+- user = service.user
+
+.service-item
+  #schedules
+    = week_view(calendar_options(user, service), &show_status_proc(service))
+    
+  .details
+    .user-info
+      .avatar
+        = link_to "#{image_tag(user.avatar.url)}", user_path(user)
+      %h3
+        = link_to h(user.name), user_path(user), :class => "fn url"
+      已售出 450小时
+      
+      =link_to "联系购买"
+      .clear
+
+    %p
+      = "时间: #{service}"
+    %p
+      = "地点: #{h user.address.single_name}"
+      = "#{service.radius}公里以内" if service.radius
+    %p  
+      = "价格: #{h service.price}元/#{h service.price_unit}"
+    %p
+      = "服务: #{h(service.name)}"
+    %p
+      = "详情: #{h(service.description)}"
+  
+  .clear

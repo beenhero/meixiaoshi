@@ -1,12 +1,15 @@
 #main-content
   #column-one
-    .twitter-list-wrapper
-      .twitter-list
-        %h2 拼车
-        .total-followers
+    .service-list-wrapper
+      .service-list
+        %h2
+          家教
+          %span.small
+            数学 物理 英语 钢琴
+        .total-hours
           出售2,132,835小时
         = render :partial => 'service', :collection => @services
-      .end-twitter-list
+      .end-service-list
         <a rel="tag" href="/tag/celebrity">More »</a>
   
   #column-two

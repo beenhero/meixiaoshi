@@ -1,0 +1,39 @@
+#main-content
+  #column-main
+    = render :partial => 'service_details', :locals => {:service => @service}
+    
+    .comments
+      / 这里是评论内容
+#sidebar
+  =link_to image_tag("add-yourself.jpg"), new_user_service_path(current_user)
+  %h2
+    按类别
+  %script{:type=>"text/javascript"}
+    document.observe("dom:loaded", function(){
+    $$(".popular-tags li").each(function(li){
+    Event.observe(li, 'click', function(){
+    window.location=this.down('a').href;return false;
+    });
+    }.bind(this));
+    });
+  %ul.popular-tags
+    %li.selected
+      = link_to "家教", root_url
+    %li
+      = link_to "拼车"
+    %li
+      = link_to "美容"
+    %li.more-tags
+      = link_to "更多 &raquo;"
+  .clear
+  #enter-a-category
+    -form_tag root_url do
+      = text_field_tag :search, "搜索类别...", :class => "clean", :onclick => "this.value=''"
+      = submit_tag '搜索', :class => "go"
+      .clear
+  .sidebar-split
+  
+  %h2
+    销售排名
+  
+  
