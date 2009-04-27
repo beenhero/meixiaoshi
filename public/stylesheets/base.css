@@ -675,10 +675,51 @@ strong {
 /* My Comment */
 
 /* @end */
-	
+
+
+/* @group Navs */
+.nav {
+	float: left;
+	width: 100%;
+	margin: 10px 0;
+	text-align: right;
+}
+.nav li{
+	float: left;
+	margin-right: 8px;
+}
+.nav li a{
+	padding: 3px 10px;
+	color: #999;
+	text-decoration: none;
+}
+.nav li a:hover{
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	background-color: #eee;
+	color: #333;
+}
+.nav li a.current{
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	background-color: #aaa;
+	color: #fff;
+	text-shadow:0 1px 2px #666666;
+	cursor: default;
+}
+
+
+/* @end */
+
 .clear {
 	clear: both;
 }
+
+
 
 #footer-wrapper {
 	background: #c6c6c6;
