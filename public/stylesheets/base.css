@@ -1218,6 +1218,7 @@ a.add-btn{
 .week-view td{
 	vertical-align:top;
 	border:1px solid #FFFFFF;
+	width: 14.2%;
 	}
 .week-view .float-cell{
 	position:relative;
@@ -1242,6 +1243,9 @@ a.add-btn{
 }
 .week-view .now{
 	background-color: #f00;
+}
+.week-view .overdue{
+	background-color: #bbb;
 }
 
 /* @end */

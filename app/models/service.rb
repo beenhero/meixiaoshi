@@ -162,7 +162,7 @@ class Service < ActiveRecord::Base
   
   def time_drawing(day)
     return nil unless self.schedule_days.include?(day.to_s)
-    klass = "available" #TODO
+    klass = day < Date.today ? "overdue" : "available" #TODO
     begin_time = self.begin_time_string.to_i == 0 ? 0 : self.begin_time_string.to_i
     end_time = self.end_time_string.to_i == 0 ? 24 : self.end_time_string.to_i
     height = (end_time - begin_time)*10

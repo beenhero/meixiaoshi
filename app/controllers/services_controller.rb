@@ -7,7 +7,7 @@ class ServicesController < ApplicationController
   
   def show
     @service = Service.find(params[:id])
-    @start_date = @service.begin_date_time.to_date.beginning_of_week
+    @start_date = Date.today.beginning_of_week #@service.begin_date_time.to_date.beginning_of_week
   end
   
   def new

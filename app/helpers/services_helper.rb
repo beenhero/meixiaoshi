@@ -87,11 +87,13 @@ module ServicesHelper
       next_link = options[:next_week].respond_to?(:call) ? options[:next_week].call : ''
       prev_link = options[:prev_week].respond_to?(:call) ? options[:prev_week].call : ''
 		end
-
+    
+    select_date = calendar_date_select_tag "selet_date", "", :hidden => true, :onchange => "#{options[:move_to_date].call}" if options[:move_to_date] && options[:move_to_date].respond_to?(:call)
+    
     # TODO Use some kind of builder instead of straight HTML
     cal = %(<table class="#{options[:table_class]}">\n)
     cal << %(\t<thead>\n\t\t<tr>\n)
-    cal << %(\t\t\t<th colspan="2" class='previous-week'>#{prev_link}</th><th colspan="3" class="current-date">#{Date.today}</th><th colspan="2"  class='next-week'>#{next_link}</th>\n)
+    cal << %(\t\t\t<th colspan="2" class='previous-week'>#{prev_link}</th><th colspan="3" class="current-date">今天 #{Date.today} #{select_date}</th><th colspan="2"  class='next-week'>#{next_link}</th>\n)
     cal << %(\t\t</tr>\n\t\t<tr class="day-names">)
     dates.each do |d|
       cal << "\t\t\t<th#{Date.today == d ? " class='today'" : ""}>#{day_names[d.wday]}<br /><span>#{d.strftime("%m/%d")}</span></th>\n"
@@ -129,7 +131,8 @@ module ServicesHelper
       :start_date => @start_date,
       :end_date => @start_date + 6,
       :prev_week => lambda {link_to_remote("&laquo;上周", {:update => "schedules", :url => schedules_service_path(service, :start_date => (@start_date-1).beginning_of_week), :method => :get})},                                               
-      :next_week => lambda {link_to_remote("下周&raquo;", {:update => "schedules", :url => schedules_service_path(service, :start_date => @start_date.next_week), :method => :get})}
+      :next_week => lambda {link_to_remote("下周&raquo;", {:update => "schedules", :url => schedules_service_path(service, :start_date => @start_date.next_week), :method => :get})},
+      :move_to_date => lambda { remote_function(:update => "schedules", :url => schedules_service_path(service), :method => :get, :with => "'start_date='+ $F(this)")}
     }
   end
   

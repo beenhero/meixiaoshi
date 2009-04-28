@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
   
   def new
+    logout_keeping_session!
     @user = User.new
   end
  

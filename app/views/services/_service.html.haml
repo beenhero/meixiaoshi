@@ -18,6 +18,6 @@
       = "@#{h user.address.single_name}"
       = "#{service.radius}公里以内" if service.radius
     %p
-      = h(service.name)
+      = link_to h(service.name), service_path(service)
   
   .clear
