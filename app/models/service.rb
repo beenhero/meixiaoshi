@@ -15,6 +15,8 @@ class Service < ActiveRecord::Base
   before_save :setup_repeat
   after_save :create_instances
   
+  acts_as_taggable_on :tags
+  
   def setup_repeat
     case self.repeat_kinds
     when ""
