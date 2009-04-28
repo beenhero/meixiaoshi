@@ -1,5 +1,6 @@
 class ServicesController < ApplicationController
-
+  before_filter :login_required, :only => [:new, :create, :edit, :update]
+  
   def index
     @services = Service.find :all
   end

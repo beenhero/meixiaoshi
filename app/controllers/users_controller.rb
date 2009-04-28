@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
+  before_filter :login_required, :only => [:edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy]
+  before_filter :find_user, :only => [:show, :edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy]
   
   def show
-    @user = User.find_by_login(params[:id]) || User.find(params[:id])
   end
   
   def new
@@ -43,12 +44,10 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
     @user.user_info ||= @user.build_user_info
   end
   
   def edit_info
-    @user = User.find(params[:id])
     @user.user_info ||= @user.build_user_info
     @user.address ||= @user.build_address(:province_id => '330000')
     
@@ -64,9 +63,7 @@ class UsersController < ApplicationController
     end
   end
   
-  def edit_contacts
-    @user = User.find(params[:id])
-   
+  def edit_contacts   
     @user.phone_numbers.build(:contact_type => 'PHONE', :name => 'mobile') and @user.save if @user.phone_numbers.empty?
     @user.instant_messages.build(:contact_type => 'IM', :name => 'qq') and @user.save if @user.instant_messages.empty?
     @user.snses.build(:contact_type => 'SNS', :name => 'blog') and @user.save if @user.snses.empty?
@@ -78,7 +75,6 @@ class UsersController < ApplicationController
   end
   
   def edit_password
-    @user = User.find(params[:id])
     if request.put?
       if params[:old_password].empty?
         flash[:notice] = "请输入旧密码."
@@ -100,7 +96,6 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = User.find(params[:id])
     @user.update_attributes(params[:user])
     redirect_to edit_user_path(@user)
   end
@@ -136,8 +131,8 @@ class UsersController < ApplicationController
   
   def successful_creation(user)
     redirect_back_or_default(root_path)
-    flash[:notice] = "Thanks for signing up!"
-    flash[:notice] << " We're sending you an email with your activation code." if @user.not_using_openid?
+    flash[:notice] = "感谢注册!"
+    flash[:notice] << " 激活帐号链接已经发送到你的邮箱." if @user.not_using_openid?
     flash[:notice] << " You can now login with your OpenID." unless @user.not_using_openid?
   end
   

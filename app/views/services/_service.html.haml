@@ -2,12 +2,12 @@
   - user = service.user
   
   .avatar
-    = link_to "#{image_tag(user.avatar.url(:thumb))}", profile_path(user)
+    = link_to "#{image_tag(user.avatar.url(:thumb))}", user_path(user)
    
     
   .details
     %h3
-      = link_to h(user), profile_path(user), :class => "fn url"
+      = link_to h(user), user_path(user), :class => "fn url"
       %span
         =service
         
