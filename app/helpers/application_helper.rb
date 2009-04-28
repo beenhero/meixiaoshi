@@ -12,8 +12,9 @@ module ApplicationHelper
   def flash_messages
     messages = []
     %w(notice warning error).each do |msg|
-      messages << content_tag(:div, html_escape(flash[msg.to_sym]), :id => "flash-#{msg}") unless flash[msg.to_sym].blank?
+      messages << content_tag(:div, '<a onclick="$(\'flash_box\').hide();return false" href="#">X</a>' + html_escape(flash[msg.to_sym]), :id => "flash_box", :class=> "#{msg}") unless flash[msg.to_sym].blank?
     end
+    messages << %(<script type="text/javascript">show_error_message();</script>)
     messages
   end
 end

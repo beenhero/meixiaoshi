@@ -2,7 +2,7 @@
 
 .service-item
   #schedules
-    = week_view(calendar_options(user, service), &show_status_proc(service))
+    = week_view(calendar_options(service), &show_status_proc(service))
     
   .details
     .user-info

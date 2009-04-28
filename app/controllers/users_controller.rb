@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
   
+  def show
+    @user = User.find_by_login(params[:id]) || User.find(params[:id])
+  end
+  
   def new
     @user = User.new
   end
@@ -105,6 +109,12 @@ class UsersController < ApplicationController
     
   end
   
+  def check_login
+    if request.xhr?
+      render :text => User.check_login?(params[:login]) ? "<span class='ok'>好 !!!</span>" : "<span class='not_ok'>无效，请更换</span>"
+    end
+  end
+  
   protected
   
   def create_new_user(attributes)
@@ -131,7 +141,7 @@ class UsersController < ApplicationController
     flash[:notice] << " You can now login with your OpenID." unless @user.not_using_openid?
   end
   
-  def failed_creation(message = 'Sorry, there was an error creating your account')
+  def failed_creation(message = '对不起, 发生了错误')
     flash[:error] = message
     render :action => :new
   end

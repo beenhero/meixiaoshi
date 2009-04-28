@@ -162,9 +162,11 @@ class Service < ActiveRecord::Base
   
   def time_drawing(day)
     return nil unless self.schedule_days.include?(day.to_s)
-    klass = "available"
-    height = (self.end_time_string.to_i - self.begin_time_string.to_i)*10
-    top = (self.begin_time_string.to_i - 0)*10
+    klass = "available" #TODO
+    begin_time = self.begin_time_string.to_i == 0 ? 0 : self.begin_time_string.to_i
+    end_time = self.end_time_string.to_i == 0 ? 24 : self.end_time_string.to_i
+    height = (end_time - begin_time)*10
+    top = (begin_time - 0)*10
     return [klass, "height:#{height}px;top:#{top}px;"]
   end
   

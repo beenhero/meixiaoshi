@@ -39,8 +39,8 @@ class ServicesController < ApplicationController
   
   def schedules
     if request.xhr? && !params[:start_date].blank?
-      @user = User.find(params[:user_id]) || current_user
       @service = Service.find(params[:id])
+      @user = @service.user
       @start_date = Date.parse(params[:start_date])
       render :partial => "schedules", :locals => { :highlighted => true }
     end # only response for XHR

@@ -15,7 +15,7 @@
   
 #main-content
   .main-content-bg
-    - form_for [current_user, @service], :html => {:id => "service_form"} do |f|
+    - form_for @service, :html => {:id => "service_form"} do |f|
       = render :partial => "form", :locals => { :f => f }
   .main-content-bg-end
 #sidebar

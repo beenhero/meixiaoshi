@@ -124,12 +124,12 @@ module ServicesHelper
   end
   
   # to generate week_view's option
-  def calendar_options(user, service)
+  def calendar_options(service)
     {       
       :start_date => @start_date,
       :end_date => @start_date + 6,
-      :prev_week => lambda {link_to_remote("&laquo;上周", {:update => "schedules", :url => schedules_user_service_path(user, service, :start_date => (@start_date-1).beginning_of_week), :method => :get})},                                               
-      :next_week => lambda {link_to_remote("下周&raquo;", {:update => "schedules", :url => schedules_user_service_path(user, service, :start_date => @start_date.next_week), :method => :get})}
+      :prev_week => lambda {link_to_remote("&laquo;上周", {:update => "schedules", :url => schedules_service_path(service, :start_date => (@start_date-1).beginning_of_week), :method => :get})},                                               
+      :next_week => lambda {link_to_remote("下周&raquo;", {:update => "schedules", :url => schedules_service_path(service, :start_date => @start_date.next_week), :method => :get})}
     }
   end
   

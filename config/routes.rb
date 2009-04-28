@@ -12,15 +12,16 @@ ActionController::Routing::Routes.draw do |map|
   
   # Restful Authentication Resources
   map.resources :users, 
-                :member => { :edit_password => :any, :edit_info => :any, :edit_contacts => :any } do |user|
-    user.resources :services, :member => { :schedules => :any }
-  end
+                :member => { :edit_password => :any, :edit_info => :any, :edit_contacts => :any }
+  
+  map.resources :services, :member => { :schedules => :any }
   map.resources :passwords
   map.resource :session
   
   # Home Page
   map.root :controller => 'services', :action => 'index'
-
+  
+  map.profile '/:id', :controller => "users", :action => "show"
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

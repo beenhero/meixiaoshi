@@ -5,29 +5,41 @@
   .main-content-bg
     - form_for @user do |f|
       .form-bg
-        = f.error_messages
         .form-row
-          = f.label :login, '登录名'
-          = f.text_field :login
-        .form-row
-          = f.label :email, '邮箱'
-          = f.text_field :email
-        .form-row
-          = f.label :password, '密码'
-          = f.password_field :password
-        .form-row
-          = f.label :password_confirmation, '重复密码'
-          = f.password_field :password_confirmation
+          = label_tag "login", '登录名'
+          http://meixiaoshi.com/
+          = f.text_field :login, :class => "size40"
+          %span#check_login
+          %span
+            3位以上字母或数字的组合, 如ben1982
+          = observe_field 'user_login', :url => { :action => :check_login }, :frequency => 0.2, :update => :check_login, :with => 'login'
           
-        %hr.split
-        
         .form-row
-          %p Or signup with OpenID
-          = label_tag 'openid_url', 'OpenID URL'
-          = text_field_tag :openid_url, params[:openid_url] || params['openid.identity']
+          = label_tag "email", '邮箱'
+          = f.text_field :email
+          %span
+            用来发送通知, 需激活
+        .form-row
+          = label_tag :password, '密码'
+          = f.password_field :password
+          %span
+            6位以上
+        .form-row
+          = label_tag :password_confirmation, '重复密码'
+          = f.password_field :password_confirmation
+        .form-row
+          = label_tag :terms, '&nbsp;'
+          = f.check_box :terms
+          ="同意#{link_to "服务条款", root_url}"
+        / %hr.split
+        / 
+        / .form-row
+        /   %p Or signup with OpenID
+        /   = label_tag 'openid_url', 'OpenID URL'
+        /   = text_field_tag :openid_url, params[:openid_url] || params['openid.identity']
 
       .form-submit
-        = submit_tag "注册"
+        = submit_tag "注册", :class => "fm-btn"
 
   .main-content-bg-end
 #sidebar

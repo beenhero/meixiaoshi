@@ -1,29 +1,45 @@
 /* === FLASH MESSAGES === */
-div#flash-notice {
-	background-color:#EDFFEC;
-	border:thin solid #68A720;
-}
+.error,
+.warning, 
+.notice    { padding: .8em; margin-bottom: 1em; border: 1px solid #ddd; }
+.error      { background: #FBE3E4; color: #8a1f11; border-color: #FBC2C4; }
+.warning     { background: #FFF6BF; color: #514721; border-color: #FFD324; }
+.notice    { background: #E6EFC2; color: #264409; border-color: #C6D880; }
+.error a    { color: #8a1f11; }
+.warning a   { color: #514721; }
+.notice a  { color: #264409; }
 
-div#flash-warning {
-	background-color:#EDFFEC;
-	border:thin solid #68A720;
+#flash_box{
+	padding: 10px;
+	margin-bottom: 10px;
 }
-
-div#flash-error {
-	background-color:#FFE3E0;
-	border:thin solid #731B17;
-	
+#flash_box a{
+	float: right;
+	display: block;
+	padding: 1px 10px;
+	text-decoration: none;
+	-moz-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
 }
-div#flash-error a{
-	background: url(../images/close-button.jpg) left top no-repeat;
+#flash_box.notice a{
+	background-color: #d4deb2;
 }
-div#flash-error a:hover{
-	background: url(../images/close-button-over.jpg) left top no-repeat;
+#flash_box.warning a{
+	background-color: #f2edb7;
+}
+#flash_box.error a{
+	background-color: #eed4d1;
+}
+#flash_box a:hover{
+	text-decoration: underline;
 }
 
 /* === ERROR MESSAGES === */
 div#errorExplanation {
-	
+	background-color: #FBE3E4;
+	padding: 10px;
 }
 
 div#errorExplanation h2 {
@@ -44,7 +60,8 @@ div#errorExplanation ul li {
 
 /* === FORMS === */
 div.fieldWithErrors {
-	
+	border:thin solid red;
+	display:inline-table;
 }
 
 div.fieldWithErrors label {
@@ -1048,7 +1065,9 @@ ul.tag-list li {
 		width: 100px;
 		float: left;
 	}
-
+	.form-row span{
+		color: #aaa;
+	}
 .form-sub-row{
 	padding-left: 100px;
 	margin: 4px 0;
@@ -1059,7 +1078,7 @@ ul.tag-list li {
 	padding: 10px 10px 0 0;
 }
 input.size40{
-	width: 85px;
+	width: 87px;
 }
 input.short{
 	width: 100px;
@@ -1081,6 +1100,12 @@ input.clean {
 	font-style: italic;
 	padding: 5px 10px;
 	width: 130px;
+}
+span.ok{
+	color: green;
+}
+span.not_ok{
+	color: red;
 }
 
 /* @end */

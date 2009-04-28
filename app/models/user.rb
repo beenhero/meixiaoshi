@@ -5,12 +5,17 @@ class User < ActiveRecord::Base
   include Authentication::ByPassword
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
-
+  
+  RESERVED = ['support', 'blog', 'www', 'billing', 'help', 'api', 'stage', 'venue', 'performer', 'event', 'concert', 'stage', 'meixiaoshi', 'signup', 'plans', 'signin', 'account', 'activate', 'users', 'profiles'
+  ]
+  
   # Validations
   validates_presence_of :login, :if => :not_using_openid?
   validates_length_of :login, :within => 3..40, :if => :not_using_openid?
   validates_uniqueness_of :login, :case_sensitive => false, :if => :not_using_openid?
   validates_format_of :login, :with => RE_LOGIN_OK, :message => MSG_LOGIN_BAD, :if => :not_using_openid?
+  validates_exclusion_of :login, :in => RESERVED, :message => "登录名无效!"
+  
   validates_format_of :name, :with => RE_NAME_OK, :message => MSG_NAME_BAD, :allow_nil => true
   validates_length_of :name, :maximum => 100
   validates_presence_of :email, :if => :not_using_openid?
@@ -19,6 +24,7 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => RE_EMAIL_OK, :message => MSG_EMAIL_BAD, :if => :not_using_openid?
   validates_uniqueness_of :identity_url, :unless => :not_using_openid?
   validate :normalize_identity_url
+  validates_acceptance_of :terms, :on => :create, :message => "你必须同意我们的服务条款才能注册。"
   
   # Relationships
   has_and_belongs_to_many :roles
@@ -50,17 +56,20 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url, :user_info_attributes, :phone_numbers_attributes, :instant_messages_attributes, :snses_attributes, :avatar
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url, :user_info_attributes, :phone_numbers_attributes, :instant_messages_attributes, :snses_attributes, :avatar, :terms
   
+  attr_accessor :terms
   attr_reader :old_password
   
   # set defaut to login if name isn't set.
-  def name
-    if self[:name].blank?
-      login
-    else
-      self[:name]
-    end
+  def to_s
+    return self.name unless self.name.blank?
+    return self.login unless self.login.blank? 
+    return "Anonymous"
+  end
+  
+  def to_param
+    return self.login
   end
   
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
@@ -83,6 +92,12 @@ class User < ActiveRecord::Base
   # Overwrite password_required for open id
   def password_required?
     new_record? ? not_using_openid? && (crypted_password.blank? || !password.blank?) : !password.blank?
+  end
+  
+  def self.check_login?(login)
+    account = User.new(:login => login)
+    account.valid?
+    account.errors.on(:login).blank?
   end
 
   protected
