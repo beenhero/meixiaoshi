@@ -40,22 +40,23 @@
 div#errorExplanation {
 	background-color: #FBE3E4;
 	padding: 10px;
+	margin-bottom: 10px;
 }
 
 div#errorExplanation h2 {
-	
+	font-size: 14px;
 }
 
 div#errorExplanation p {
-	
+	margin-bottom: 5px;
 }
 
 div#errorExplanation ul {
-	
+	margin-left: 2em;
 }
 
 div#errorExplanation ul li {
-	
+	list-style: disc;
 }
 
 /* === FORMS === */

@@ -20,7 +20,7 @@ class ServicesController < ApplicationController
   
     if @service.save
       flash[:notice] = "发布成功，开始出售你的时间"
-      redirect_to user_services_path(@user)
+      redirect_to services_path
     else
       render :action => 'new'
     end

@@ -41,14 +41,14 @@
             %li<
               = link_to image_tag(current_user.avatar.url(:tiny)), profile_path(current_user)
             %li<
-              = link_to 'Logout', logout_path
+              = link_to '退出', logout_path
             %li<
-              = link_to 'Edit', edit_user_path(current_user)
+              = link_to '设置', edit_user_path(current_user)
           - else
             %li<
-              = link_to 'Login', login_path
+              = link_to '登录', login_path
             %li<
-              = link_to 'Signup', signup_path
+              = link_to '注册', signup_path
       .clear
       = flash_messages
       = yield :layout

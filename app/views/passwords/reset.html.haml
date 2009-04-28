@@ -1,0 +1,19 @@
+= title "重设密码", :h2 
+
+#main-content
+  .main-content-bg
+    - form_for :user, :url => { :action => 'update_after_forgetting' } do |f|
+      .form-bg
+        = f.error_messages
+        .form-row
+          = f.label :password, '新密码'
+          = f.password_field :password
+        .form-row
+          = f.label :password_confirmation, '重复新密码'
+          = f.password_field :password_confirmation
+          = hidden_field_tag :reset_code, params[:reset_code]
+      .form-submit
+        = submit_tag "提交"
+  .main-content-bg-end
+#sidebar
+  菜单

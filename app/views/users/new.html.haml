@@ -1,10 +1,11 @@
 - @user.password = @user.password_confirmation = nil
-= title "Signup", :h2 
+= title "注册", :h2 
 
 #main-content
   .main-content-bg
     - form_for @user do |f|
       .form-bg
+        = f.error_messages
         .form-row
           = label_tag "login", '登录名'
           http://meixiaoshi.com/

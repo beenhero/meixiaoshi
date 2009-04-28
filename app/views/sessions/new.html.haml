@@ -1,4 +1,4 @@
-= title "Login", :h2 
+= title "登录", :h2 
 
 #main-content
   .main-content-bg
@@ -13,11 +13,11 @@
         .form-row
           = label_tag 'remember_me', '记住我'
           = check_box_tag 'remember_me', '1', @remember_me
-        %hr.split
-        .form-row
-          %p Or login with OpenID
-          = label_tag 'openid_url', 'OpenID URL'
-          = text_field_tag 'openid_url'
+        / %hr.split
+        / .form-row
+        /   %p Or login with OpenID
+        /   = label_tag 'openid_url', 'OpenID URL'
+        /   = text_field_tag 'openid_url'
 
       .form-submit
         = submit_tag "登录"

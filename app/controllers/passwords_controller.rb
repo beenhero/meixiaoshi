@@ -9,7 +9,7 @@ class PasswordsController < ApplicationController
     
     if @password.save
       PasswordMailer.deliver_forgot_password(@password)
-      flash[:notice] = "A link to change your password has been sent to #{@password.email}."
+      flash[:notice] = "已经发送重设链接，请查收你的邮箱 #{@password.email}."
       redirect_to :action => :new
     else
       render :action => :new
@@ -20,7 +20,7 @@ class PasswordsController < ApplicationController
     begin
       @user = Password.find(:first, :conditions => ['reset_code = ? and expiration_date > ?', params[:reset_code], Time.now]).user
     rescue
-      flash[:notice] = 'The change password URL you visited is either invalid or expired.'
+      flash[:notice] = '重设链接无效.'
       redirect_to new_password_path
     end    
   end
@@ -29,7 +29,7 @@ class PasswordsController < ApplicationController
     @user = Password.find_by_reset_code(params[:reset_code]).user
     
     if @user.update_attributes(params[:user])
-      flash[:notice] = 'Password was successfully updated.'
+      flash[:notice] = '密码重设成功.'
       redirect_to login_path
     else
       flash[:notice] = 'EPIC FAIL!'
@@ -41,7 +41,7 @@ class PasswordsController < ApplicationController
     @password = Password.find(params[:id])
 
     if @password.update_attributes(params[:password])
-      flash[:notice] = 'Password was successfully updated.'
+      flash[:notice] = '密码更新成功.'
       redirect_to(@password)
     else
       render :action => :edit

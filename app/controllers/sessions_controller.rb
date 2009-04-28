@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout_killing_session!
-    flash[:notice] = "You have been logged out."
+    flash[:notice] = "你已经成功退出."
     redirect_back_or_default(root_path)
   end
   
@@ -50,11 +50,11 @@ class SessionsController < ApplicationController
     new_cookie_flag = (params[:remember_me] == "1")
     handle_remember_cookie! new_cookie_flag
     redirect_back_or_default(root_path)
-    flash[:notice] = "Logged in successfully"
+    flash[:notice] = "登录成功"
   end
 
   def note_failed_signin
-    flash[:error] = "Couldn't log you in as '#{params[:login]}'"
+    flash[:error] = "'#{params[:login]}' 无法登录"
     logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"
   end
 end

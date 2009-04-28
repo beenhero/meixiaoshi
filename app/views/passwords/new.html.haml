@@ -1,0 +1,17 @@
+= title "忘记密码了?", :h2 
+
+#main-content
+  .main-content-bg
+    - form_for @password do |f|
+      .form-bg
+        = f.error_messages
+        .form-row
+          = f.label :email, '邮箱'
+          = f.text_field :email
+          %span
+            你的注册邮箱, 给你发送重设链接
+      .form-submit
+        = submit_tag "提交"
+  .main-content-bg-end
+#sidebar
+  菜单
