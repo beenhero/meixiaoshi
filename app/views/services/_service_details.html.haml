@@ -12,8 +12,12 @@
         = link_to h(user.name), user_path(user), :class => "fn url"
       已售出 450小时
       
-      =link_to "联系购买"
+      =link_to "联系购买", "#contact-fm", :rel => "facebox"
+      #contact-fm{:style => "display:none;"}
+        %h3 This is contact form
+        %p mock up
       .clear
+      
 
     %p
       = "时间: #{service}"

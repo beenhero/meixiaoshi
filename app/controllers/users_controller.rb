@@ -78,7 +78,7 @@ class UsersController < ApplicationController
   def edit_password
     if request.put?
       if params[:old_password].empty?
-        flash[:notice] = "请输入旧密码."
+        flash[:warning] = "请输入旧密码."
         render :action => 'edit_password'
       elsif @user.authenticated?(params[:old_password])
         @user.attributes = params[:user]
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
           redirect_to edit_password_user_path(@user)
         end
       else
-        flash[:notice] = "旧密码错误，请重试."
+        flash[:error] = "旧密码错误，请重试."
         render :action => 'edit_password'
       end
     end     
