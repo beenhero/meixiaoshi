@@ -39,12 +39,12 @@ class SessionsController < ApplicationController
     if user
       self.current_user = user
       successful_login
-    else
-      note_failed_signin
-      @login = params[:login]
-      @remember_me = params[:remember_me]
-      render :action => :new
     end
+  rescue User::LoginError => e
+    note_failed_signin(e.message)
+    @login = params[:login]
+    @remember_me = params[:remember_me]
+    render :action => :new
   end
   
   def successful_login
@@ -54,8 +54,8 @@ class SessionsController < ApplicationController
     flash[:notice] = "登录成功"
   end
 
-  def note_failed_signin
-    flash[:error] = "'#{params[:login]}' 无法登录"
-    logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"
+  def note_failed_signin(message)
+    flash[:error] = "#{message}"
+    logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}: #{message}"
   end
 end

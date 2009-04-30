@@ -61,6 +61,9 @@ class User < ActiveRecord::Base
   attr_accessor :terms
   attr_reader :old_password
   
+  
+  class LoginError < RuntimeError ; end
+    
   # set defaut to login if name isn't set.
   def to_s
     return self.name unless self.name.blank?
@@ -74,8 +77,25 @@ class User < ActiveRecord::Base
   
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
-    u = find_in_state :first, :active, :conditions => { :login => login } # need to get the salt
-    u && u.authenticated?(password) ? u : nil
+    if login.to_s.include?("@")
+      u = first(:conditions => {:email => login})
+    else
+      u = first(:conditions => {:login => login})
+    end
+    if u && u.authenticated?(password)
+      case u.state
+      when "pending"
+        raise LoginError, "请登录你的邮箱，激活帐号"
+      when "suspended"
+        raise LoginError, "你的帐号已被冻结，有关事宜请联系网站客服"
+      when "deleted"
+        raise LoginError, "你的帐号将被删除，有关事宜请联系网站客服"
+      when "active"
+        return u
+      end
+    else
+      raise LoginError, "登录名或密码错误"
+    end
   end
   
   # Check if a user has a role.
@@ -95,9 +115,9 @@ class User < ActiveRecord::Base
   end
   
   def self.check_login?(login)
-    account = User.new(:login => login)
-    account.valid?
-    account.errors.on(:login).blank?
+    user = User.new(:login => login)
+    user.valid?
+    user.errors.on(:login).blank?
   end
   
   # override activerecord's find to allow us to find by name or id transparently
