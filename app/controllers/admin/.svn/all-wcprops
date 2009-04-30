@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/zikii/!svn/ver/258/trunk/app/controllers/admin
+END
+topics_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/zikii/!svn/ver/258/trunk/app/controllers/admin/topics_controller.rb
+END
+abstract_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/zikii/!svn/ver/258/trunk/app/controllers/admin/abstract_controller.rb
+END
+people_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/zikii/!svn/ver/251/trunk/app/controllers/admin/people_controller.rb
+END
+works_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/zikii/!svn/ver/252/trunk/app/controllers/admin/works_controller.rb
+END

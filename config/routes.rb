@@ -15,6 +15,15 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :passwords
   map.resource :session
   
+  #admin routes
+  map.namespace(:admin) do |admin|
+    admin.resources :services, 
+      :collection => {:pending => :get, :approved => :get},
+      :member => {:approve => :any, :bind => :any}
+    admin.resources :users
+  end
+  map.admin '/admin', :controller => 'admin/abstract', :action => 'dashboard'
+  
   # Home Page
   map.root :controller => 'services', :action => 'index'
 

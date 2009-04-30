@@ -1,0 +1,704 @@
+/* --------- NOTES -----------------------------------------------------------
+Screen Style for Meixiaoshi admin panel, inspired by brightkite.
+
+--------- UPDATE INFO --------------------------------------------------------
+Last updated: 1 May 2009 by beenhero (beenhero@gmail.com)
+ 
+--------- CONTENTS -----------------------------------------------------------
+
+---------------------------------------------------------------------------- */
+
+body{
+	background-color: #DDDFE1;
+	text-align: center;
+}
+
+.wrapper{
+	width: 965px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+#content{
+	margin:15px 0 0;
+	padding:5px 0;
+}
+#footer{
+	clear: both;
+	margin:15px 0 0 200px;
+	padding:15px 0;
+	text-align: center;
+}
+
+/* main area styles
+---------------------------------------------------------------------------- */
+
+#main,
+.main {
+  position: relative;
+  float: right;
+  width: 760px;
+  min-height: 630px;
+  padding: 0;
+  background: #fff;
+}
+
+#main > .corner,
+.main > .corner {
+  background-image: url('/images/admin/corners-white.png');
+}
+
+#main > .header,
+.main > .header {
+  padding: 10px 15px 5px 15px;
+  background: #fff;
+}
+
+#main > .header,
+.main > .header {
+  padding: 10px 15px 15px 15px;
+  background: url('/images/admin/bg-tabs.png') left bottom repeat-x;
+}
+.main > .content {
+  padding: 15px 15px 10px 15px;
+}
+
+.main > .content p {
+  margin: 0;
+}
+
+#main > .header h1,
+.main > .header h1 {
+  margin: 0;
+  font-size: 1.7em;
+  color: #333;
+}
+
+#main > .header h2,
+.main > .header h2 {
+  margin: 5px 0 0 0;
+  font-size: 1.1em;
+  font-weight: normal;
+  color: #999;
+}
+
+/*#main > .content*/
+#main > .content{
+	clear:both;
+	min-height:630px;
+	padding:25px 15px 15px;
+}
+
+/*globe*/
+hr {
+  border: 0;
+  width: 100%;
+  height: 0;
+  border-top: solid 1px #dfdfdf;
+  background: none;
+}
+.clear{
+	clear: both;
+}
+.right{
+	float: right;
+}
+.left{
+	float: left;
+}
+div.form_error{
+	background-color: #FFFACD;
+	border-left:3px solid #FF7F50;
+	margin: 1em 0;
+	padding: 1em;
+}	
+
+/* corner */
+.corner {
+  position: absolute;
+  width: 60%;
+  height: 5px;
+  margin: -5px 0;
+}
+
+.tl {
+  top: 0;
+  left: 0;
+  background-position: left top !important;
+}
+
+.tr {
+  top: 0;
+  right: 0;
+  background-position: right top !important;
+}
+
+.bl {
+  bottom: 0;
+  left: 0;
+  background-position: left bottom !important;
+}
+
+.br {
+  bottom: 0;
+  right: 0;
+  background-position: right bottom !important;
+}
+
+/*tabs*/
+.tabs {
+  padding-bottom: 0 !important;
+  background: url('/images/admin/bg-tabs.png') bottom repeat-x !important;
+}
+
+.tabs ul {
+  clear: both;
+  margin: 15px 0 0 0;
+  padding: 0 0 0 20px;
+}
+
+.header.tabs ul {
+  padding-left: 5px;
+}
+
+.tabs li {
+  float: left;
+  list-style: none;
+  margin-right: 10px;
+}
+
+.tabs li a {
+  display: block;
+  padding: 0 5px 0 0;
+  color: #999;
+  background: url('/images/admin/bg_tab.png') right no-repeat;
+  text-decoration: none;
+}
+
+.tabs li a:hover {
+  color: #333;
+}
+
+.tabs li em {
+  position: relative;
+  top: -3px;
+  color: #b3cb47;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.7em;
+  text-transform: uppercase;
+}
+
+.tabs li span {
+  display: block;
+  position: relative;
+  left: -5px;
+  padding: 8px 10px 7px 20px;
+  background: url('/images/admin/bg_tab.png') left no-repeat;
+}
+
+.tabs li.selected,
+.tabs li.selected span {
+  background-color: #fff;
+}
+
+.tabs li.selected a {
+  color: #333;
+  font-weight: bold;
+  background-image: url('/images/admin/bg_tab_selected.png');
+}
+
+.tabs li.selected span {
+  background-image: url('/images/admin/bg_tab_selected.png');
+}
+
+/*admin sidebar nav*/
+.box {
+	position:relative;
+}
+#nav {
+  position: relative;
+  top: -7px;
+  float: left;
+  width: 190px;
+  font-size: 0.95em;
+}
+
+#nav #privacy_description {
+  margin: 10px 10px 0 10px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+#nav .box {
+  clear: both;
+  margin: 0 0 25px 0;
+  background: #fff;
+  border: solid 1px #cdcdcd;
+  border-top: none;
+  border-bottom: none;
+}
+
+#nav #main-nav.box {
+  margin-top: 6px;
+  padding: 2px 0 2px 0;
+}
+
+#nav #extra-nav.box {
+  padding: 0 0 10px 0;
+}
+
+#extra-nav > .content > p {
+  margin: 0 10px 0 10px;
+  color: #666;
+}
+
+#extra-nav > .content > p.time {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+#extra-nav .content > p > strong {
+  color: #333;
+}
+
+#nav #other_actions {
+  padding: 6px 0;
+}
+
+#nav #other_actions > hr {
+  margin: 10px 0;
+}
+
+#nav #invites.box {
+  padding: 5px 10px 10px 10px;
+  background: #cfe8f6 url('/images/admin/bg-nav-invites.png') repeat-x;
+}
+
+#nav #discover.box {
+  padding: 5px 10px 10px 10px;
+  background: #fff7d1;
+  border: solid 1px #ffe930;
+  border-top: none;
+  border-bottom: none;
+}
+
+#nav .box > .corner {
+  margin: -5px -1px;
+  background-image: url('/images/admin/corners-white-darkborder.png');
+}
+
+#nav #invites.box > .corner {
+  background-image: url('/images/admin/corners-nav-invites.png')
+}
+
+#nav #discover.box > .corner {
+  background-image: url('/images/admin/corners-nav-friends.png');
+}
+
+#nav #invites.box > p,
+#nav #discover.box > p {
+  padding: 0 0 2px 30px;
+  font-size: 0.9em;
+  font-weight: bold;
+  background: url('/images/admin/icon-invite.png') no-repeat;
+}
+
+#nav #discover.box > p {
+  background: url('/images/admin/icon-nav-friends.png') 3px top no-repeat;
+}
+
+#nav .content {
+  margin: 0;
+  padding: 0;
+}
+
+#nav h1 > a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+#nav p,
+#nav h3 {
+  position: relative;
+  margin: 5px 10px;
+}
+
+#nav #checkin-time {
+  padding-right: 15px;
+  color: #3e3e3e;
+}
+
+#nav #checkin-time img.help {
+  top: 2px;
+  bottom: auto;
+}
+
+#nav #privacy img.help {
+  bottom: 7px;
+}
+
+#nav hr {
+  clear: both;
+  margin: 15px 0;
+  border-top: solid 1px #dfdfdf;
+}
+
+#nav #extra-nav hr {
+  margin-top: 10px;
+}
+
+#nav img.avatar {
+  float: left;
+  margin: 6px 0 0 10px;
+  border: none;
+  padding: 0;
+}
+
+#nav h1,
+#nav h2 {
+  margin: 0 0 0 52px;
+}
+
+#nav h1 {
+  margin-top: 6px;
+  padding: 5px 0 0 0;
+  font-size: 1.2em;
+}
+
+#nav h2 {
+  margin-top: 2px;
+  font-size: 0.9em;
+  font-weight: normal;
+}
+
+#nav h2 a {
+  color: #b0b0b0;
+  text-decoration: underline;
+}
+
+#nav h3 {
+  padding: 0 0 0 25px;
+  font-size: 1.05em;
+  background: url('/images/admin/place-marker-small.png') left top no-repeat;
+}
+
+#nav #privacy {
+  position: relative;
+  height: 21px;
+  margin: 0 10px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+#nav #privacy p {
+  float: left;
+  margin: 2px 0 0 0;
+  padding-right: 30px;
+  line-height: 1.5em;
+}
+
+#nav #privacy .slider {
+  float: right;
+  margin: 0 20px 0 0;
+}
+
+#nav li > ul {
+  margin: 0;
+  padding: 0;
+  font-size: 0.9em;
+}
+
+#nav ul li > a:hover {
+  background-color: #cee8f7 !important;
+  text-decoration: none;
+}
+
+#nav li > ul > li > a {
+  display: block;
+  padding: 3px 0 3px 35px;
+}
+
+#nav li > ul > li:last-child > a {
+  margin-bottom: 5px;
+}
+
+#nav .content > ul {
+  clear: both;
+  margin: 10px 0 0 0;
+  padding-top: 5px;
+  border-top: solid 1px #dfdfdf;
+}
+
+#nav .content > ul:first-child {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+#nav ul li {
+  list-style-type: none;
+}
+
+#nav .content > ul > li > a {
+  display: block;
+  padding: 6px 10px 6px 35px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#nav .content > ul > li.checkin > a {
+  background: url('/images/admin/icon_checkin_small.png') 10px 5px no-repeat;
+}
+
+#nav ul li.home a {
+  background: url('/images/admin/icon-nav-home.png') 10px 6px no-repeat;
+}
+
+#nav .content > ul > li.activity > a {
+  background: url('/images/admin/icon-nav-happening.png') 10px 6px no-repeat;
+}
+
+#nav ul li.places a {
+  background: url('/images/admin/icon-nav-places.png') 10px 6px no-repeat;
+}
+
+#nav .content > ul > li.placemarks > a {
+  background: url('/images/admin/icon-nav-placemarks.png') 10px 6px no-repeat;
+}
+
+#nav .content > ul > li.nearby > a {
+  background: url('/images/admin/icon-nav-nearby.png') 10px 6px no-repeat;
+}
+
+#nav ul li.friends a {
+  background: url('/images/admin/icon-nav-friends.png') 10px 6px no-repeat;
+}
+
+#nav ul li.inbox a {
+  background: url('/images/admin/icon-nav-inbox.png') 10px 6px no-repeat;
+}
+
+#nav ul li.notifications a {
+  background: url('/images/admin/icon-nav-notifications.png') 10px 6px no-repeat;
+}
+
+#nav ul li.account a {
+  background: url('/images/admin/icon-nav-account.png') 10px 6px no-repeat;
+}
+
+#nav .messages {
+  margin: 0;
+  padding: 0 0 5px 25px;
+}
+
+#nav .messages a {
+  color: #f30;
+}
+
+#nav.logged-out {
+  margin: 1px 0 0 0;
+  padding: 5px 0;
+  color: #666;
+}
+
+#nav.logged-out #main-nav {
+  padding-top: 5px;
+}
+
+#nav.logged-out input[type='text'],
+#nav.logged-out input[type='password'] {
+  margin: 5px 0 10px 0;
+}
+
+#nav.logged-out input[type='checkbox'] {
+  margin: 0 5px 10px 0;
+}
+
+#nav.logged-out input[type='submit'] {
+  margin: 0 0 10px 0;
+}
+
+#nav.logged-out #forgot-password {
+  font-size: 0.9em;
+}
+
+#main-nav a.button {
+  float: none;
+  margin: 0 10px 10px 15px;
+}
+
+#main-nav a.button span.icon {
+  background-image: url('/images/admin/icon_checkin_small.png');
+}
+
+#other_actions a.button {
+  float: none;
+  margin: 0 10px 0 15px;
+  font-size: 11px;
+}
+
+/* 6: FORMS 
+============================================================================ */	
+
+/* a) submit forms */
+fieldset.submit{
+	margin: 10px;
+	padding-bottom: 10px;
+}
+fieldset.submit legend{
+	font-size: 16px;
+	font-weight: bold;	
+}
+fieldset.submit div.form_list{
+	margin-top: 1em;	
+}
+fieldset.submit input.textfield{
+	width: 320px;
+}
+textarea.wisdom{
+	width:600px;
+	height:40px;
+}
+textarea.more{
+	width:600px;
+	height:150px;
+}
+textarea.terms{
+	width: 600px;
+	font-size: 12px;
+	background-color: #e9e9e9;
+}
+fieldset.cate {
+	padding: 1em 2em;
+}
+fieldset.cate legend{
+	font-size: 12px;
+	font-weight: normal;
+}
+fieldset.cate dl{
+	float: left;
+	width:120px;
+}
+fieldset.settings {
+	background-color: #fff;
+	padding:2em;
+	clear: left;
+	border: 0;
+}
+fieldset.settings legend{
+	color:Maroon;
+}
+.uploadfield{
+	width:10em;
+	height: 2em;
+}
+div.button {
+	text-align: right;
+	width:100%;
+	float:left;
+}
+.submit .work{
+	margin-bottom: 5px;
+}
+/* b) general forms style */
+
+fieldset{
+	padding: 0 2em;
+}
+input.textfield,textarea{
+	width: 250px;
+	font-size: 14px;
+	color: #777;
+	padding: 4px;
+	background-color: #F9FAEB;
+	border: 2px solid #ddd;	
+	margin-bottom: 4px;
+}
+input.textfield:focus,textarea:focus{
+	border:2px solid #9fd2ff;color:#333;
+}
+.submitbutton{
+	font-size:16px ;
+	font-weight: bold;
+	padding: 5px 7px;
+	margin: 1em 0;	
+}
+/*for approve person page form differ*/
+.to-copy, .to-copy2 input{
+	background-color: #fff !important;
+	border: 1px solid #ddd !important;	
+}
+
+/*admin people section*/
+/* a) People list */
+#admin h3{
+	font-size: 12px;
+}
+#admin #people_list{
+	margin-bottom: 2em;
+}
+#admin #people_pending{
+	margin-bottom: 2em;
+}
+#people_list span{
+
+}
+.t_people{
+	width: 100%;
+	margin: 0;
+	color: #333;
+}
+.t_people .t_head{
+	background-color: #0000CD;
+	color: #fff;
+}
+.t_people .t_head th{
+	padding: 4px;
+	font-weight: bold;
+}
+.t_people td{
+	padding: 4px;
+}
+.t_people .odd{
+	background-color: #eee;
+}
+.t_people .even{
+
+}
+.t_people.t_show th{
+	width: 10%;
+	font-weight: bold;
+	vertical-align: top;
+	padding: 4px;
+}
+.t_footer{
+	background-color:#E9E9E9;
+	margin:0 0 10px;
+	padding:5px 15px;
+	position:relative;
+	text-align: right;
+}
+
+/*bind people page*/
+#bind-list h2{
+	margin-bottom: 1em;
+	font-weight: bold;
+}
+.highlight{
+	background-color: #ffeeb8;
+	padding: 2px;
+}
+
+/*approve person page*/
+#p_approve table{
+	width: 100%;
+}
+#p_approve table td{
+	vertical-align: top;
+	padding-bottom: 10px;
+}
+#p_approve table th{
+	vertical-align: top;
+}

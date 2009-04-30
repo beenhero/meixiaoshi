@@ -1,0 +1,143 @@
+class Admin::PeopleController < Admin::AbstractController
+  before_filter :login_required
+  
+  # GET /people
+  # GET /people.xml
+  def index
+    @people = Person.paginate :page => params[:page], :per_page => 20, :order => "updated_at DESC", :conditions => { :parent_id => nil }
+
+    respond_to do |format|
+      format.html # index.rhtml
+      format.xml  { render :xml => @people.to_xml }
+    end
+  end
+
+  # GET /people/1
+  # GET /people/1.xml
+  def show
+    @person = Person.find(params[:id])
+    respond_to do |format|
+      format.html # show.rhtml
+      format.xml  { render :xml => @person.to_xml }
+    end
+  end
+
+  # GET /people/new
+  def new
+    @person = Person.new
+  end
+
+  # GET /people/1;edit
+  def edit
+    @person = Person.find(params[:id])
+  end
+
+  # POST /people
+  # POST /people.xml
+  def create
+    @person = Person.new(params[:person].merge(:user_id => current_user.id))
+    @asset = @person.assets.build(params[:asset]) unless params[:asset][:uploaded_data].blank?
+    
+    respond_to do |format|
+      if @person.save
+        flash[:notice] = '创建成功'
+        format.html { redirect_to admin_person_url(@person) }
+        format.xml  { head :created, :location => admin_person_url(@person) }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @person.errors.to_xml }
+      end
+    end
+  end
+
+  # PUT /people/1
+  # PUT /people/1.xml
+  def update
+    @person = Person.find(params[:id])
+    @asset = @person.assets.build(params[:asset]) unless params[:asset][:uploaded_data].blank?
+    
+    respond_to do |format|
+      if @person.update_attributes(params[:person])
+        flash[:notice] = 'Person was successfully updated.'
+        format.html { redirect_to admin_person_url(@person) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @person.errors.to_xml }
+      end
+    end
+  end
+
+  # DELETE /people/1
+  # DELETE /people/1.xml
+  def destroy
+    @person = Person.find(params[:id])
+    @person.destroy
+
+    respond_to do |format|
+      format.html { redirect_to admin_people_url }
+      format.xml  { head :ok }
+    end
+  end
+  
+  def pending
+    @people = Person.pending.paginate :page => params[:page], :per_page => 20
+
+    respond_to do |format|
+      format.html # index.rhtml
+      format.xml  { render :xml => @people.to_xml }
+    end
+  end
+  
+  def approved
+    @people = Person.approved.paginate :page => params[:page], :per_page => 20
+
+    respond_to do |format|
+      format.html # index.rhtml
+      format.xml  { render :xml => @people.to_xml }
+    end
+  end
+  
+  def approve
+      @draft = Person.find(params[:id])
+      @person = @draft.parent
+      
+    if request.post?
+      
+      respond_to do |format|
+        if @person.update_attributes(params[:person].except(:check_pic))
+          @draft.update_attribute(:approved_by, current_user.id)
+          if params[:person][:check_pic] == "0"
+            @draft.assets.first.destroy
+          elsif params[:person][:check_pic] != nil
+            Asset.find(params[:person][:check_pic]).update_attribute(:attachable_id, @person.id)
+          end
+          flash[:notice] = '审核成功'
+          format.html { redirect_to admin_person_url(@person) }
+          format.xml  { head :ok }
+        else
+          format.html { redirect_to approve_admin_person_url(@person) }
+          format.xml  { render :xml => @person.errors.to_xml }
+        end  
+      end
+    end
+  end
+  
+  #
+  # batch binding person to wisdom's person_id
+  def bind
+    @person = Person.find(params[:id])
+    @wisdoms = Wisdom.find(:all, :conditions => {:author => "#{@person.name}", :person_id => nil})
+    if request.post?      
+      @wisdoms.each do |w|
+        w.update_attribute(:person_id, @person.id) if params["#{w.id}"]
+      end
+      respond_to do |format|
+        flash[:notice] = "绑定成功"
+        format.html { redirect_to bind_admin_person_url(@person) }
+        format.xml  { head :ok }
+      end
+    end
+  end
+  
+end

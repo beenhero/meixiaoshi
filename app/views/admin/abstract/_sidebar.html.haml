@@ -1,0 +1,76 @@
+#nav
+  #extra-nav.box
+    .corner.tl
+    .corner.tr
+    .content
+      = link_to image_tag(current_user.avatar(:tiny), :class => "avatar", :alt => "avatar"), user_url(current_user)
+      %h1
+        = link_to h(current_user), user_url(current_user)
+      %h2
+        = link_to "View my profile", user_url(current_user)
+      %hr
+      %p#privacy_description.private
+        上次登录于 
+        = "2009-7-18"
+        %br
+        = "ip address"
+        
+    .corner.bl
+    .corner.br
+  
+  #main-nav.box
+    .corner.tl
+    .corner.tr
+    .content
+      %ul
+        %li.checkin
+          = link_to "Dashboard", "#TODO"
+          
+      %ul
+        %li.activity
+          = link_to "子曰管理", "#TODO"
+          %ul
+            %li= link_to "待审", "#TODO"
+            %li= link_to "全部", "#TODO"
+            %li= link_to "评论", "#TODO"
+            %li= link_to "创建", "#TODO"
+        
+        %li.nearby
+          = link_to "作者管理", "#TODO"
+          %ul
+            %li= link_to "待审", "#TODO"
+            %li= link_to "全部", "#TODO"
+            %li= link_to "评论", "#TODO"
+            %li= link_to "创建", "#TODO"
+            
+        %li.placemarks
+          = link_to "作品管理", "#TODO"
+          %ul
+            %li= link_to "待审", "#TODO"
+            %li= link_to "全部", "#TODO"
+            %li= link_to "评论", "#TODO"
+            %li= link_to "创建", "#TODO"
+            
+        %li.friends
+          = link_to "用户管理", "#TODO"
+         
+        %li.places
+          = link_to "专题管理", "#TODO"
+            
+        %li.inbox
+          = link_to "反馈管理", "#TODO"
+        
+        %li.account
+          = link_to "设置", "#TODO"
+            
+    .corner.bl
+    .corner.br
+
+  #other_actions.box
+    .corner.tl
+    .corner.tr
+    = link_to "<span><strong>Invite your friends</strong></span>", "#TODO", :class => "green small button"
+    %hr
+    = link_to "<span>Discover your friends</span>", "#TODO", :class => "small button"
+    .corner.bl
+    .corner.br

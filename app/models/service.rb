@@ -17,6 +17,40 @@ class Service < ActiveRecord::Base
   
   acts_as_taggable_on :tags
   
+  include AASM
+  aasm_column :state
+  aasm_initial_state :initial => :pending
+  aasm_state :passive
+  aasm_state :pending
+  aasm_state :active,  :enter => :do_activate
+  aasm_state :suspended
+  aasm_state :deleted, :enter => :do_delete
+
+  aasm_event :publish do
+    transitions :from => :passive, :to => :pending
+  end
+  
+  aasm_event :activate do
+    transitions :from => :pending, :to => :active 
+  end
+  
+  aasm_event :suspend do
+    transitions :from => [:passive, :pending, :active], :to => :suspended
+  end
+  
+  aasm_event :delete do
+    transitions :from => [:passive, :pending, :active, :suspended], :to => :deleted
+  end
+
+  aasm_event :unsuspend do
+    transitions :from => :suspended, :to => :active,  :guard => Proc.new {|u| !u.activated_at.blank? }
+    transitions :from => :suspended, :to => :pending, :guard => Proc.new {|u| u.activated_at.blank? }
+    transitions :from => :suspended, :to => :passive
+  end
+  
+  named_scope :active, :conditions => {:state => "active"}
+  named_scope :pending, :conditions => {:state => "pending"}
+  
   def setup_repeat
     case self.repeat_kinds
     when ""
@@ -262,4 +296,19 @@ class Service < ActiveRecord::Base
   def valid_time_span
     errors.add_to_base("结束时间要比开始时间晚才行。") if (begin_date_time > end_date_time)
   end
+  
+  # Returns true if the user has just been activated.
+  def recently_activated?
+    @activated
+  end
+  def do_delete
+    self.deleted_at = Time.now.utc
+  end
+
+  def do_activate
+    @activated = true
+    self.activated_at = Time.now.utc
+    self.deleted_at = nil
+  end
+  
 end

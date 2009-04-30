@@ -20,6 +20,7 @@ class ServicesController < ApplicationController
     @service = @user.services.build(params[:service].merge(:end_date_string => params[:service][:begin_date_string]))
   
     if @service.save
+      @service.publish!
       flash[:notice] = "发布成功，开始出售你的时间"
       redirect_to services_path
     else

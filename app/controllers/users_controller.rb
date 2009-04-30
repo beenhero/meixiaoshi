@@ -33,13 +33,13 @@ class UsersController < ApplicationController
     case
     when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
-      flash[:notice] = "Signup complete! Please sign in to continue."
+      flash[:notice] = "帐号激活成功，请登录开始出售时间."
       redirect_to login_path
     when params[:activation_code].blank?
-      flash[:error] = "The activation code was missing.  Please follow the URL from your email."
+      flash[:error] = "激活码不正确，请点击发送到你邮箱的激活链接."
       redirect_back_or_default(root_path)
     else 
-      flash[:error]  = "We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in."
+      flash[:error]  = "激活码不对，请检查邮件校对激活链接，或者可能你已经激活，请尝试登录."
       redirect_back_or_default(root_path)
     end
   end

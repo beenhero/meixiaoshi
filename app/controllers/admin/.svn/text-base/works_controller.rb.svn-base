@@ -1,0 +1,66 @@
+class Admin::WorksController < Admin::AbstractController
+  def index
+    @works = Work.paginate :page => params[:page], :per_page => 40, :order => "updated_at DESC"
+  end
+  
+  def show
+    @work = Work.find(params[:id])
+  end
+  
+  def new
+    @work = Work.new
+  end
+  
+  def edit
+    @work = Work.find(params[:id])
+    @person = @work.person
+    @asset = @work.assets.last || Asset.new
+  end
+  
+  def create
+    person_name = params[:person][:name].blank? ? "#{current_user.login}" : params[:person][:name]
+    @person = Person.find_or_create(person_name, current_user.id) 
+    @work = @person.works.new(params[:work].merge(:user_id => current_user.id))
+    @asset = @work.assets.build(params[:asset]) unless params[:asset][:uploaded_data].blank?
+    
+    respond_to do |format|
+      if @work.save
+        Timeline.log(@work, current_user.id, "new_work", 3, params[:work][:wisdom_id])
+        flash[:notice] = '作品创建成功！'
+        format.html { redirect_to admin_work_path(@work) }
+        format.xml  { head :created, :location => work_url(@work) }
+      else
+        format.html { render :action => "new"}
+        format.xml  { render :xml => @work.errors.to_xml }
+      end
+    end
+  end
+  
+  def update
+    @work   = Work.find(params[:id])
+    @person = Person.find_or_create(params[:person][:name], current_user.id)
+    @asset = @work.assets.build(params[:asset]) unless params[:asset][:uploaded_data].blank?
+    
+    respond_to do |format|
+      if @work.update_attributes(params[:work].merge(:person_id => @person.id))
+        flash[:notice] = '作品更新成功.'
+        format.html { redirect_to admin_work_path(@work) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @work.errors.to_xml }
+      end
+    end
+  end
+  
+  def destroy
+    @work = Work.find(params[:id])
+    @work.destroy
+
+    respond_to do |format|
+      format.html { redirect_to admin_works_path }
+      format.xml  { head :ok }
+    end
+  end
+  
+end  
