@@ -2,7 +2,7 @@ class ServicesController < ApplicationController
   before_filter :login_required, :only => [:new, :create, :edit, :update]
   
   def index
-    @services = Service.find :all
+    @services = Service.active.find(:all, :limit => 5)
   end
   
   def show
@@ -12,7 +12,7 @@ class ServicesController < ApplicationController
   
   def new
     @user = current_user
-    @service = @user.services.build(:begin_date_time => Time.now, :end_date_time => Time.now + 2.hours, :repeat_until => Date.today.next_month, :location => @user.address.single_line)
+    @service = @user.services.build(:begin_date_time => Time.now, :end_date_time => Time.now + 2.hours, :repeat_until => Date.today.next_month)
   end
   
   def create

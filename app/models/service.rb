@@ -1,5 +1,7 @@
 class Service < ActiveRecord::Base
   
+  HomeTags = ['家教', '设计']
+  
   belongs_to :user
   has_many :schedules
   
@@ -14,6 +16,8 @@ class Service < ActiveRecord::Base
   before_validation :set_date_time
   before_save :setup_repeat
   after_save :create_instances
+  
+  attr_protected :state, :activated_at, :deleted_at
   
   acts_as_taggable_on :tags
   
@@ -31,7 +35,11 @@ class Service < ActiveRecord::Base
   end
   
   aasm_event :activate do
-    transitions :from => :pending, :to => :active 
+    transitions :from => [:pending, :deleted], :to => :active 
+  end
+
+  aasm_event :deny do
+    transitions :from => :pending, :to => :passive
   end
   
   aasm_event :suspend do
@@ -50,6 +58,13 @@ class Service < ActiveRecord::Base
   
   named_scope :active, :conditions => {:state => "active"}
   named_scope :pending, :conditions => {:state => "pending"}
+  named_scope :passive, :conditions => {:state => "passive"}
+  named_scope :suspended, :conditions => {:state => "suspended"}
+  named_scope :deleted, :conditions => {:state => "deleted"}
+  
+  def self.home_sets
+    Service.find
+  end
   
   def setup_repeat
     case self.repeat_kinds

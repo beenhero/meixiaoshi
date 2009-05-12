@@ -1,6 +1,6 @@
 - content_for :head do
-  = javascript_include_tag '/facebox/facebox'
-  = stylesheet_link_tag '/facebox/facebox'
+  = javascript_include_tag '/facebox/facebox', '/prototip2.0.5/js/prototip'
+  = stylesheet_link_tag '/facebox/facebox', '/prototip2.0.5/css/prototip'
   = calendar_date_select_includes(:style => 'silver')
 %script{:type=>"text/javascript"}
   Date.weekdays = $w('一 二 三 四 五 六 日');
@@ -32,6 +32,9 @@
     window.location=this.down('a').href;return false;
     });
     }.bind(this));
+    $$('a[rel]').each(function(element) {
+    new Tip(element, element.rel);
+    });
     });
   %ul.popular-tags
     %li.selected

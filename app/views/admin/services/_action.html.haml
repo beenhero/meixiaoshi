@@ -1,0 +1,5 @@
+= button_to_remote "拒绝", :url => deny_admin_service_path(@service), :update => "actions" if @service.state == "pending"
+= button_to_remote "激活", :url => approve_admin_service_path(@service), :update => "actions" if @service.state == "pending" || @service.state == "deleted"
+= button_to_remote "暂停", :url => suspend_admin_service_path(@service), :update => "actions" unless @service.state == "deleted" || @service.state == "suspended"
+= button_to_remote "解除暂停", :url => unsuspend_admin_service_path(@service), :update => "actions" if @service.state == "suspended"
+= button_to_remote "删除", :url => admin_service_path(@service), :confirm => '真的要删除吗?', :method => :delete, :update => "actions" unless @service.state == "deleted"

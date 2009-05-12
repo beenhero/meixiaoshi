@@ -1,0 +1,110 @@
+- content_for :head do
+  = calendar_date_select_includes(:style => 'silver')
+%script{:type=>"text/javascript"}
+  Date.weekdays = $w('一 二 三 四 五 六 日');
+  Date.months = $w('一月 二月 三月 四月 五月 六月 七月 八月 九月 十月 十一月 十二月');
+
+  Date.first_day_of_week = 1;
+
+  _translations = {
+  "OK": "确定",
+  "Now": "现在",
+  "Today": "今天",
+  "Clear": "清除"
+  }
+= render :partial => 'tabs'
+#services.cnt
+  - form_for [:admin, @service], :html => {:id => "service_form"} do |f|
+    .form-bg
+      = f.error_messages
+      .form-row
+        = f.label :time, '时间'
+        = f.calendar_date_select :begin_date_string
+        %span#begin_end_time
+          = f.select :begin_time_string, hour_options
+          = "到"
+          = f.select :end_time_string, hour_options
+        = f.check_box :is_all_day
+        全天
+        .form-sub-row
+          = f.select :repeat_kinds, repeat_options
+          %span#end_date
+            截止
+            = f.calendar_date_select :repeat_until
+
+      %hr.split
+
+      .form-row
+        = f.label :price, '价格'
+        = f.text_field :price, :class => "short"
+        = "元/"
+        = f.select :price_unit, unit_options, :selected => "每小时"
+
+      %hr.split
+
+      .form-row
+        = f.label :name, '名称'
+        = f.text_field :name
+      .form-row
+        = f.label :location, '地理范围'
+        = h @user.address.single_name
+        &nbsp;
+        = f.select :radius, radius_options
+      .form-row
+        = f.label :description, '详细内容'
+        = f.text_area :description
+      
+      %hr.split
+      
+      .highlight
+        .form-row
+          = f.label :tags, "标签"
+          = f.text_field :tag_list
+          %span.tip (用半角逗号分隔)
+        .form-row
+          = f.label :state, "状态"
+          = @service.state
+        .form-row
+          = f.label :admin_notes
+          = f.text_area :admin_notes
+          / = f.radio_button :state, "passive"
+          /           拒绝&nbsp;
+          /           = f.radio_button :state, "pending"
+          /           待审&nbsp;
+          /           = f.radio_button :state, "active"
+          /           激活&nbsp;
+          /           = f.radio_button :state, "suspended"
+          /           暂停&nbsp;
+          /           = f.radio_button :state, "deleted"
+          /           删除&nbsp;
+        
+    .form-submit
+      = submit_tag "保存"
+      或
+      = link_to "返回列表", :back
+
+    %script{:type=>"text/javascript"}
+      function checkForm(){
+      if($F("service_is_all_day") == "1")
+      $('begin_end_time').hide();
+      else
+      $('begin_end_time').show();
+      if($F("service_repeat_kinds") != "")
+      $('end_date').show();
+      else
+      $('end_date').hide();
+      }
+      document.observe("dom:loaded", function(){
+      checkForm();
+      Event.observe('service_is_all_day', 'change', function(event) {
+      event.stop();
+      checkForm();
+      });
+      Event.observe('service_repeat_kinds', 'change', function(event) {
+      event.stop();
+      checkForm();
+      });
+      });
+      
+  #actions
+    = render :partial => "action"

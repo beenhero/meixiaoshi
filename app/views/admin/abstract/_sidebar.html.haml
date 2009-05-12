@@ -28,7 +28,16 @@
           
       %ul
         %li.activity
-          = link_to "子曰管理", "#TODO"
+          = link_to "服务管理", admin_services_path
+          %ul
+            %li= link_to "<span>待审中</span>", pending_admin_services_path
+            %li= link_to "<span>已激活</span>", admin_services_path
+            %li= link_to "<span>已拒绝</span>", passive_admin_services_path
+            %li= link_to "<span>已暂停</span>", suspended_admin_services_path
+            %li= link_to "<span>已删除</span>", deleted_admin_services_path
+
+        %li.placemarks
+          = link_to "需求管理", "#TODO"
           %ul
             %li= link_to "待审", "#TODO"
             %li= link_to "全部", "#TODO"
@@ -36,15 +45,7 @@
             %li= link_to "创建", "#TODO"
         
         %li.nearby
-          = link_to "作者管理", "#TODO"
-          %ul
-            %li= link_to "待审", "#TODO"
-            %li= link_to "全部", "#TODO"
-            %li= link_to "评论", "#TODO"
-            %li= link_to "创建", "#TODO"
-            
-        %li.placemarks
-          = link_to "作品管理", "#TODO"
+          = link_to "用户管理", "#TODO"
           %ul
             %li= link_to "待审", "#TODO"
             %li= link_to "全部", "#TODO"

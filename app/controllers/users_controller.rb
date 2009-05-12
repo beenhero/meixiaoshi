@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_filter :find_user, :only => [:show, :edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy]
   
   def show
+    @services = @user.services
   end
   
   def new

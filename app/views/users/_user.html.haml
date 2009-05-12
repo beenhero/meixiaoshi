@@ -1,0 +1,38 @@
+#user
+  .u-hd
+    .avatar
+      = link_to "#{image_tag(user.avatar.url)}", user_path(user)
+    %h1
+      = link_to h(user.name), user_path(user), :class => "fn url", :rel => 'my name'
+    %p
+      = user.address.single_line
+      = image_tag "address.png"
+    %p
+      共出售35小时
+  .clear
+  %hr.split
+  .u-cnt
+    #about
+      = user.user_info.bio
+      
+    #networks
+      %ul.phone
+        %li
+          电话: 0571-87259065
+        %li
+          手机: 13989873241
+      %ul.im
+        %li
+          qq: 37676344
+        %li
+          msn: beenhero@hotmail.com
+        %li
+          gtalk: beenhero@gmail.com
+      %ul.sns
+        %li
+          twitter: beenhero
+        %li
+          fanfou: beenhero
+        %li
+          facebook: beenhero
+  

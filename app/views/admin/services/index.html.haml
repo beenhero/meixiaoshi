@@ -1,0 +1,21 @@
+= render :partial => 'tabs'
+#services.cnt
+  .t_header
+    选择: <a href="#">全选</a>/<a href="#">取消</a>
+
+  %table.tbl_general
+    %thead
+      %tr
+        %th &nbsp;
+        %th 用户名
+        %th 服务
+        %th 状态
+        %th 发布/更新的时间
+        %th 操作
+    %tbody
+      = render @services
+	
+  .t_footer
+    <a href="#" class="left">删除选定</a> 
+    = will_paginate @services
+    .clear

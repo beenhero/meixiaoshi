@@ -1,0 +1,21 @@
+- user = service.user
+%tr{ :class => cycle("odd","even")}
+  %td= check_box_tag "check"
+  %td= user
+  %td
+    = link_to h(service.name), [:admin, service]
+    = h service
+    %br
+    = "#{h service.price}元/#{h service.price_unit}"
+    = "@#{h user.address.single_name}"
+    = "#{service.radius}公里以内" if service.radius
+  %td
+    = service.state
+  %td
+    = service.created_at.to_s(:db)
+    %br
+    = service.created_at.to_s(:db)
+  %td
+    = link_to "编辑", edit_admin_service_path(service)
+    = link_to "删除", "#TODO"
+

@@ -18,8 +18,8 @@ ActionController::Routing::Routes.draw do |map|
   #admin routes
   map.namespace(:admin) do |admin|
     admin.resources :services, 
-      :collection => {:pending => :get, :approved => :get},
-      :member => {:approve => :any, :bind => :any}
+      :collection => {:pending => :get, :passive => :get, :suspended => :get, :deleted => :get},
+      :member => {:approve => :any, :deny => :any, :suspend => :any, :unsuspend => :any}
     admin.resources :users
   end
   map.admin '/admin', :controller => 'admin/abstract', :action => 'dashboard'

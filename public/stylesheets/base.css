@@ -731,6 +731,9 @@ strong {
 }
 
 
+
+
+
 /* @end */
 
 .clear {
@@ -1190,6 +1193,143 @@ a.add-btn{
 
 /* @end */
 
+/* @group Users public pages */
+.user-block{
+	background: transparent url(../images/user-bg.png);
+	padding: 10px;
+	margin-bottom: 10px;
+}
+.u-hd h1{
+	font-size: 20px;
+	line-height: 1.1em;
+}
+.u-cnt #about{
+	float: left;
+	margin: 0 10px 10px 0;
+	width: 250px;
+}
+.u-cnt #networks{
+	background:transparent url(../images/bg_other_details.gif) repeat-y scroll left top;
+	float: left;
+	margin: 0 10px 10px 0;
+	padding-left: 8px;
+}
+.u-cnt #networks ul{
+	margin-bottom: 7px;
+	padding:3px 0 0 20px;
+}
+.u-cnt #networks ul.phone{
+	background: transparent url(../images/phone.png) no-repeat left top;
+}
+.u-cnt #networks ul.im{
+	background: transparent url(../images/email.png) no-repeat left top;
+}
+.u-cnt #networks ul.sns{
+	background: transparent url(../images/website.png) no-repeat left top;
+}
+.u-cnt #networks li{
+	line-height: 1.2em;
+}
+
+/* @group vCart style trying */
+
+#vc-header{
+	background:transparent url(../images/vc-hd.png) no-repeat scroll 50% bottom;
+	height: 50px;
+	padding:10px 20px 0;
+	position:relative;
+}
+#vc-header h1{
+	font-size: 20px;
+	line-height: 1.1em;
+}
+#vc-header .avatar{
+}
+#vc-nav{
+	background:transparent url(../images/vc-nav.png) no-repeat scroll 50% 0;
+	font-weight:bold;
+	height:30px;
+	line-height:28px;
+	padding:5px 20px;
+}
+#vc-nav li{
+	float: left;
+}
+#vc-nav li a{
+	background:transparent url(../images/vc-nav-li-a.png) no-repeat scroll right 30px;
+	float:left;
+	margin-right:5px;
+	padding-right:10px;
+	text-decoration:none;
+	color: #666;
+}
+#vc-nav li a span{
+	background:transparent url(../images/vc-nav-li.png) no-repeat scroll 0 30px;
+	float:left;
+	padding:1px 0 1px 10px;
+}
+#vc-nav li a:hover, #vc-nav li a:focus{
+	background-position: right 0;
+	text-shadow: #ddd 0 1px 0;
+}
+#vc-nav li a:hover span, #vc-nav li a:focus span{
+	background-position:0 0;
+}
+
+#vc-nav li a:active {
+	background-position: right -30px;
+	text-shadow: #eee 0 1px 0;
+}
+
+#vc-nav li a:active span {
+	background-position: 0 -30px;
+	padding: 2px 0 0 10px;
+}
+#vc-nav li a.current{
+	background-position:right -60px;
+	color:#FFFFFF;
+	cursor:default;
+	text-shadow:0 1px 2px #666666;
+}
+#vc-nav li a.current span {
+	background-position: 0 -60px;
+}
+
+#vc-cnt{
+	background:transparent url(../images/vc-cnt.png) repeat-y scroll 50% 0;
+	overflow:hidden;
+	padding:0 20px;
+	min-height: 150px;
+}
+#vc-footer{
+	background:transparent url(../images/vc-ft.png) no-repeat scroll 50% 0;
+	color:#888888;
+	font-size:9px;
+	font-weight:bold;
+	line-height:30px;
+	padding:0 20px 20px;
+	text-align:center;
+	text-shadow:0 1px 0 #DDDDDD;
+	text-transform:uppercase;
+}
+
+/* @end */
+
+#user{
+	float: left;
+	width: 65%;
+}
+#calendar{
+	float: right;
+	width: 30%;
+	background-color: #fff;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	padding: 5px;
+}
+
+/* @end */
+
 
 
 /* @group Calendar week-view */
@@ -1247,5 +1387,73 @@ a.add-btn{
 .week-view .overdue{
 	background-color: #bbb;
 }
+
+/* @end */
+
+
+/* @group Calendar style */
+.calendar {
+	margin: auto;
+	width: 100%;
+}
+.calendar td{ 
+  border: 1px solid #fff; 
+  background-color: #f2f9f9;
+}
+.calendar th{ 
+  border: 1px solid #fff;
+}
+
+.monthName th {
+  font-weight: normal;
+  text-align: right;
+  padding-top: 1em;
+  padding-bottom: 0.7em;
+}
+
+.dayName th {
+  font-size: 11px;
+  padding-top: 0.6em;
+  padding-bottom: 0.3em;
+  border: 1px solid #ddd; 
+  background-color: #fff;
+  color: #333;
+}
+
+.otherMonth, .day, .specialDay {
+  padding: 3px;
+  font-size: 9px;
+  font-family: Verdana, sans-serif;
+}
+
+.otherMonth {
+  color: #ddd !important;
+}
+/*.weekendDay {
+  background-color: #eee;
+}*/
+
+.day, .specialDay {
+  text-align: center;
+}
+
+.specialDay {
+  background-color: #FF6600 !important;
+  color: white;
+}
+.today {
+	background-color: #88ADC4 !important;
+	color: white;
+}
+.prev-next{ 
+	font:normal 11px Verdana,Arial,Helvetica,sans-serif;  
+}
+.monthName{ 
+	font-size: 14px;
+	font-family: "Trebuchet MS";
+	color: #933 !important; 
+	height:25px;
+}
+
 
 /* @end */

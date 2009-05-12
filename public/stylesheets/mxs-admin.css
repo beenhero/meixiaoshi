@@ -82,21 +82,14 @@ body{
   color: #999;
 }
 
-/*#main > .content*/
-#main > .content{
+/*#main > .cnt*/
+#main > .cnt{
 	clear:both;
 	min-height:630px;
 	padding:25px 15px 15px;
 }
 
 /*globe*/
-hr {
-  border: 0;
-  width: 100%;
-  height: 0;
-  border-top: solid 1px #dfdfdf;
-  background: none;
-}
 .clear{
 	clear: both;
 }
@@ -607,15 +600,7 @@ div.button {
 fieldset{
 	padding: 0 2em;
 }
-input.textfield,textarea{
-	width: 250px;
-	font-size: 14px;
-	color: #777;
-	padding: 4px;
-	background-color: #F9FAEB;
-	border: 2px solid #ddd;	
-	margin-bottom: 4px;
-}
+
 input.textfield:focus,textarea:focus{
 	border:2px solid #9fd2ff;color:#333;
 }
@@ -631,74 +616,221 @@ input.textfield:focus,textarea:focus{
 	border: 1px solid #ddd !important;	
 }
 
-/*admin people section*/
-/* a) People list */
-#admin h3{
-	font-size: 12px;
+/* @group General Table Style */
+div.t_header{
+	padding: 5px 0;
 }
-#admin #people_list{
-	margin-bottom: 2em;
-}
-#admin #people_pending{
-	margin-bottom: 2em;
-}
-#people_list span{
-
-}
-.t_people{
+table.tbl_general{
 	width: 100%;
 	margin: 0;
 	color: #333;
 }
-.t_people .t_head{
-	background-color: #0000CD;
-	color: #fff;
-}
-.t_people .t_head th{
-	padding: 4px;
-	font-weight: bold;
-}
-.t_people td{
-	padding: 4px;
-}
-.t_people .odd{
-	background-color: #eee;
-}
-.t_people .even{
-
-}
-.t_people.t_show th{
-	width: 10%;
-	font-weight: bold;
-	vertical-align: top;
-	padding: 4px;
-}
-.t_footer{
+	.tbl_general thead tr{
+		background-color: #0000CD;
+		color: #fff;
+	}
+	.tbl_general thead th{
+		padding: 4px;
+		font-weight: bold;
+	}
+	.tbl_general td{
+		padding: 4px;
+		font-size: 12px;
+	}
+	.tbl_general .odd{
+		background-color: #f8f8f8;
+	}
+	.tbl_general .even{
+	
+	}
+div.t_footer{
 	background-color:#E9E9E9;
 	margin:0 0 10px;
-	padding:5px 15px;
+	padding:5px 10px;
 	position:relative;
 	text-align: right;
 }
 
-/*bind people page*/
-#bind-list h2{
-	margin-bottom: 1em;
-	font-weight: bold;
+
+
+/* @end */
+
+/* @group General Form Style */
+.form-bg{
+	background: #E8EEEF url(/images/bg_single.gif) repeat-x left top;
+	padding: 20px;
 }
-.highlight{
-	background-color: #ffeeb8;
-	padding: 2px;
+.form-row{
+	margin-bottom: 5px;
+}
+	.form-row label{
+		width: 100px;
+		float: left;
+	}
+	.form-row span{
+		color: #aaa;
+	}
+.form-sub-row{
+	padding-left: 100px;
+	margin: 4px 0;
 }
 
-/*approve person page*/
-#p_approve table{
-	width: 100%;
+.form-submit{
+	text-align: right;
+	padding: 10px 10px 0 0;
 }
-#p_approve table td{
-	vertical-align: top;
-	padding-bottom: 10px;
+input.size40{
+	width: 87px;
 }
-#p_approve table th{
-	vertical-align: top;
+input.short{
+	width: 100px;
 }
+input[type='radio'], input[type='checkbox']{
+	vertical-align: text-bottom;
+	margin: 0;
+}
+textarea{
+	width: 350px;
+	height: 70px;
+	font-size: 12px;
+}
+input.clean {
+	background: #fff url('/images/bg_input.gif') repeat-x;
+	border: 1px solid #9f9f9f;
+	color: #666;
+	font: normal 12px 'Georgia', Serif;
+	font-style: italic;
+	padding: 5px 10px;
+	width: 130px;
+}
+span.ok{
+	color: green;
+}
+span.not_ok{
+	color: red;
+}
+
+/* @end */
+
+
+
+/* @group Services Admin Section */
+
+
+#services{
+
+}
+/* @group Service Form */
+#service_form .highlight{
+	background-color: #fcfca6;
+	padding: 10px 5px;
+}
+#actions{
+	background-color: #eee;
+	padding: 5px 10px;
+	margin: 10px 0;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#actions input[type="button"]:hover{
+	background-color: #f8f8f8;
+	
+}
+
+/* @end */
+
+/* @end */
+
+/* @group General Others */
+
+
+hr.split{
+	border: none;
+	background:transparent url(/images/more-info-bg.gif) repeat-x scroll left top;
+}
+
+
+/* @end */
+
+
+/* @group Error Notification */
+/* === FLASH MESSAGES === */
+.error,
+.warning, 
+.notice    { padding: .8em; margin-bottom: 1em; border: 1px solid #ddd; }
+.error      { background: #FBE3E4; color: #8a1f11; border-color: #FBC2C4; }
+.warning     { background: #FFF6BF; color: #514721; border-color: #FFD324; }
+.notice    { background: #E6EFC2; color: #264409; border-color: #C6D880; }
+.error a    { color: #8a1f11; }
+.warning a   { color: #514721; }
+.notice a  { color: #264409; }
+
+#flash_box{
+	padding: 10px;
+	margin-bottom: 10px;
+}
+#flash_box a{
+	float: right;
+	display: block;
+	padding: 1px 10px;
+	text-decoration: none;
+	-moz-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+#flash_box.notice a{
+	background-color: #d4deb2;
+}
+#flash_box.warning a{
+	background-color: #f2edb7;
+}
+#flash_box.error a{
+	background-color: #eed4d1;
+}
+#flash_box a:hover{
+	text-decoration: underline;
+}
+
+/* === ERROR MESSAGES === */
+div#errorExplanation {
+	background-color: #FBE3E4;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+div#errorExplanation h2 {
+	font-size: 14px;
+}
+
+div#errorExplanation p {
+	margin-bottom: 5px;
+}
+
+div#errorExplanation ul {
+	margin-left: 2em;
+}
+
+div#errorExplanation ul li {
+	list-style: disc;
+}
+
+/* === FORMS === */
+div.fieldWithErrors {
+	border:thin solid red;
+	display:inline-table;
+}
+
+div.fieldWithErrors label {
+	
+}
+
+div.fieldWithErrors input, div.fieldWithErrors select, 
+div.fieldWithErrors textarea
+{
+	
+}
+
+
+/* @end */

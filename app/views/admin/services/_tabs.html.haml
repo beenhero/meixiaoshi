@@ -1,0 +1,14 @@
+.header.tabs
+  %h1 服务管理
+  %ul
+    %li{:class => controller_name == "services" && %w(pending).include?(action_name) ? 'selected' : ''}
+      = link_to "<span>待审中</span>", pending_admin_services_path
+    %li{:class => controller_name == "services" && %w(index).include?(action_name) ? 'selected' : ''}
+      = link_to "<span>已激活</span>", admin_services_path
+    %li{:class => controller_name == "services" && %w(passive).include?(action_name) ? 'selected' : ''}
+      = link_to "<span>已拒绝</span>", passive_admin_services_path
+    %li{:class => controller_name == "services" && %w(suspended).include?(action_name) ? 'selected' : ''}
+      = link_to "<span>已暂停</span>", suspended_admin_services_path
+    %li{:class => controller_name == "services" && %w(deleted).include?(action_name) ? 'selected' : ''}
+      = link_to "<span>已删除</span>", deleted_admin_services_path
+  .clear

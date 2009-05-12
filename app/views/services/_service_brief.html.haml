@@ -1,0 +1,15 @@
+- service = service_brief
+- user = service.user
+.service-item
+  %h3
+    = link_to h(service.name), service_path(service)
+    %span
+      =service
+      
+  %p
+    = "#{h service.price}元/#{h service.price_unit}"
+    = "@#{h user.address.single_name}"
+    = "#{service.radius}公里以内" if service.radius
+    
+
+.clear
