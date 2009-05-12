@@ -1,42 +1,23 @@
+- content_for :head do
+  = javascript_include_tag '/facebox/facebox', '/prototip2.0.5/js/prototip'
+  = stylesheet_link_tag '/facebox/facebox', '/prototip2.0.5/css/prototip'
+  
 #main-content
   #column-main
     .user-block
       = render @user
       #calendar
-        = calendar_for(2009, 1)
+        = render :partial => 'calendar', :locals => { :user => @user }
       .clear
       
     .services
       = render :partial => 'services/service_brief', :collection => @services
       
 #sidebar
-  =link_to image_tag("add-yourself.jpg"), new_service_path
-  %h2
-    按类别
-  %script{:type=>"text/javascript"}
-    document.observe("dom:loaded", function(){
-    $$(".popular-tags li").each(function(li){
-    Event.observe(li, 'click', function(){
-    window.location=this.down('a').href;return false;
-    });
-    }.bind(this));
-    });
-  %ul.popular-tags
-    %li.selected
-      = link_to "家教", root_url
-    %li
-      = link_to "拼车"
-    %li
-      = link_to "美容"
-    %li.more-tags
-      = link_to "更多 &raquo;"
-  .clear
-  #enter-a-category
-    -form_tag root_url do
-      = text_field_tag :search, "搜索类别...", :class => "clean", :onclick => "this.value=''"
-      = submit_tag '搜索', :class => "go"
-      .clear
-  .sidebar-split
-  
-  %h2
-    销售排名
+  = link_to "link text...", "#todo", :rel => "text to test"
+
+
+%script{:type=>"text/javascript"}
+  document.observe("dom:loaded", function(){
+  show_calendar_details();
+  });

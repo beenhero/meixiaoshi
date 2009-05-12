@@ -32,9 +32,7 @@
     window.location=this.down('a').href;return false;
     });
     }.bind(this));
-    $$('a[rel]').each(function(element) {
-    new Tip(element, element.rel);
-    });
+    show_week_view_details();
     });
   %ul.popular-tags
     %li.selected

@@ -109,8 +109,8 @@ module ServicesHelper
       cell_attrs ||= {}
       cell_attrs[:class] = cell_attrs[:class].to_s + " time"
       cell_attrs = cell_attrs.map {|k, v| %(#{k}="#{v}") }.join(" ")
-
-      cal << "\t\t\t<td><div class='float-cell'><span #{cell_attrs}>\n#{cell_text}&nbsp;\t\t\t</span></div></td>\n"
+      span = "<span #{cell_attrs}>\n#{cell_text}&nbsp;\t\t\t</span>" unless cell_text.blank?
+      cal << "\t\t\t<td><div class='float-cell'>#{span}</div></td>\n"
     end
     
     cal << %(\t\t</tr>)
@@ -121,7 +121,7 @@ module ServicesHelper
   def show_status_proc(service)
     lambda do |day|
       klass, style = service.time_drawing(day)
-      ["#{service.begin_time_string}~#{service.end_time_string}", { :class => klass, :style => style }]  unless klass.blank? && style.blank?
+      ["#{service.begin_time_string}~#{service.end_time_string}<span class=\"tip\">#{service.begin_time_string}~#{service.end_time_string} #{service.name}</span>", { :class => klass, :style => style }]  unless klass.blank? && style.blank?
     end
   end
   
@@ -130,9 +130,9 @@ module ServicesHelper
     {       
       :start_date => @start_date,
       :end_date => @start_date + 6,
-      :prev_week => lambda {link_to_remote("&laquo;上周", {:update => "schedules", :url => schedules_service_path(service, :start_date => (@start_date-1).beginning_of_week), :method => :get})},                                               
-      :next_week => lambda {link_to_remote("下周&raquo;", {:update => "schedules", :url => schedules_service_path(service, :start_date => @start_date.next_week), :method => :get})},
-      :move_to_date => lambda { remote_function(:update => "schedules", :url => schedules_service_path(service), :method => :get, :with => "'start_date='+ $F(this)")}
+      :prev_week => lambda {link_to_remote("&laquo;上周", {:update => "schedules", :url => schedules_service_path(service, :start_date => (@start_date-1).beginning_of_week), :complete =>"show_week_view_details()", :method => :get})},                                               
+      :next_week => lambda {link_to_remote("下周&raquo;", {:update => "schedules", :url => schedules_service_path(service, :start_date => @start_date.next_week), :complete =>"show_week_view_details()", :method => :get})},
+      :move_to_date => lambda { remote_function(:update => "schedules", :url => schedules_service_path(service), :complete =>"show_week_view_details()", :method => :get, :with => "'start_date='+ $F(this)")}
     }
   end
   

@@ -120,4 +120,25 @@ module UsersHelper
     end
   end
   
+  # User monthly calendar show
+  # callback block of week_view.
+  def monthly_status_proc(user)
+    lambda do |day|
+      klass, text = user.get_services_on(day)
+      str = "#{day.mday}"
+      str << "<span style='display:none'>#{text}</span>" unless text.blank?
+      [str, { :class => klass }]
+    end
+  end
+  
+  def montnly_calendar_options(user)
+    prevd = @display_date - 1
+    nextd = @display_date + 31
+    {
+      :previous_month => lambda { link_to_remote("&laquo;上月", {:update => "calendar", :url => calendar_user_path(user, :year => prevd.year, :month => prevd.month), :complete =>"show_calendar_details()", :method => :get}, :class => 'prev-next') },                                               
+      :next_month => lambda { link_to_remote("下月&raquo;", {:update => "calendar", :url => calendar_user_path(user, :year => nextd.year, :month => nextd.month), :complete =>"show_calendar_details()", :method => :get}, :class => 'prev-next')},
+      :first_day_of_week => 1
+    }
+  end
+  
 end

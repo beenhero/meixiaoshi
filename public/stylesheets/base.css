@@ -1375,6 +1375,9 @@ a.add-btn{
 	color: #fff !important;
 	text-align: center;
 }
+.week-view .time span.tip{
+	display: none;
+}
 .week-view .available{
 	background-color: #8b5;
 }
@@ -1387,7 +1390,9 @@ a.add-btn{
 .week-view .overdue{
 	background-color: #bbb;
 }
-
+.week-view .today{
+	
+}
 /* @end */
 
 
@@ -1404,14 +1409,14 @@ a.add-btn{
   border: 1px solid #fff;
 }
 
-.monthName th {
+.calendar .monthName th {
   font-weight: normal;
   text-align: right;
   padding-top: 1em;
   padding-bottom: 0.7em;
 }
 
-.dayName th {
+.calendar .dayName th {
   font-size: 11px;
   padding-top: 0.6em;
   padding-bottom: 0.3em;
@@ -1420,40 +1425,35 @@ a.add-btn{
   color: #333;
 }
 
-.otherMonth, .day, .specialDay {
+.calendar .otherMonth, .calendar .day, .calendar .specialDay {
   padding: 3px;
   font-size: 9px;
   font-family: Verdana, sans-serif;
 }
-
-.otherMonth {
+.calendar .otherMonth {
   color: #ddd !important;
 }
 /*.weekendDay {
   background-color: #eee;
 }*/
 
-.day, .specialDay {
+.calendar .day, .calendar .specialDay {
   text-align: center;
 }
-
-.specialDay {
-  background-color: #FF6600 !important;
+.calendar .specialDay {
+  background-color: #8b5 !important;
   color: white;
 }
-.today {
+.calendar .today {
 	background-color: #88ADC4 !important;
 	color: white;
 }
-.prev-next{ 
+.calendar .prev-next{ 
 	font:normal 11px Verdana,Arial,Helvetica,sans-serif;  
 }
-.monthName{ 
+.calendar .monthName{ 
 	font-size: 14px;
-	font-family: "Trebuchet MS";
 	color: #933 !important; 
 	height:25px;
 }
-
-
 /* @end */

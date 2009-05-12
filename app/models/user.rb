@@ -129,6 +129,16 @@ class User < ActiveRecord::Base
     end
   end
   
+  # get user's services by day and return as [css_class, text], for calendar presentation.
+  def get_services_on(day)
+    text = ''
+    services.each do |service|
+      text << "#{service.begin_time_string}~#{service.end_time_string} #{service.name} <br />" if service.schedule_days.include?(day.to_s)
+    end
+    klass = text.blank?? 'day' : 'specialDay'
+    return [klass, text]
+  end
+  
   protected
     
   def make_activation_code

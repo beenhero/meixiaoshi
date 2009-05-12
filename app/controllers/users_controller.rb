@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
   before_filter :login_required, :only => [:edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy]
-  before_filter :find_user, :only => [:show, :edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy]
+  before_filter :find_user, :only => [:show, :edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy, :calendar]
   
   def show
     @services = @user.services
+    @display_date = Date.new(Date.today.year, Date.today.month, 1)
   end
   
   def new
@@ -110,6 +111,15 @@ class UsersController < ApplicationController
     if request.xhr?
       render :text => User.check_login?(params[:login]) ? "<span class='ok'>好 !!!</span>" : "<span class='not_ok'>无效，请更换</span>"
     end
+  end
+  
+  def calendar
+    if request.xhr?
+      y = params.include?(:year) ? params[:year].to_i : Date.today.year
+      m = params.include?(:month) ? params[:month].to_i : Date.today.month
+      @display_date = Date.new(y, m, 1)
+      render :partial => 'calendar', :locals => { :highlighted => true, :user => @user}
+    end # only response for XHR
   end
   
   protected

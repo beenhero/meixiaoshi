@@ -28,7 +28,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'services', :action => 'index'
 
   map.resources :users, :member_path => '/:id', :nested_member_path => '/:user_id',
-                :member => { :edit_password => :any, :edit_info => :any, :edit_contacts => :any }
+                :member => { :edit_password => :any, :edit_info => :any, :edit_contacts => :any, :calendar => :get }
                 
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'

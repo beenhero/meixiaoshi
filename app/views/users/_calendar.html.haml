@@ -1,0 +1,6 @@
+= calendar_for(@display_date.year, @display_date.month, montnly_calendar_options(user), &monthly_status_proc(user))
+
+- highlighted ||= nil
+- if highlighted
+  %script{"type"=>"text/javascript"}
+    =visual_effect :Highlight, "calendar", :duration => 1.0

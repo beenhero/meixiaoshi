@@ -10,3 +10,15 @@ function box_slide_up() {
 function show_error_message() {
 	setTimeout('box_slide_up()', 4000);	
 }
+
+function show_calendar_details() {
+	$$('#calendar .specialDay').each(function(element) {
+  new Tip(element, element.down('span'), {stem: 'topLeft'});
+  });
+}
+
+function show_week_view_details() {
+	$$('#schedules .time').each(function(element) {
+  new Tip(element, element.down('span'), {stem: 'topLeft'});
+  });
+}
