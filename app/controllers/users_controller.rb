@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
-  before_filter :login_required, :only => [:edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy]
-  before_filter :find_user, :only => [:show, :edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy, :calendar]
+  before_filter :login_required, :only => [:edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy, :dashboard]
+  before_filter :find_user, :only => [:show, :edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy, :calendar, :dashboard]
+  
+  def dashboard
+    @display_date = Date.new(Date.today.year, Date.today.month, 1)
+  end
   
   def show
     @services = @user.services

@@ -41,9 +41,9 @@
             %li<
               = link_to image_tag(current_user.avatar.url(:tiny)), user_path(current_user)
             %li<
-              = link_to '退出', logout_path
+              = link_to '控制面板', dashboard_user_path(current_user)
             %li<
-              = link_to '设置', edit_user_path(current_user)
+              = link_to '退出', logout_path
           - else
             %li<
               = link_to '登录', login_path

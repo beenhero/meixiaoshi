@@ -1,0 +1,12 @@
+=link_to image_tag("add-yourself.jpg"), new_service_path
+%h2
+  菜单
+%ul.user_menu
+  %li{:class => controller_name == "users" && %w(dashboard).include?(action_name) ? 'selected' : ''}
+    = link_to "控制面板", dashboard_user_path(@user)
+  %li{:class => controller_name == "users" && %w(edit edit_info edit_contacts edit_password).include?(action_name) ? 'selected' : ''}
+    = link_to "帐户设置", edit_user_path(@user)
+  %li{:class => controller_name == "services" ? 'selected' : ''}
+    = link_to "时间管理", "#todo"
+  %li{:class => controller_name == "users" && %w(show).include?(action_name) ? 'selected' : ''}
+    = link_to "订单管理", "#todo"

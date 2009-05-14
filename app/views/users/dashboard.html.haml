@@ -1,0 +1,22 @@
+- content_for :head do
+  = javascript_include_tag '/facebox/facebox', '/prototip2.0.5/js/prototip'
+  = stylesheet_link_tag '/facebox/facebox', '/prototip2.0.5/css/prototip'
+  
+#main-content
+  #column-main
+    .user-block
+      = render @user
+      #calendar
+        = render :partial => 'calendar', :locals => { :user => @user }
+      .clear
+      
+    .stats
+      统计信息
+      
+#sidebar
+  = render :partial => 'sidebar'
+
+%script{:type=>"text/javascript"}
+  document.observe("dom:loaded", function(){
+  show_calendar_details();
+  });
