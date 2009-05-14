@@ -31,7 +31,7 @@ class Service < ActiveRecord::Base
   aasm_state :deleted, :enter => :do_delete
 
   aasm_event :publish do
-    transitions :from => :passive, :to => :pending
+    transitions :from => [:passive, :pending, :active, :suspended], :to => :pending
   end
   
   aasm_event :activate do
@@ -61,6 +61,7 @@ class Service < ActiveRecord::Base
   named_scope :passive, :conditions => {:state => "passive"}
   named_scope :suspended, :conditions => {:state => "suspended"}
   named_scope :deleted, :conditions => {:state => "deleted"}
+  named_scope :valid, :conditions => ["state <> ?", "deleted"]
   
   def self.home_sets
     Service.find

@@ -63,6 +63,22 @@ module ServicesHelper
     ]
   end
 
+  def status_of(service)
+    status = ''
+    case service.state
+    when "passive"
+      status << "<span class=\"passive round\">被拒绝</span>"
+    when "pending"
+      status << "<span class=\"pending round\">待审核</span>"
+    when "active"
+      status << "<span class=\"active round\">正常</span>"
+    when "suspended"
+      status << "<span class=\"suspended round\">暂停</span>"
+    when "deleted"
+      status << "<span class=\"deleted round\">被删除</span>"
+    end
+  end
+
   # hand craft week_view for service's schedules.
   # NOT very flexible, need to improve ongoing. 27/04/09 by ben
   

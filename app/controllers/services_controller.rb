@@ -35,8 +35,14 @@ class ServicesController < ApplicationController
   
   def update
     @service = Service.find(params[:id])
-    @service.update_attributes(params[:service].merge(:end_date_string => params[:service][:begin_date_string]))
-    render :action => "edit"
+    @service.attributes = params[:service].merge(:end_date_string => params[:service][:begin_date_string])
+    if @service.save
+      @service.publish!
+      flash[:notice] = "保存成功！需重新审核后才能公开展示"
+      redirect_to services_user_path(current_user)
+    else
+      render :action => "edit"
+    end
   end
   
   def schedules

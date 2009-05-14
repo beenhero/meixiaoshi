@@ -13,7 +13,7 @@
   %hr.split
   .u-cnt
     #about
-      = user.user_info.bio
+      = user.user_info.bio.blank? ? "这家伙很懒，啥都没写" : user.user_info.bio
       
     #networks
       = phone_numbers_list(user)

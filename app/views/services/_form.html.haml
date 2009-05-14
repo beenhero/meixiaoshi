@@ -30,7 +30,7 @@
     = f.text_field :name
   .form-row
     = f.label :location, '地理范围'
-    = h @user.address.single_name
+    = h current_user.address.single_name
     &nbsp;
     = f.select :radius, radius_options
   .form-row
@@ -39,6 +39,8 @@
     
 .form-submit
   = submit_tag "保存"
+  或
+  = link_to "返回", :back
   
 %script{:type=>"text/javascript"}
   function checkForm(){

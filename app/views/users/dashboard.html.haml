@@ -4,14 +4,16 @@
   
 #main-content
   #column-main
+    .user-stats
+      
     .user-block
       = render @user
       #calendar
         = render :partial => 'calendar', :locals => { :user => @user }
       .clear
       
-    .stats
-      统计信息
+    .news-feed
+      life streaming
       
 #sidebar
   = render :partial => 'sidebar'
