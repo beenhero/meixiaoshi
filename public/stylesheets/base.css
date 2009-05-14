@@ -1512,4 +1512,7 @@ hr.split{
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
 }
+.right{
+	float: right;
+}
 /* @end */

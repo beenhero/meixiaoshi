@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
   
-  RESERVED = ['support', 'blog', 'www', 'billing', 'help', 'api', 'stage', 'admin', 'about_us', 'about', 'terms', 'forums', 'meixiaoshi', 'signup', 'plans', 'signin', 'account', 'activate', 'users', 'profiles'
+  RESERVED = ['support', 'blog', 'www', 'billing', 'help', 'api', 'stage', 'admin', 'about_us', 'about', 'terms', 'forums', 'meixiaoshi', 'signup', 'plans', 'signin', 'account', 'activate', 'users', 'profiles', 'tag', 'tags', 'services', 'orders', 'dashboard'
   ]
   
   # Validations
