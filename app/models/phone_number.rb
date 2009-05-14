@@ -8,4 +8,11 @@ class PhoneNumber < ActiveRecord::Base
   
   belongs_to :phonable, :polymorphic => true
   validates_presence_of :name, :contact_type, :phonable_type, :phonable_id
+  
+  named_scope :public, :conditions => ["privacy = ? and value <> ?", true, '']
+  
+  def label
+    types = PhoneNumber::CONTACT_TYPES[contact_type]
+    return types.rassoc(name)[0] || ''
+  end
 end

@@ -61,7 +61,6 @@ class User < ActiveRecord::Base
   attr_accessor :terms
   attr_reader :old_password
   
-  
   class LoginError < RuntimeError ; end
     
   # set defaut to login if name isn't set.

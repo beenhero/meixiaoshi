@@ -16,23 +16,6 @@
       = user.user_info.bio
       
     #networks
-      %ul.phone
-        %li
-          电话: 0571-87259065
-        %li
-          手机: 13989873241
-      %ul.im
-        %li
-          qq: 37676344
-        %li
-          msn: beenhero@hotmail.com
-        %li
-          gtalk: beenhero@gmail.com
-      %ul.sns
-        %li
-          twitter: beenhero
-        %li
-          fanfou: beenhero
-        %li
-          facebook: beenhero
-  
+      = phone_numbers_list(user)
+      = im_list(user)
+      = sns_list(user)

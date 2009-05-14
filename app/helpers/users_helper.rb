@@ -141,4 +141,41 @@ module UsersHelper
     }
   end
   
+  # User's information, like phone_numbers, IMs, SNSs
+  def phone_numbers_list(user, privacy = true)
+    ul = ''
+    lists = privacy ? user.phone_numbers.public : user.phone_numbers
+    unless lists.blank?
+      ul = '<ul class="phone">'
+      lists.each do |l|
+        ul << "<li>#{l.label}: #{l.value}</li>"
+      end  
+    end
+    return ul << '</ul>' unless ul.blank?
+  end
+  
+  def im_list(user, privacy = true)
+      ul = ''
+      lists = privacy ? user.instant_messages.public : user.instant_messages
+      unless lists.blank?
+        ul = '<ul class="im">'
+        lists.each do |l|
+          ul << "<li>#{l.label}: #{l.value}</li>"
+        end  
+      end
+      return ul << '</ul>' unless ul.blank?
+    end
+    
+  def sns_list(user, privacy = true)
+    ul = ''
+    lists = privacy ? user.snses.public : user.snses
+    unless lists.blank?
+      ul = '<ul class="sns">'
+      lists.each do |l|
+        ul << "<li>#{l.label}: #{l.value}</li>"
+      end  
+    end
+    return ul << '</ul>' unless ul.blank?
+  end
+  
 end
