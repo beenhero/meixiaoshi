@@ -15,11 +15,11 @@ class Admin::ServicesController < Admin::AbstractController
   
   def update
     @service.attributes = params[:service].merge(:end_date_string => params[:service][:begin_date_string])
+    @user = @service.user
     if @service.save
       flash[:notice] = "保存成功！"
-      redirect_to admin_services_path
+      render :action => "edit"
     else
-      @user = @service.user
       render :action => "edit"
     end
   end

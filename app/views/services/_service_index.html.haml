@@ -1,0 +1,11 @@
+.service-list-wrapper
+  .service-list
+    %h2
+      =h tag
+      %span.small
+        数学 物理 英语 钢琴
+    .total-hours
+      出售2,132,835小时
+    = render :partial => 'service', :collection => @services
+  .end-service-list
+    = link_to "更多 »", tag_path(tag), :rel => "tag"

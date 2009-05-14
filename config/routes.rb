@@ -15,6 +15,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :passwords
   map.resource :session
   
+  map.tag '/tag/:id', :controller => 'services', :action => 'tag'
+  
   #admin routes
   map.namespace(:admin) do |admin|
     admin.resources :services, 

@@ -24,7 +24,8 @@ module ServicesHelper
       ['晚上 8:00', "20:00"],
       ['晚上 9:00', "21:00"],
       ['晚上 10:00', "22:00"],
-      ['晚上 11:00', "23:00"]
+      ['晚上 11:00', "23:00"],
+      ['晚上 11:59', "23:59"]
     ]
   end
   
@@ -77,6 +78,11 @@ module ServicesHelper
     when "deleted"
       status << "<span class=\"deleted round\">被删除</span>"
     end
+  end
+
+  def services_tagged_with(tag)
+    @services = Service.tagged_with(tag, :on => :tags).active.top5
+    render :partial => "service_index", :locals => { :tag => tag, :services => @services}
   end
 
   # hand craft week_view for service's schedules.

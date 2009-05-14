@@ -2,7 +2,7 @@ class ServicesController < ApplicationController
   before_filter :login_required, :only => [:new, :create, :edit, :update]
   
   def index
-    @services = Service.active.find(:all, :limit => 5)
+    
   end
   
   def show
@@ -54,4 +54,7 @@ class ServicesController < ApplicationController
     end # only response for XHR
   end
   
+  def tag
+    @services = Service.tagged_with(params[:id], :on => :tags).active.paginate(:page => params[:page], :per_page => 20, :order => "created_at DESC")
+  end
 end

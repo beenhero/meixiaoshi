@@ -1,0 +1,18 @@
+- service = service_tag
+- user = service.user
+.service-item
+  .avatar
+    = link_to "#{image_tag(user.avatar.url(:thumb))}", user_path(user)
+    
+  %h3
+    = link_to h(service.name), service_path(service)
+    %span
+      =service
+      
+  %p
+    = "#{h service.price}元/#{h service.price_unit}"
+    = "@#{h user.address.single_name}"
+    = "#{service.radius}公里以内" if service.radius
+    
+
+.clear

@@ -62,6 +62,7 @@ class Service < ActiveRecord::Base
   named_scope :suspended, :conditions => {:state => "suspended"}
   named_scope :deleted, :conditions => {:state => "deleted"}
   named_scope :valid, :conditions => ["state <> ?", "deleted"]
+  named_scope :top5, :limit => 5, :order => "created_at DESC" # Todo: order by rank.
   
   def self.home_sets
     Service.find
@@ -310,7 +311,7 @@ class Service < ActiveRecord::Base
   end
   
   def valid_time_span
-    errors.add_to_base("结束时间要比开始时间晚才行。") if (begin_date_time > end_date_time)
+    errors.add_to_base("结束时间要比开始时间晚才行。") unless (begin_date_time < end_date_time)
   end
   
   # Returns true if the user has just been activated.
