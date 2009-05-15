@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
   validates_presence_of :phone, :email
   
   named_scope :valid, :conditions => ["deleted_at is NULL"]
+  named_scope :unreplied, :conditions => ["replied_at is NULL"]
   
   def replied?
     !replied_at.nil?

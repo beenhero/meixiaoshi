@@ -139,6 +139,10 @@ class User < ActiveRecord::Base
     return [klass, text]
   end
   
+  def new_orders_count
+    orders.unreplied.count
+  end
+  
   protected
     
   def make_activation_code
