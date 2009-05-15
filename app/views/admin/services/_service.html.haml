@@ -17,5 +17,4 @@
     = l service.updated_at, :format => :short
   %td
     = link_to "编辑", edit_admin_service_path(service)
-    = link_to "删除", "#TODO"
-
+    = link_to "删除", admin_service_path(service), :confirm => '真的要删除吗?', :method => :delete

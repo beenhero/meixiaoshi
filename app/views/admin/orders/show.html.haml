@@ -25,6 +25,8 @@
           = "卖家回复: #{h(order.reply)}"
           %br
           = "回复时间: #{l order.replied_at, :format => :long if order.replied?}"
+          %br
+          = "删除时间: #{l order.deleted_at, :format => :long}" if order.deleted?
         %td
           %h3 买家
           - if buyer

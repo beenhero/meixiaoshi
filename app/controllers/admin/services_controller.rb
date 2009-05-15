@@ -25,9 +25,24 @@ class Admin::ServicesController < Admin::AbstractController
   end
   
   def destroy
+    state = @service.state
     if request.xhr?
       @service.delete!
       render :partial => "action"
+    else
+      @service.delete!
+      case state
+      when "pending"
+        redirect_to pending_admin_services_path
+      when "active"
+        redirect_to admin_services_path
+      when "passive"
+        redirect_to passive_admin_services_path
+      when "suspended"
+        redirect_to suspended_admin_services_path
+      when "deleted"
+        redirect_to deleted_admin_services_path
+      end
     end
   end
   

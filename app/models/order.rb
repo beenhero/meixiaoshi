@@ -13,4 +13,8 @@ class Order < ActiveRecord::Base
     !replied_at.nil?
   end
   
+  def deleted?
+    !deleted_at.nil?
+  end
+  
 end
