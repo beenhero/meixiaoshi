@@ -1,0 +1,24 @@
+#orders.cnt
+  - form_for [:admin, @order] do |i|
+    .form-bg
+      = i.error_messages    
+      .form-row
+        = i.label :name, "称呼"
+        = i.text_field :name
+    
+      .form-row
+        = i.label :telphone, "电话"
+        = i.text_field :phone
+      
+      .form-row
+        = i.label :buyer_email, "邮箱"
+        = i.text_field :email
+      
+      .form-row
+        = i.label :description, "需求说明"
+        = i.text_area :description
+        
+    .form-submit
+      = i.submit "保存", :class => "btn"
+      或
+      = link_to "返回", admin_orders_path

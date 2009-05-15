@@ -1,0 +1,10 @@
+.header.tabs
+  %h1 订单管理
+  %ul
+    %li{:class => controller_name == "orders" && %w(index).include?(action_name) ? 'selected' : ''}
+      = link_to "<span>最近</span>", admin_orders_path
+    %li{:class => controller_name == "orders" && %w(delayed).include?(action_name) ? 'selected' : ''}
+      = link_to "<span>2小时未回复</span>", delayed_admin_orders_path
+    %li{:class => controller_name == "orders" && %w(deleted).include?(action_name) ? 'selected' : ''}
+      = link_to "<span>已删除</span>", deleted_admin_orders_path
+  .clear

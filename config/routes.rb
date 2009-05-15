@@ -25,6 +25,7 @@ ActionController::Routing::Routes.draw do |map|
       :collection => {:pending => :get, :passive => :get, :suspended => :get, :deleted => :get},
       :member => {:approve => :any, :deny => :any, :suspend => :any, :unsuspend => :any}
     admin.resources :users
+    admin.resources :orders, :collection => {:deleted => :get, :delayed => :get}
   end
   map.admin '/admin', :controller => 'admin/abstract', :action => 'dashboard'
   

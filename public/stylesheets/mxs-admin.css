@@ -742,6 +742,33 @@ span.not_ok{
 
 /* @end */
 
+/* @group Order Admin Section */
+
+table.order {
+	width: 100%;
+}
+table.order td{
+	padding: 8px;
+	line-height: 1.3em;
+	vertical-align: top;
+}
+table.order td h3{
+	background-color: #0000CD;
+	color: #fff;
+	padding: 5px;
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+
+#orders textarea{
+	height: 150px;
+}
+
+/* @end */
+
+
+
+
 /* @group General Others */
 
 
@@ -749,7 +776,9 @@ hr.split{
 	border: none;
 	background:transparent url(/images/more-info-bg.gif) repeat-x scroll left top;
 }
-
+.align_center{
+	text-align: center;
+}
 
 /* @end */
 

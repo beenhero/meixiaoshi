@@ -1,0 +1,22 @@
+= render :partial => 'tabs'
+#orders.cnt
+  .t_header
+    选择: <a href="#todo">全选</a>/<a href="#todo">取消</a>
+
+  %table.tbl_general
+    %thead
+      %tr
+        %th &nbsp;
+        %th ID
+        %th 卖家
+        %th 买家
+        %th 创建时间
+        %th 回复时间
+        %th 操作
+    %tbody
+      = render @orders
+	
+  .t_footer
+    <a href="#todo" class="left">删除选定</a> 
+    = will_paginate @orders
+    .clear

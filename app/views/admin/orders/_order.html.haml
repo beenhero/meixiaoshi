@@ -1,0 +1,28 @@
+- buyer = order.buyer
+- service = order.service
+- user = order.user
+- content_tag_for(:tr, order, :class => cycle("odd","even")) do
+  %td= check_box_tag "check"
+  %td= h order.id
+  %td
+    = link_to h(user), user_path(user)
+    %br
+    = link_to h(service.name), service_path(service)
+  %td
+    - if buyer
+      = link_to h(order.name), user_path(buyer)
+    - else
+      = h(order.name)
+    %br
+    = h order.phone
+    %br
+    = h order.email
+  %td
+    = l order.created_at, :format => :short
+  %td
+    = l order.replied_at, :format => :short if order.replied?
+  %td
+    = link_to "查看", admin_order_path(order)
+    = link_to "编辑", edit_admin_order_path(order)
+    = link_to "删除", admin_order_path(order), :confirm => '真的要删除吗?', :method => :delete
+
