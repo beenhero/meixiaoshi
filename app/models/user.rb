@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :snses, :allow_destroy => true
   
   has_many  :services
+  has_many  :orders
   
   # User avatar setting by paperclip
   has_attached_file :avatar,

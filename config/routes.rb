@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :orders
+  map.resources :orders, :member => { :replied => :any }
  
   # Restful Authentication Rewrites
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
@@ -32,7 +32,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'services', :action => 'index'
 
   map.resources :users, :member_path => '/:id', :nested_member_path => '/:user_id',
-                :member => { :edit_password => :any, :edit_info => :any, :edit_contacts => :any, :calendar => :get, :dashboard => :any, :services => :get }
+                :member => { :edit_password => :any, :edit_info => :any, :edit_contacts => :any, :calendar => :get, :dashboard => :any, :services => :get, :orders => :get }
                 
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'

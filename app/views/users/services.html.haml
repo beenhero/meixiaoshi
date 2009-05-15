@@ -1,6 +1,6 @@
 #main-content
   #column-main
-    = render :partial => "admin_service", :collection => @services
+    = render :partial => "admin_service", :collection => @services, :as => :service
     = will_paginate @services
 #sidebar
   = render :partial => 'sidebar'

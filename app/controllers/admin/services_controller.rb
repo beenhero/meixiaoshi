@@ -18,7 +18,7 @@ class Admin::ServicesController < Admin::AbstractController
     @user = @service.user
     if @service.save
       flash[:notice] = "保存成功！"
-      render :action => "edit"
+      redirect_to edit_admin_service_path(@service)
     else
       render :action => "edit"
     end

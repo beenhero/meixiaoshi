@@ -107,7 +107,7 @@
         confirmation: "与确认值不匹配"
         accepted: "必须是可被接受的"
         empty: "不能留空"
-        blank: "不能为空字符"
+        blank: "不能为空"
         too_long: "过长（最长为 {{count}} 个字符）"
         too_short: "过短（最短为 {{count}} 个字符）"
         wrong_length: "长度非法（必须为 {{count}} 个字符）"
@@ -120,6 +120,14 @@
         less_than_or_equal_to: "必须小于或等于 {{count}}"
         odd: "必须为单数"
         even: "必须为双数"
+    models:
+      user: "用户"
+      service: "服务"
+      order: "订单"
+    attributes:
+      order:
+        phone: "电话"
+        email: "邮箱"
   
 
   

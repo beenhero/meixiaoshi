@@ -4,11 +4,14 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :service_id
       t.integer :user_id
       t.integer :buyer_id
-      t.string :buyer_name
+      t.string :name
+      t.string :email
       t.string :phone
       t.text :description
-
-      t.timestamps
+      t.text :reply
+      t.datetime :replied_at
+      t.datetime :created_at
+      t.datetime :deleted_at
     end
   end
 

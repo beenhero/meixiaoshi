@@ -1,11 +1,11 @@
 #user
   .u-hd
     .avatar
-      = link_to "#{image_tag(user.avatar.url)}", user_path(user)
+      = link_to image_tag(user.avatar.url), user_path(user)
     %h1
-      = link_to h(user.name), user_path(user), :class => "fn url", :rel => 'my name'
+      = link_to h(user), user_path(user), :class => "fn url", :rel => 'my name'
     %p
-      = user.address.single_line
+      = user.address.single_line if user.address#todo
       = image_tag "address.png"
     %p
       共出售35小时
@@ -13,7 +13,8 @@
   %hr.split
   .u-cnt
     #about
-      = user.user_info.bio.blank? ? "这家伙很懒，啥都没写" : user.user_info.bio
+      -if  user.user_info #tod0
+        = user.user_info.bio.blank? ? "这家伙很懒，啥都没写" : user.user_info.bio
       
     #networks
       = phone_numbers_list(user)

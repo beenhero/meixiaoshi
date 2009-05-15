@@ -69,11 +69,14 @@ ActiveRecord::Schema.define(:version => 20090514140938) do
     t.integer  "service_id"
     t.integer  "user_id"
     t.integer  "buyer_id"
-    t.string   "buyer_name"
+    t.string   "name"
+    t.string   "email"
     t.string   "phone"
     t.text     "description"
+    t.text     "reply"
+    t.datetime "replied_at"
     t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "passwords", :force => true do |t|

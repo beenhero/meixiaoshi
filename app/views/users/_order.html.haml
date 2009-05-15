@@ -1,0 +1,25 @@
+- user = order.user
+- service = order.service
+- div_for order, :class => "service-item" do
+  .buyer-info
+    - if user
+      .avatar
+        = link_to image_tag(user.avatar.url(:thumb)), user_path(user)
+      = link_to h(order.name), user_path(user)
+    - else
+      = h(order.name)
+    %br
+    = h order.phone
+    %br
+    = h order.email
+
+  .order-info
+    %h3= link_to h(service.name), service_path(service)
+    %p= simple_format order.description
+    
+  .right
+    = link_to "回复ta", edit_order_path(order), :rel => "facebox"
+    = link_to_remote "已电话回复", :url => replied_order_path(order), :complete => "$('replied_#{order.id}').fade(); return false;", :html =>{:id => "replied_#{order.id}"} unless order.replied?
+    = link_to_remote "删除", :url => order_path(order), :confirm => '真的要删除吗?', :method => :delete
+    
+  .clear

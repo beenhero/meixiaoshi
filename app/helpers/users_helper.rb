@@ -178,4 +178,15 @@ module UsersHelper
     return ul << '</ul>' unless ul.blank?
   end
   
+  #plain text, will be used in emails
+  def phone_nubmers(user, privacy = true)
+    re = ''
+    lists = privacy ? user.phone_numbers.public : user.phone_numbers
+    unless lists.blank?
+      lists.each do |l|
+        re << "#{l.label}: #{l.value}  "
+      end  
+    end
+    return re
+  end
 end

@@ -1,0 +1,21 @@
+- remote_form_for @order, :update => "edit_order", :html => { :id => "edit_order" } do |i|
+  .form-bg
+    %p
+      =h @order.name
+      %br
+      =h @order.phone
+      %br
+      =h @order.email
+    
+    %hr.split
+    
+    = i.error_messages
+    .form-row
+      = i.label :reply, "回复"
+      = i.text_area :reply, :value => "#{@order.name}:\n\t你好！\n\t感谢对我的时间和服务感兴趣，我的联系方式是：\n\t#{phone_nubmers(current_user)}\n\t谢谢!\n\t#{current_user} 来自meixiaoshi.com\n\t#{Time.now.to_s(:short)}"
+    
+    = i.submit "发送邮件", :class => "btn"
+
+    
+    .tips
+      请按需要修改邮件内容！

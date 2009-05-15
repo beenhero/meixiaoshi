@@ -1,0 +1,37 @@
+- remote_form_for @order, :update => "new_order" do |i|
+  .form-bg
+ 
+    .avatar
+      = link_to "#{image_tag(@user.avatar.url(:thumb))}", user_path(@user)
+    = link_to h(@user.name), user_path(@user), :class => "fn url", :rel => 'my name'
+    %p
+      = @user.address.single_line
+    #networks
+      = phone_numbers_list(@user)
+      = im_list(@user)
+      = sns_list(@user)
+        
+    %hr.split
+    = i.error_messages    
+    .form-row
+      = i.label :name, "称呼"
+      = i.text_field :name
+    
+    .form-row
+      = i.label :telphone, "电话"
+      = i.text_field :phone
+      
+    .form-row
+      = i.label :buyer_email, "邮箱"
+      = i.text_field :email
+      
+    .form-row
+      = i.label :description, "需求说明"
+      = i.text_area :description
+    = i.hidden_field :service_id, :value => @service.id
+    = i.hidden_field :buyer_id, :value => current_user.id if current_user
+    
+    = i.submit "保存", :class => "btn"
+    
+    .tips
+      请注意卖家的时间和价格是否符合你的要求！

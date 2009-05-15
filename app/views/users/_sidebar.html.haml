@@ -8,5 +8,5 @@
     = link_to "帐户设置", edit_user_path(@user)
   %li{:class => (controller_name == "users" && %w(services).include?(action_name)) || (controller_name == "services" && %w(edit).include?(action_name)) ? 'selected' : ''}
     = link_to "时间管理", services_user_path(@user)
-  %li{:class => controller_name == "users" && %w(show).include?(action_name) ? 'selected' : ''}
-    = link_to "订单管理<sup>1</sup>", "#todo"
+  %li{:class => controller_name == "users" && %w(orders).include?(action_name) || (controller_name == "orders") ? 'selected' : ''}
+    = link_to "订单管理<sup>1</sup>", orders_user_path(@user)

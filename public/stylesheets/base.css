@@ -1119,6 +1119,55 @@ span.not_ok{
 }
 /* @end */
 
+/* @group Order related */
+.new_order{
+	
+}
+.new_order label{
+	width: 60px;
+}
+.new_order textarea{
+	width: 260px;
+	height: 80px;
+	color: #666;
+}
+.new_order input[type='text']{
+	color: #666;
+}
+.new_order #networks{
+	padding-left: 60px;
+}
+.new_order .avatar{
+	margin-right: 12px !important;
+}
+.new_order .btn{
+	margin-left: 60px;
+}
+.new_order .tips, .edit_order .tips{
+	background: url(../images/icon-tips.gif) no-repeat left top;
+	padding-left: 20px;
+	margin-top: 10px;
+}
+.edit_order textarea{
+	height: 100px;
+}
+
+/*user's orders admin*/
+.buyer-info{
+	float: left;
+	width: 240px;
+}
+.order-info{
+	background:transparent url(../images/bg_other_details.gif) repeat-y scroll left top;
+	float: left;
+	margin: 0 10px 10px 0;
+	padding-left: 10px;
+}
+
+/* @end */
+
+
+
 
 /* @group Users */
 
@@ -1143,24 +1192,26 @@ span.not_ok{
 	margin: 0 10px 10px 0;
 	padding-left: 8px;
 }
-.u-cnt #networks ul{
+#networks ul{
 	margin-bottom: 7px;
 	padding:3px 0 0 20px;
 }
-.u-cnt #networks ul.phone{
+#networks ul.phone{
 	background: transparent url(../images/phone.png) no-repeat left top;
 }
-.u-cnt #networks ul.im{
+#networks ul.im{
 	background: transparent url(../images/email.png) no-repeat left top;
 }
-.u-cnt #networks ul.sns{
+#networks ul.sns{
 	background: transparent url(../images/website.png) no-repeat left top;
 }
-.u-cnt #networks li{
+#networks li{
 	line-height: 1.2em;
 }
 
-/* @group vCart style trying */
+
+
+/* @group vCard style trying */
 
 #vc-header{
 	background:transparent url(../images/vc-hd.png) no-repeat scroll 50% bottom;
@@ -1259,9 +1310,6 @@ span.not_ok{
 
 /* @end */
 
-a.add-btn{
-	padding-left: 100px;
-}
 
 /* @group User admin menu */
 ul.user_menu li a{
@@ -1292,6 +1340,8 @@ ul.user_menu li.selected a{
 }
 ul.user_menu a sup{
 	color: red;
+	font-size: 9px;
+	font-family: verdana;
 }
 
 .service-item .pending{
@@ -1502,6 +1552,9 @@ ul.user_menu a sup{
 
 /* @group General styles */
 
+a.add-btn{
+	padding-left: 100px;
+}
 hr.split{
 	border: none;
 	background:transparent url(/images/more-info-bg.gif) repeat-x scroll left top;

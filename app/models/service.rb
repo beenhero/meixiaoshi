@@ -4,6 +4,7 @@ class Service < ActiveRecord::Base
   
   belongs_to :user
   has_many :schedules
+  has_many :orders
   
   validates_presence_of :begin_date_time, :end_date_time, :user_id
   validates_presence_of :begin_date_time, :end_date_time, :if => :time_required

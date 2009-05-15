@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
-  before_filter :login_required, :only => [:edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy, :dashboard, :services]
-  before_filter :find_user, :only => [:show, :edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy, :calendar, :dashboard, :services]
+  before_filter :login_required, :only => [:edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy, :dashboard, :services, :orders]
+  before_filter :find_user, :only => [:show, :edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy, :calendar, :dashboard, :services, :orders]
   
   def dashboard
     @display_date = Date.new(Date.today.year, Date.today.month, 1)
@@ -127,7 +127,11 @@ class UsersController < ApplicationController
   end
   
   def services
-    @services = @user.services.valid.paginate(:page => params[:page], :per_page => 5)
+    @services = @user.services.valid.paginate(:page => params[:page], :per_page => 10)
+  end
+  
+  def orders
+    @orders = @user.orders.valid.paginate(:page => params[:page], :per_page => 10)
   end
   
   protected
