@@ -5,16 +5,17 @@
     %h1
       = link_to h(user), user_path(user), :class => "fn url", :rel => 'my name'
     %p
-      = user.address.single_line if user.address#todo
-      = image_tag "address.png"
+      = "#{user.full_address} #{image_tag 'address.png'}" unless user.full_address.blank?
     %p
       共出售35小时
   .clear
   %hr.split
   .u-cnt
     #about
-      -if  user.user_info #tod0
+      -if user.user_info
         = user.user_info.bio.blank? ? "这家伙很懒，啥都没写" : user.user_info.bio
+      -else
+        = "这家伙很懒，啥都没写"
       
     #networks
       = phone_numbers_list(user)

@@ -7,7 +7,7 @@
     = h service
     %br
     = "#{h service.price}元/#{h service.price_unit}"
-    = "@#{h user.address.single_name}"
+    = "@#{h user.short_address}" unless user.short_address.blank?
     = "#{service.radius}公里以内" if service.radius
   %td
     = service.state

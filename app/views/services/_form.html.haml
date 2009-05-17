@@ -30,7 +30,7 @@
     = f.text_field :name
   .form-row
     = f.label :location, '地理范围'
-    = h current_user.address.single_name
+    = h current_user.full_address
     &nbsp;
     = f.select :radius, radius_options
   .form-row

@@ -25,11 +25,11 @@ class Admin::ServicesController < Admin::AbstractController
   end
   
   def destroy
-    state = @service.state
     if request.xhr?
       @service.delete!
       render :partial => "action"
     else
+      state = @service.state
       @service.delete!
       case state
       when "pending"

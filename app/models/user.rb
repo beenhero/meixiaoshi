@@ -143,6 +143,18 @@ class User < ActiveRecord::Base
     orders.unreplied.count
   end
   
+  def full_address
+    address ? address.single_line : ''
+  end
+  
+  def short_address
+    address ? address.single_name : ''
+  end
+  
+  def city
+    address ? (address.city ? address.city.name : '') : ''
+  end
+  
   protected
     
   def make_activation_code

@@ -47,7 +47,7 @@
         = f.text_field :name
       .form-row
         = f.label :location, '地理范围'
-        = h @user.address.single_name
+        = h @user.full_address
         &nbsp;
         = f.select :radius, radius_options
       .form-row

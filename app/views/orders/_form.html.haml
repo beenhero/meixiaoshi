@@ -5,7 +5,7 @@
       = link_to "#{image_tag(@user.avatar.url(:thumb))}", user_path(@user)
     = link_to h(@user.name), user_path(@user), :class => "fn url", :rel => 'my name'
     %p
-      = @user.address.single_line
+      = @user.city
     #networks
       = phone_numbers_list(@user)
       = im_list(@user)

@@ -13,7 +13,7 @@
           %br
           = "时间: #{service}"
           %br
-          = "地点: #{h user.address.single_name}"
+          = "地点: #{h user.short_address}" unless user.short_address.blank?
           = "#{service.radius}公里以内" if service.radius
           %br
           = "价格: #{h service.price}元/#{h service.price_unit}"
