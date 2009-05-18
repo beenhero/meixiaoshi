@@ -2,7 +2,7 @@ class ServicesController < ApplicationController
   before_filter :login_required, :only => [:new, :create, :edit, :update]
   
   def index
-    
+    @tags = Service.top_tags
   end
   
   def show
@@ -55,6 +55,7 @@ class ServicesController < ApplicationController
   end
   
   def tag
+    @tags = Service.top_tags
     @services = Service.tagged_with(params[:id], :on => :tags).active.paginate(:page => params[:page], :per_page => 20, :order => "created_at DESC")
   end
 end

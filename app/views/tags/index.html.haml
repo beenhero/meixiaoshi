@@ -1,7 +1,7 @@
 #main-content
   #column-main
-    = render :partial => "service_tag", :collection => @services
-    = will_paginate @services
+    - tag_cloud @tags, %w(nube1 nube2 nube3 nube4 nube5 nube6) do |tag, css_class|
+      = link_to h(tag), tag_path(tag), :class => css_class
     
 #sidebar
   =link_to image_tag("add-yourself.jpg"), new_service_path
@@ -27,4 +27,4 @@
   .sidebar-split
   
   %h2
-    销售排名
+    人气排名

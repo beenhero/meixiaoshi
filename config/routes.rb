@@ -17,6 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :services, :member => { :schedules => :any }
   map.resources :orders, :member => { :replied => :any }
+  map.resources :tags
   
   map.fetch_cities '/addresses/fetch_cities', :controller => 'addresses', :action => 'fetch_cities'
   map.fetch_counties '/addresses/fetch_counties', :controller => 'addresses', :action => 'fetch_counties'

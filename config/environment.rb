@@ -32,7 +32,6 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', :version => '2.3.6', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'haml'
   config.gem "calendar_date_select"
-  config.gem "mbleigh-acts-as-taggable-on", :source => "http://gems.github.com", :lib => "acts-as-taggable-on"
   
   # These cause problems with irb. Left in for reference
   # config.gem 'rspec-rails', :lib => 'spec/rails', :version => '1.1.11'
@@ -83,3 +82,5 @@ end
 
 CalendarDateSelect.format = :iso_date
 CalendarDateSelect.default_options.update(:popup => :force, :buttons => false, :month_year => "label", :valid_date_check => "var now = new Date(); var next_year = new Date(); next_year.setYear(now.getFullYear()+1); if((now.stripTime() <= date.stripTime()) && (date.stripTime() < next_year.stripTime())) return true; else return false;")
+
+TagList.delimiter = " "

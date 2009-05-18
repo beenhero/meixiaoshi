@@ -1568,4 +1568,12 @@ hr.split{
 .right{
 	float: right;
 }
+/*tags_cloud style*/
+.nube1 {font-size: 12px;}
+.nube2 {font-size: 14px;}
+.nube3 {font-size: 16px;}
+.nube4 {font-size: 18px;}
+.nube5 {font-size: 20px;}
+.nube6 {font-size: 22px;}
+
 /* @end */
