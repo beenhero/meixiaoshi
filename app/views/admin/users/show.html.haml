@@ -1,0 +1,46 @@
+= render :partial => 'tabs'
+- user = @user
+#orders.cnt
+  .form-bg
+    %table.order
+      %tr
+        %td
+          %h3 帐户信息
+          .avatar
+            = link_to image_tag(user.avatar.url(:tiny)), user_path(user)
+          %h4
+            = link_to h(user.login), user_path(user), :class => "fn url", :rel => 'my name'
+          %p
+            = "#{user.full_address}" unless user.full_address.blank?
+      
+          %br
+          = "昵称: #{h user.name}"
+          %br
+          = "邮箱: #{h user.email}"
+          %br
+          = "注册时间: #{l user.created_at, :format => :long}"
+          %br
+          = "状态: #{h(user.state)}"
+          %br
+          = "激活链接: #{APP_CONFIG[:site_url]}/activate/#{user.activation_code}" if user.activation_code
+          %br
+          = "激活于: #{l user.activated_at, :format => :long}" if user.activated_at
+          %br
+          = "删除于: #{l user.deleted_at, :format => :long}" if user.deleted_at
+          %br
+          = "管理员: #{user.admin}"
+          %br
+          = "spammer: #{user.spammer}"
+        %td
+          %h3 个人信息
+          - if user.user_info
+            = "姓名: #{h user.user_info.real_name}"
+            %br
+            = "性别: #{h user.user_info.gender}"
+            %br
+            = "生日: #{h user.user_info.birthday}"
+            %br
+            = "简介: #{h user.user_info.bio}"
+      
+        
+  = link_to "返回", :back, :class => "right"

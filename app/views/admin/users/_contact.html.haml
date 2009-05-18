@@ -1,0 +1,6 @@
+.form-sub-row.contact
+  = form.select :name, PhoneNumber::CONTACT_TYPES[type]
+  = form.text_field :value
+  = form.hidden_field :contact_type, :value => type
+  = form.select :privacy, [['保密', false], ['公开', true]]
+  = remove_contact_link(form)

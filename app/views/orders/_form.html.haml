@@ -15,15 +15,15 @@
     = i.error_messages    
     .form-row
       = i.label :name, "称呼"
-      = i.text_field :name
+      = i.text_field :name, :value => "#{current_user if current_user}"
     
     .form-row
       = i.label :telphone, "电话"
-      = i.text_field :phone
+      = i.text_field :phone, :value => "#{phone_nubmers(current_user) if current_user}"
       
     .form-row
       = i.label :buyer_email, "邮箱"
-      = i.text_field :email
+      = i.text_field :email, :value => "#{current_user.email if current_user}"
       
     .form-row
       = i.label :description, "需求说明"

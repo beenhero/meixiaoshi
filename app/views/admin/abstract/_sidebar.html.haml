@@ -45,15 +45,14 @@
             %li= link_to "创建", "#TODO"
         
         %li.nearby
-          = link_to "用户管理", "#TODO"
+          = link_to "用户管理", admin_users_path
           %ul
-            %li= link_to "待审", "#TODO"
-            %li= link_to "全部", "#TODO"
-            %li= link_to "评论", "#TODO"
-            %li= link_to "创建", "#TODO"
+            %li= link_to "全部", admin_users_path
+            %li= link_to "未激活", pending_admin_users_path
+            %li= link_to "已删除", deleted_admin_users_path
             
         %li.friends
-          = link_to "用户管理", "#TODO"
+          = link_to "客户管理", "#TODO"
          
         %li.places
           = link_to "订单管理", admin_orders_path

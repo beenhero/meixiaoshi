@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user.user_info ||= @user.build_user_info
+    
   end
   
   def edit_info

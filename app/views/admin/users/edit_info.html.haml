@@ -1,0 +1,41 @@
+- render :layout => 'edit_layout', :object => @user do
+  - form_for @user.user_info, :url => edit_info_admin_user_path(@user) do |i|
+    .form-bg
+      = i.error_messages
+      .form-row
+        = i.label :real_name, "姓名"
+        = i.text_field :real_name
+      .form-row
+        = i.label :gender, "性别"
+        = i.radio_button :gender, 0
+        男&nbsp;&nbsp;
+        = i.radio_button :gender, 1
+        女&nbsp;&nbsp;
+        = i.radio_button :gender, 2
+        保密
+      .form-row
+        = i.label :birthday, "生日"
+        = i.date_select :birthday, :start_year => 1949, :end_year => 2000, :use_month_numbers => true 
+      .form-row
+        = i.label :bio, "关于我"
+        = i.text_area :bio
+      %hr.split
+      .form-row
+        - fields_for :user_address, @user.address do |a|
+          .form-row
+            = a.label :address, "地址"
+            = a.select :province_id, Province.province_options, {}, "onchange" => remote_function(:with => "'parent_id='+value", :update => "city_selector", :url => fetch_cities_path)
+            %span#city_selector
+              = a.select :city_id, @cities.collect{|c| [c.name, c.id]}, {}, "onchange" => remote_function(:with => "'parent_id='+value", :update =>"county_selector", :url => fetch_counties_path) unless @cities.empty?
+              %span#county_selector
+                = a.select :county_id, @counties.collect{|c| [c.name, c.id]}, {}, "onchange" => remote_function(:with => "'parent_id='+value", :update =>"area_selector", :url => fetch_areas_path) unless @counties.empty?
+                %span#area_selector
+                  = a.select :area_id, @areas.collect{|c| [c.name, c.id]} unless @areas.empty?
+              
+          .form-row
+            = a.label :address, "街道小区"
+            = a.text_field :street
+            = image_tag 'position.png'
+
+    .form-submit
+      = i.submit "保存"

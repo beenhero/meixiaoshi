@@ -59,6 +59,16 @@ class User < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url, :user_info_attributes, :phone_numbers_attributes, :instant_messages_attributes, :snses_attributes, :avatar, :terms
   
+  named_scope :valid, :conditions => {:state => 'active'}
+  named_scope :pending, :conditions => {:state => 'pending'}
+  named_scope :deleted, :conditions => {:state => 'deleted'}
+  
+  aasm_event :renew do
+    transitions :from => :deleted, :to => :active,  :guard => Proc.new {|u| !u.activated_at.blank? }
+    transitions :from => :deleted, :to => :pending, :guard => Proc.new {|u| !u.activation_code.blank? }
+    transitions :from => :deleted, :to => :passive
+  end
+  
   attr_accessor :terms
   attr_reader :old_password
   

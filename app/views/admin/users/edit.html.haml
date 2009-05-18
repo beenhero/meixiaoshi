@@ -1,0 +1,34 @@
+- render :layout => 'edit_layout', :object => @user do
+  - form_for [:admin, @user], :html => { :multipart => true } do |f|
+    = f.error_messages
+    .form-bg
+      .form-row
+        = f.label :login, "帐号"
+        = f.text_field :login
+      .form-row
+        = f.label :password, "密码"
+        = "****************"
+        = link_to "修改", edit_password_admin_user_path(@user)
+      .form-row
+        = f.label :identity_url, "主页"
+        = "http://meixiaoshi.com/#{@user.login}"
+      %hr.split
+      .form-row
+        = f.label :name, "昵称"
+        = f.text_field :name
+      .form-row
+        = f.label :email, "邮箱"
+        = f.text_field :email
+      %hr.split
+      .form-row
+        = f.label :avatar, "头像 #{image_tag @user.avatar.url(:tiny)}"
+        = f.file_field :avatar
+      %hr.split
+      .form-row
+        = f.label :spammer
+        = f.check_box :spammer
+        
+    .form-submit
+      = f.submit "保存"
+      或
+      = link_to "返回", :back

@@ -1,0 +1,15 @@
+%tr{ :class => cycle("odd","even")}
+  %td= check_box_tag "check"
+  %td=h user.id
+  %td=h user.login
+  %td=h user.name
+  %td=h user.email
+  %td=h user.state
+  %td=l user.created_at, :format => :short
+  %td
+    = link_to "查看", admin_user_path(user)
+    - if user.state == 'deleted'
+      = link_to "恢复", renew_admin_user_path(user)
+    - else
+      = link_to "编辑", edit_admin_user_path(user)
+      = link_to "删除", admin_user_path(user), :confirm => '真的要删除吗?', :method => :delete

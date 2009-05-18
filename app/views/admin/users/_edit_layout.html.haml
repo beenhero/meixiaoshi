@@ -1,0 +1,13 @@
+= render :partial => 'tabs'
+#users.cnt
+  %ul.nav
+    %li
+      = link_to "帐号信息", edit_admin_user_path(@user), :class => (current_page?(:action => 'edit') ? "current" : "")
+    %li
+      = link_to "个人信息", edit_info_admin_user_path(@user), :class => (current_page?(:action => 'edit_info') ? "current" : "")
+    %li
+      = link_to "联系方式", edit_contacts_admin_user_path(@user), :class => (current_page?(:action => 'edit_contacts') ? "current" : "")
+    %li
+      = link_to "修改密码", edit_password_admin_user_path(@user), :class => (current_page?(:action => 'edit_password') ? "current" : "")
+  .clear
+  = yield

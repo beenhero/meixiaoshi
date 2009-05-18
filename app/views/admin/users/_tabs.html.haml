@@ -1,0 +1,10 @@
+.header.tabs
+  %h1 用户管理
+  %ul
+    %li{:class => controller_name == "users" && %w(index).include?(action_name) ? 'selected' : ''}
+      = link_to "<span>全部</span>", admin_users_path
+    %li{:class => controller_name == "users" && %w(pending).include?(action_name) ? 'selected' : ''}
+      = link_to "<span>未激活</span>", pending_admin_users_path
+    %li{:class => controller_name == "users" && %w(deleted).include?(action_name) ? 'selected' : ''}
+      = link_to "<span>已删除</span>", deleted_admin_users_path
+  .clear
