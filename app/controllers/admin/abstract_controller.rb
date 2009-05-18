@@ -9,7 +9,7 @@ class Admin::AbstractController < ApplicationController
   
   protected
   def authorized?
-    logged_in? && current_user.admin?
+    admin?
   end
   
 end  

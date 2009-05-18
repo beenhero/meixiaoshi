@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
-  before_filter :login_required, :only => [:edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy, :dashboard, :services, :orders]
   before_filter :find_user, :only => [:show, :edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy, :calendar, :dashboard, :services, :orders]
-  
+  before_filter :login_required, :only => [:edit, :edit_info, :edit_contacts, :edit_password, :update, :destroy, :dashboard, :services, :orders]
+    
   def dashboard
     @display_date = Date.new(Date.today.year, Date.today.month, 1)
   end
@@ -135,6 +135,11 @@ class UsersController < ApplicationController
   end
   
   protected
+  
+  # check if the owner or admin, otherwise access_denied.
+  def authorized?
+    admin? || @is_owner
+  end
   
   def create_new_user(attributes)
     @user = User.new(attributes)

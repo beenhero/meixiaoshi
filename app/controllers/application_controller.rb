@@ -17,12 +17,22 @@ class ApplicationController < ActionController::Base
   
   def find_user
     if @user = User.find(params[:user_id] || params[:id])
+      @is_owner = (@user && @user.eql?(current_user))
       return @user
     else
       flash.now[:error] = "请先登录."
       redirect_to login_path
       return false
     end
+  end
+  
+  def admin?
+    logged_in? && current_user.admin?
+  end
+  
+  def access_denied
+    flash[:warning] = "没有权限访问"
+    redirect_to root_path
   end
 end
 
