@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
   named_scope :valid, :conditions => {:state => 'active'}
   named_scope :pending, :conditions => {:state => 'pending'}
   named_scope :deleted, :conditions => {:state => 'deleted'}
+  named_scope :top_users, :limit => 10, :order => "created_at DESC"
   
   aasm_event :renew do
     transitions :from => :deleted, :to => :active,  :guard => Proc.new {|u| !u.activated_at.blank? }

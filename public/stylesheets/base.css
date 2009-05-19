@@ -366,6 +366,8 @@ strong {
 		width: 340px;
 	}
 
+/* @group Sidebar styles */
+
 #sidebar {
 	float: left;
 	margin-top: 5px;
@@ -434,18 +436,18 @@ strong {
 		height: 10px;
 	}
 	
-	#sidebar .service-item {
+	#sidebar .popular-users li {
 		background: #f8f8f8;
 		margin-bottom: 1px;
 		padding: 0 10px 10px 0;
 		width: 210px;
 	}
 	
-		#sidebar .service-item.alt {
+		#sidebar .popular-users .odd {
 		background: #eee;
 	}
 	
-	#sidebar .service-item a img {
+	#sidebar .popular-users a img {
 		background: #fff url('/images/no_profile_photo.gif') top left no-repeat;
 		float: left;
 		height: 20px;
@@ -453,20 +455,20 @@ strong {
 		width: 20px;
 	}
 	
-		#sidebar .service-item .count {
+		#sidebar .popular-users .count {
 			color: #aaa;
 			font: bold 14px 'Helvetica', Arial, Sans-Serif;
 			float:  right;
 			padding: 13px 0 0 0;
 		}
 		
-		#sidebar .service-item .arrow {
+		#sidebar .popular-users .arrow {
 			color: #ccc;
 			float:  left;
 			margin: 13px 0 0 0;
 		}
 	
-	#sidebar .service-item .details {
+	#sidebar .popular-users .details {
 		float: left;
 		margin: 0 0 0 10px;
 		width: 130px;
@@ -496,16 +498,16 @@ strong {
 			opacity: 1.0;
 		}
 	
-	.service-item .details h3 {
+	.popular-users .details h3 {
 		margin: 4px 0 0 0;
 	}
 	
-	.service-item .details h3 a {
+	.popular-users .details h3 a {
 		color: #cc3333;
 		padding: 0;
 	}
 	
-	.service-item .details em {
+	.popular-users .details em {
 		float: left;
 		line-height: 8px;
 	}
@@ -513,6 +515,8 @@ strong {
 	#sidebar dl dd div.followers {
 		margin-top: -6px;
 	}
+
+/* @end sidebar*/
 
 /* @group Subpage */
 

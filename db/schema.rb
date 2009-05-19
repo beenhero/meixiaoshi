@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090514140938) do
+ActiveRecord::Schema.define(:version => 20090519030152) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "addressable_id",                   :null => false
@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20090514140938) do
     t.datetime "activated_at"
     t.datetime "deleted_at"
     t.string   "admin_notes"
+    t.string   "cached_tag_list"
   end
 
   add_index "services", ["begin_date_time"], :name => "index_services_on_begin_date_time"

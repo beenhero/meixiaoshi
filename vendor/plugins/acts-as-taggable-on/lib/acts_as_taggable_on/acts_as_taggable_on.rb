@@ -208,8 +208,8 @@ module ActiveRecord
           { :select     => "#{Tag.table_name}.id, #{Tag.table_name}.name, COUNT(*) AS count", 
             :joins      => joins.join(" "),
             :conditions => conditions,
-            :group      => group_by
-          }
+            :group      => group_by,
+          }.reverse_merge!(options)
         end    
         
         def is_taggable?
